@@ -4,10 +4,12 @@ controlled sprite on the screen.
 """
 import pygame
 
+import sys
+sys.path.insert(0, '../../bin/')
 import constants
 
-from platforms import MovingPlatform
-from spritesheet_functions import SpriteSheet
+from platforms.platforms import MovingPlatform
+from others.spritesheet_functions import SpriteSheet
 
 class Player(pygame.sprite.Sprite):
     """ This class represents the bar at the bottom that the player
@@ -36,7 +38,7 @@ class Player(pygame.sprite.Sprite):
         # Call the parent's constructor
         pygame.sprite.Sprite.__init__(self)
 
-        sprite_sheet = SpriteSheet("p1_walk.png")
+        sprite_sheet = SpriteSheet("../../resources/sprites/chars/char_test.png")
         # Load all the right facing images into a list
         image = sprite_sheet.get_image(0, 0, 66, 90)
         self.walking_frames_r.append(image)

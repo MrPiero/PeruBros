@@ -3,7 +3,7 @@ Module for managing blocks.
 """
 import pygame
 
-from spritesheet_functions import SpriteSheet
+from others.spritesheet_functions import SpriteSheet
 
 # These constants define our platform types:
 #   Name of file
@@ -26,7 +26,7 @@ class Block(pygame.sprite.Sprite):
             code. """
         pygame.sprite.Sprite.__init__(self)
 
-        sprite_sheet = SpriteSheet("tiles_spritesheet.png")
+        sprite_sheet = SpriteSheet("../../resources/sprites/blocks/tiles_blocks.png")
         # Grab the image for this platform
         self.image = sprite_sheet.get_image(sprite_sheet_data[0],
                                             sprite_sheet_data[1],

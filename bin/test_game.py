@@ -1,11 +1,20 @@
 import pygame
 
-import constants
-import levels
-import methods
 
-from player import Player
+import region.levels
+import others.methods
+
+
+
 import time
+import constants
+#import sys
+#sys.path.insert(0, '../../bin/')
+from chars.player import Player
+from others.methods import *
+
+from region.levels import *
+
 
 def main():
     """ Main Program """
@@ -22,8 +31,8 @@ def main():
 
     # Create all the levels
     level_list = []
-    level_list.append(levels.Level_01(player))
-    level_list.append(levels.Level_02(player))
+    level_list.append(Level_01(player))
+    level_list.append(Level_02(player))
 
     # Set the current level
     current_level_no = 0
@@ -92,7 +101,7 @@ def main():
             if current_level_no < len(level_list)-1:
                 time.sleep (5)
                 print("Test_2")
-                dec = methods.nextLevel()
+                dec = nextLevel()
                 if dec == "1":
                     current_level_no += 1
                     current_level = level_list[current_level_no]
