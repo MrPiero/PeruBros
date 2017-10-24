@@ -8,17 +8,16 @@ class LoginUIMenu:
         self.root.title("PERUBROS.")
         self.root.geometry("1280x500")
 
-        frameLogo = Frame(self.root)
-        frameLogo.pack()
+        self.frameLogo = Frame(self.root)
+        self.frameLogo.pack()
         frame = Frame(self.root, width=300)
         frame.pack()
 
-        logo = PhotoImage(file="resources/logos/perubrologo.png")
-        self.labelLogo = Label(frameLogo, image=logo)
+
         self.labelUser = Label(frame, text="Username:")
         self.labelPasswd = Label(frame, text="Password:")
 
-        self.labelLogo.pack() # grid(columnspan=2)
+
         self.labelUser.grid(row=2, sticky=E)
         self.labelPasswd.grid(row=3, sticky=E)
 
@@ -32,10 +31,14 @@ class LoginUIMenu:
         self.buttonSubmit.grid(columnspan=2)
 
         # self.root.mainloop()
+        self.status = False
 
     def main(self):
+        logo = PhotoImage(file="resources/logos/perubrologo.png")
+        self.labelLogo = Label(self.frameLogo, image=logo)
+        self.labelLogo.pack()  # grid(columnspan=2)
         self.root.mainloop()
-        return True
+        return self.status
 
     def login_file(self):
         u = self.entryUser.get()
@@ -53,7 +56,6 @@ class LoginUIMenu:
     def login_https(self):
         u = self.entryUser.get()
         p = self.entryPasswd.get()
-        ingreso = False
 
         json_file = requests.get("https://jsonplaceholder.typicode.com/users").json()
 
@@ -69,6 +71,6 @@ class LoginUIMenu:
 
                 self.root.quit()
                 print("PASASTE")
-                ingreso = True
-        if not ingreso:print("CREDENCIALES INCORRECTAS")
+                self.status = True
+        if not self.status:print("CREDENCIALES INCORRECTAS")
 

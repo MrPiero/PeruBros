@@ -9,7 +9,8 @@ if len(sys.argv) == 1:
     # root = Tk()
     login = LoginUIMenu()
     # root.mainloop()
-    print(login.main())
+    status = login.main()
+    print(status)
 
 elif sys.argv[1] == 'test':
     pass
