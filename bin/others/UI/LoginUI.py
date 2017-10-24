@@ -31,7 +31,11 @@ class LoginUIMenu:
         self.buttonSubmit = Button(frame, text="Submit", command=self.login_https)
         self.buttonSubmit.grid(columnspan=2)
 
+        # self.root.mainloop()
+
+    def main(self):
         self.root.mainloop()
+        return True
 
     def login_file(self):
         u = self.entryUser.get()

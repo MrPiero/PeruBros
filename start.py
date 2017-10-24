@@ -7,9 +7,9 @@ from bin.others.UI.LoginUI import LoginUIMenu
 if len(sys.argv) == 1:
     # main.main()
     # root = Tk()
-    LoginUIMenu()
+    login = LoginUIMenu()
     # root.mainloop()
-
+    print(login.main())
 
 elif sys.argv[1] == 'test':
     pass
