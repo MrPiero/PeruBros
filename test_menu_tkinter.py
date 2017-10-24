@@ -1,4 +1,5 @@
 from tkinter import *
+import tkinter.messagebox
 
 root = Tk()  # Ventana
 """ # the_label = Label(root, text="This is too easy")  # Texto del label
@@ -77,6 +78,7 @@ frame.pack()
 
 # USING CLASSES
 
+"""
 class BuckysButton:
 
     def __init__(self, master):
@@ -94,4 +96,46 @@ class BuckysButton:
 
 
 b = BuckysButton(root)
+"""
+
+"""
+# Dropdown Menus
+
+
+def doNothing():
+    print("Ok ok I won't do nothing...")
+
+menu = Menu(root)
+root.config(menu=menu)
+
+subMenu = Menu(menu)
+menu.add_cascade(label="File", menu=subMenu)
+subMenu.add_command(label="New Project...", command=doNothing)
+subMenu.add_command(label="New ...", command=doNothing)
+subMenu.add_separator()
+subMenu.add_command(label="Exit", command=doNothing)
+
+
+# TOOLBARS
+
+toolbar = Frame(root, bg="blue")
+
+insertButton = Button(toolbar, text="Insert Image", command=doNothing)
+insertButton.pack(side=LEFT, padx=2, pady=2)
+printButton = Button(toolbar, text="Print Button", command=doNothing)
+printButton.pack(side=LEFT, padx=2, pady=2)
+
+toolbar.pack(side=TOP, fill=X)
+
+# STATUS BAR
+
+status = Label(root, text="Preparing to do nothing...", bd=1, relief=SUNKEN, anchor=W)
+status.pack(side=BOTTOM, fill=X)
+
+"""
+
+photo = PhotoImage(file="resources/logos/perubrologo.png")
+label = Label(root, image=photo)
+label.pack()
+
 root.mainloop()

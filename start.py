@@ -6,9 +6,10 @@ from bin.others.UI.LoginUI import LoginUIMenu
 
 if len(sys.argv) == 1:
     # main.main()
-    root = tkinter.Tk()
-    LoginUIMenu(root)
-    root.mainloop()
+    # root = Tk()
+    LoginUIMenu()
+    # root.mainloop()
+
 
 elif sys.argv[1] == 'test':
     pass
