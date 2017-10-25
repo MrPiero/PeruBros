@@ -28,7 +28,7 @@ class LoginUIMenu:
         self.entryUser.grid(row=2, column=1, sticky=W)
         self.entryPasswd.grid(row=3, column=1, sticky=W)
 
-        self.buttonSubmit = Button(frame, text="Submit", command=self.login_https)
+        self.buttonSubmit = Button(frame, text="Log In", command=self.login_https)
         self.buttonSubmit.grid(columnspan=2)
 
         # self.root.mainloop()
