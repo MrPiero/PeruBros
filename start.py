@@ -4,14 +4,16 @@
 import sys
 from bin.others.UI.LoginUI import LoginUIMenu
 # from bin.main_test import main
-from bin.others.UI.GameMenuUI import main
+from bin.others.UI.GameMenuUI import GameUIMenu
 
 if len(sys.argv) == 1:
     login = LoginUIMenu()
-    login.main()
+    idUser = login.main()
     if login.status:
         print("ABRIENDO EL JUEGO...")
-        main()
+        print(idUser)
+        GameMenu = GameUIMenu(idUser)
+        GameMenu.main_menu()
     else:
         print("LOGIN CERRADO.")
 

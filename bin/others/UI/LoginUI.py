@@ -33,12 +33,14 @@ class LoginUIMenu:
 
         # self.root.mainloop()
         self.status = False
+        self.idUser = 0
 
     def main(self):
         logo = PhotoImage(file="resources/logos/perubrologo.png")
         self.labelLogo = Label(self.frameLogo, image=logo)
         self.labelLogo.pack()  # grid(columnspan=2)
         self.root.mainloop()
+        return self.idUser
 
     def login_file(self):
         # LOGIN DESDE UN ARCHIVO JSON
@@ -70,7 +72,9 @@ class LoginUIMenu:
                 #
                 # name : Ervin Howell
                 # username : Antonette
+                print(user)
                 self.root.quit()
                 self.status = True
+                self.idUser = user["id"]
         if not self.status: print("CREDENCIALES INCORRECTAS")
 
