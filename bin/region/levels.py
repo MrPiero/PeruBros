@@ -52,7 +52,7 @@ class Level():
         self.platform_list.draw(screen)
         self.enemy_list.draw(screen)
 
-    def shift_world(self, shift_x):
+    def shift_world(self, shift_x, shift_y):
         """ When the user moves left/right and we need to scroll everything: """
 
         # Keep track of the shift amount
@@ -62,8 +62,14 @@ class Level():
         for platform in self.platform_list:
             platform.rect.x += shift_x
 
+        for platform in self.platform_list:
+            platform.rect.y += shift_y
+
         for enemy in self.enemy_list:
             enemy.rect.x += shift_x
+
+        for enemy in self.enemy_list:
+            enemy.rect.y += shift_y
 
 # Create platforms for the level
 class Level_01(Level):
@@ -83,44 +89,21 @@ class Level_01(Level):
 
 
         # Array with type of platform, and x, y location of the platform.
+        level = []
+        #crear barrera
+        for x in range (0,50):
+            level.append([BLOCK_STONE, 50, 550-70*x])
+            level.append ([BLOCK_STONE, 50-70, 550 - 70 * x])
+        #crear bases
+        for x in range(0,16):
+            level.append([GRASS_BASE_MIDDLE, 120+70*x, 550])
 
-        level = [[BLOCK_STONE, 50, 550],
-                 [BLOCK_STONE, 50, 480],
-                 [BLOCK_STONE, 50, 410],
-                 [BLOCK_STONE, 50, 340],
-                 [BLOCK_STONE, 50, 270],
-                 [BLOCK_STONE, 50, 200],
-                 [BLOCK_STONE, 50, 130],
-                 [BLOCK_STONE, 50, 60],
-                 [BLOCK_STONE, 50, -10],
-                 [BLOCK_STONE, -20, 550],
-                 [BLOCK_STONE, -20, 480],
-                 [BLOCK_STONE, -20, 410],
-                 [BLOCK_STONE, -20, 340],
-                 [BLOCK_STONE, -20, 270],
-                 [BLOCK_STONE, -20, 200],
-                 [BLOCK_STONE, -20, 130],
-                 [BLOCK_STONE, -20, 60],
-                 [BLOCK_STONE, -20, -10],
-                 [GRASS_BASE_MIDDLE, 120, 550],
-                 [GRASS_BASE_MIDDLE, 190, 550],
-                 [GRASS_BASE_MIDDLE, 260, 550],
+
+        level += [
                  [BLOCK_DEAD, 260, 340],
                  [BLOCK_POWERUP, 330, 340],
+                 [BLOCK_POWERUP, 330, 340-70*2],
                  [BLOCK_DEAD, 400, 340],
-                 [GRASS_BASE_MIDDLE, 330, 550],
-                 [GRASS_BASE_MIDDLE, 400, 550],
-                 [GRASS_BASE_MIDDLE, 470, 550],
-                 [GRASS_BASE_MIDDLE, 540, 550],
-                 [GRASS_BASE_MIDDLE, 610, 550],
-                 [GRASS_BASE_MIDDLE, 680, 550],
-                 [GRASS_BASE_MIDDLE, 750, 550],
-                 [GRASS_BASE_MIDDLE, 820, 550],
-                 [GRASS_BASE_MIDDLE, 890, 550],
-                 [GRASS_BASE_MIDDLE, 960, 550],
-                 [GRASS_BASE_MIDDLE, 1030, 550],
-                 [GRASS_BASE_MIDDLE, 1100, 550],
-                 [GRASS_BASE_MIDDLE, 1170, 550],
                  [GRASS_BASE_RIGHT, 1240, 550],
                  [GRASS_BASE_LEFT, 1800, 550],
                  [GRASS_BASE_MIDDLE, 1870, 550],
