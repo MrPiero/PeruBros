@@ -2,6 +2,7 @@ from tkinter import *
 import json
 import requests
 
+
 class LoginUIMenu:
     def __init__(self):
         self.root = Tk()
@@ -38,9 +39,9 @@ class LoginUIMenu:
         self.labelLogo = Label(self.frameLogo, image=logo)
         self.labelLogo.pack()  # grid(columnspan=2)
         self.root.mainloop()
-        return self.status
 
     def login_file(self):
+        # LOGIN DESDE UN ARCHIVO JSON
         u = self.entryUser.get()
         p = self.entryPasswd.get()
 
@@ -54,10 +55,11 @@ class LoginUIMenu:
             print("CREDENCIALES INCORRECTAS")
 
     def login_https(self):
+        # LOGIN DESDE UN STRING JSON DESDE HTTPS
         u = self.entryUser.get()
         p = self.entryPasswd.get()
-
-        json_file = requests.get("https://jsonplaceholder.typicode.com/users").json()
+        url = "https://jsonplaceholder.typicode.com/users"
+        json_file = requests.get(url).json()
 
         for user in json_file:
             if user["name"] == u and user["username"] == p:
@@ -68,9 +70,7 @@ class LoginUIMenu:
                 #
                 # name : Ervin Howell
                 # username : Antonette
-
                 self.root.quit()
-                print("PASASTE")
                 self.status = True
-        if not self.status:print("CREDENCIALES INCORRECTAS")
+        if not self.status: print("CREDENCIALES INCORRECTAS")
 

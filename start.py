@@ -5,12 +5,12 @@ import sys, tkinter
 from bin.others.UI.LoginUI import LoginUIMenu
 
 if len(sys.argv) == 1:
-    # main.main()
-    # root = Tk()
     login = LoginUIMenu()
-    # root.mainloop()
-    status = login.main()
-    print(status)
+    login.main()
+    if login.status:
+        print("ABRIENDO EL JUEGO...")
+    else:
+        print("LOGIN CERRADO.")
 
 elif sys.argv[1] == 'test':
     pass
