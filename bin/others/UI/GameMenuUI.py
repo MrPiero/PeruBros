@@ -22,9 +22,9 @@ def obtener_info_usuario(id):
 
 def obtener_img_personaje(personaje):
     if personaje == 0:
-        return pygame.image.load('./resources/nino.png')
+        return pygame.image.load('./resources/nino.png') # La imagen cargada ya está diseñada en 8 bits
     elif personaje == 1:
-        return pygame.image.load('./resources/nina.png')
+        return pygame.image.load('./resources/nina.png') # La imagen cargada NO está diseñada en 8 bits
 
 
 class GameUIMenu:
