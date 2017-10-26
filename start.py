@@ -11,7 +11,6 @@ if len(sys.argv) == 1:
     idUser = login.main()
     if login.status:
         print("ABRIENDO EL JUEGO...")
-        print(idUser)
         GameMenu = GameUIMenu(idUser)
         GameMenu.main_menu()
     else:
