@@ -58,4 +58,3 @@ class LoginUIMenu:
                 self.idUser = user["id"]
         if not self.status:
             print("CREDENCIALES INCORRECTAS")
-

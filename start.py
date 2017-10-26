@@ -13,6 +13,7 @@ if len(sys.argv) == 1:
         print("ABRIENDO EL JUEGO...")
         GameMenu = GameUIMenu(idUser)
         GameMenu.main_menu()
+        print("TEST")
     else:
         print("LOGIN CERRADO.")
 
