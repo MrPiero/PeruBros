@@ -7,6 +7,6 @@ def nextLevel():
 
 def select_char():
     # Metodo que consigue el pj de la base de datos
-    loc = "../../resources/sprites/chars/char_test3d.png"
+    loc = "resources/sprites/chars/char_test3d.png"
     #sprite_sheet = SpriteSheet()
     return loc

@@ -3,7 +3,7 @@ Module for managing blocks.
 """
 import pygame
 
-from others.spritesheet_functions import SpriteSheet
+from bin.others.spritesheet_functions import SpriteSheet
 
 # These constants define our platform types:
 #   Name of file

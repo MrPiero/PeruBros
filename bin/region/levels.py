@@ -5,9 +5,9 @@ import pygame
 
 import sys
 sys.path.insert(0, '../bin/')
-from blocks.blocks import *
-import constants
-from platforms.platforms import *
+from bin.blocks.blocks import *
+import bin.constants
+from bin.platforms.platforms import *
 
 class Level():
     """ This is a generic super-class used to define a level.
@@ -45,7 +45,7 @@ class Level():
         # Draw the background
         # We don't shift the background as much as the sprites are shifted
         # to give a feeling of depth.
-        screen.fill(constants.BLUE)
+        screen.fill(bin.constants.BLUE)
         screen.blit(self.background,(self.world_shift // 3,0))
 
         # Draw all the sprite lists that we have
@@ -83,8 +83,8 @@ class Level_01(Level):
         # Call the parent constructor
         Level.__init__(self, player)
 
-        self.background = pygame.image.load("../../resources/pictures/test_background_01.png").convert()
-        self.background.set_colorkey(constants.WHITE)
+        self.background = pygame.image.load("resources/pictures/test_background_01.png").convert()
+        self.background.set_colorkey(bin.constants.WHITE)
         self.level_limit = -2500
 
 
@@ -157,8 +157,8 @@ class Level_02(Level):
         # Call the parent constructor
         Level.__init__(self, player)
 
-        self.background = pygame.image.load("../../resources/pictures/test_background_02.png").convert()
-        self.background.set_colorkey(constants.WHITE)
+        self.background = pygame.image.load("resources/pictures/test_background_02.png").convert()
+        self.background.set_colorkey(bin.constants.WHITE)
         self.level_limit = -1000
 
         # Array with type of platform, and x, y location of the platform.

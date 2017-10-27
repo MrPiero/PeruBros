@@ -6,11 +6,11 @@ import pygame
 
 import sys
 sys.path.insert(0, '../../bin/')
-import constants
+import bin.constants
 
-from platforms.platforms import MovingPlatform
-from others.spritesheet_functions import SpriteSheet
-from others.methods import *
+from bin.platforms.platforms import MovingPlatform
+from bin.others.spritesheet_functions import SpriteSheet
+from bin.others.methods import *
 
 bck = (255,0,255)
 
@@ -148,9 +148,9 @@ class Player(pygame.sprite.Sprite):
             self.eje_y += .70
 
         # See if we are on the ground.
-        if self.rect.y >= constants.SCREEN_HEIGHT - self.rect.height and self.eje_y >= 0:
+        if self.rect.y >= bin.constants.SCREEN_HEIGHT - self.rect.height and self.eje_y >= 0:
             self.eje_y = 0
-            self.rect.y = constants.SCREEN_HEIGHT - self.rect.height
+            self.rect.y = bin.constants.SCREEN_HEIGHT - self.rect.height
 
     def jump(self):
         """ Called when user hits 'jump' button. """

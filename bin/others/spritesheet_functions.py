@@ -5,7 +5,7 @@ import pygame
 
 import sys
 sys.path.insert(0, '../../bin/')
-import constants
+import bin.constants
 
 class SpriteSheet(object):
     """ Class used to grab images out of a sprite sheet. """
@@ -31,7 +31,7 @@ class SpriteSheet(object):
         image.blit(self.sprite_sheet, (0, 0), (x, y, width, height))
 
         # Assuming black works as the transparent color
-        image.set_colorkey(constants.BLACK)
+        image.set_colorkey(bin.constants.BLACK)
 
         # Return the image
         return image

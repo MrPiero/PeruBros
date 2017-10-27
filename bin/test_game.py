@@ -1,20 +1,20 @@
 import pygame
 
 
-import region.levels
-import others.methods
+import bin.region.levels
+import bin.others.methods
 
 
 
 import time
-import constants
+import bin.constants
 #import sys
 #sys.path.insert(0, '../../bin/')
-from chars.player import Player
-from others.methods import *
+from bin.chars.player import Player
+from bin.others.methods import *
 #from others.pauseMenu import *
 
-from region.levels import *
+from bin.region.levels import *
 
 
 def main():
@@ -24,7 +24,7 @@ def main():
     #textsurface = myfont.render ('Some Text', False, (0, 0, 0))
 
     # Set the height and width of the screen
-    size = [constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT]
+    size = [bin.constants.SCREEN_WIDTH, bin.constants.SCREEN_HEIGHT]
     screen = pygame.display.set_mode(size)
 
 
@@ -66,7 +66,7 @@ def main():
     rect = txt.get_rect()
     #myfont = pygame.font.SysFont ('freesansbold', 30)
     rect.center = ((0,0))
-    display.blit(txt,rect)
+#    display.blit(txt,rect)
     print ("2")
     #textsurface = myfont.render ('Some Text', False, (0, 0, 0))
     print ("3")
