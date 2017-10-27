@@ -1,9 +1,7 @@
 # Este archivo esta encargado de inicializar la aplicacion
 
-# from bin import main
 import sys
 from bin.others.UI.LoginUI import LoginUIMenu
-# from bin.main_test import main
 from bin.others.UI.GameMenuUI import GameUIMenu
 from bin.test_game import main as test_game
 
@@ -25,6 +23,5 @@ if len(sys.argv) == 1:
         print("TEST")
     else:
         print("LOGIN CERRADO.")
-
 elif sys.argv[1] == 'test':
     test_game()
