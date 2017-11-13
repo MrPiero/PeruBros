@@ -140,8 +140,15 @@ class Level_01(Level):
             self.platform_list.add(block)
 
         #Añadir enemigo?
-        #enemigo = Enemy(BLOCK_DEAD)
-        #enemigo
+        enemy_test = MovingEnemy(STONE_PLATFORM_MIDDLE)
+        enemy_test.rect.x = 400
+        enemy_test.rect.y = 550-70
+        enemy_test.boundary_left = 360
+        enemy_test.boundary_right = 500
+        enemy_test.change_x = 1
+        enemy_test.player = self.player
+        enemy_test.level = self
+        self.platform_list.add(enemy_test)
 
         # Add a custom moving platform
         block = MovingPlatform(STONE_PLATFORM_MIDDLE)
@@ -153,6 +160,16 @@ class Level_01(Level):
         block.player = self.player
         block.level = self
         self.platform_list.add(block)
+
+        block2 = MovingPlatform(STONE_PLATFORM_MIDDLE)
+        block2.rect.x = 1350-200
+        block2.rect.y = 280+200
+        block2.boundary_left = 1350-200
+        block2.boundary_right = 1600-200
+        block2.change_x = 1
+        block2.player = self.player
+        block2.level = self
+        self.platform_list.add(block2)
 
 
 # Create platforms for the level
@@ -194,7 +211,7 @@ class Level_02(Level):
             self.platform_list.add(block)
 
         # Add a custom moving platform
-        block = MovingPlatform(STONE_PLATFORM_MIDDLE)
+        block = MovingEnemy(STONE_PLATFORM_MIDDLE)
         block.rect.x = 1500
         block.rect.y = 300
         block.boundary_top = 100
