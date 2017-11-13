@@ -2,30 +2,30 @@ import pygame
 import bin.constants as GC
 
 
-def gen_region(text="[REGIÓN]"):
+def gen_region(text="[REGION ???]"):
     font = pygame.font.Font(GC.FONT_PATH, 35)
     text_surf = font.render(text, True, (255, 255, 255))
     text_rect = text_surf.get_rect()
-    return Region(text_surf, text_rect)
+    return Region(text_surf, text_rect, text)
 
 
-def gen_level(text="[LEVEL]"):
+def gen_level(text="[LEVEL ???]", pos=1):
     font = pygame.font.Font(GC.FONT_PATH, 20)
-    text_surf = font.render(text, True, (255, 255, 255))
+    text_surf = font.render((GC.LEVELS.get(text))[pos-1], True, (255, 255, 255))
     text_rect = text_surf.get_rect()
-    return Level(text_surf, text_rect)
+    return Level(text_surf, text_rect, pos)
 
 
 class Region:
-    def __init__(self, text, rect):
+    def __init__(self, text, rect, region):
         self.text = text
         self.rect = rect
-        self.levels = self.obtener_avance()
+        self.levels = []
+        self.obtener_avance(region)
 
-    def obtener_avance(self):
-        avance = []
-        avance.append(gen_level())
-        return avance
+    def obtener_avance(self, region):
+        for i in range(1, 4):
+            self.levels.append(gen_level(region, pos=i))
 
     def get_top_center(self):
         x = (800/2) - (self.rect.width/2)
@@ -33,12 +33,18 @@ class Region:
 
 
 class Level:
-    def __init__(self, text, rect):
+    def __init__(self, text, rect, pos):
         self.text = text
         self.rect = rect
+        self.top_center = self.get_top_center(pos)
 
-    def get_top_center(self):
-        x = (800/2) - (self.rect.width/2)
+    def get_top_center(self, pos):
+        if pos == 1:
+            x = 150
+        elif pos == 2:
+            x = (800/2) - (self.rect.width/2)
+        else:
+            x = 650
         return x, 550
 
 
@@ -67,7 +73,8 @@ class LevelUIMenu:
 
             region = gen_region("COSTA")
             self.levelMenuDisplay.blit(region.text, region.get_top_center())
-            self.levelMenuDisplay.blit(region.levels[0].text, region.levels[0].get_top_center())
+            for i in region.levels:
+                self.levelMenuDisplay.blit(i.text, i.top_center)
 
             pygame.display.update()
             self.clock.tick(60)
