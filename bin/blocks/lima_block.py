@@ -1,25 +1,13 @@
-"""
-Module for managing blocks.
-"""
 import pygame
 
 from bin.others.spritesheet_functions import SpriteSheet
 
-# These constants define our platform types:
-#   Name of file
-#   X location of sprite
-#   Y location of sprite
-#   Width of sprite
-#   Height of sprite
-
-BLOCK_STONE            = (504, 720, 70, 70)
-BLOCK_POWERUP          = (0  ,   0, 70, 70)
-BLOCK_DEAD             = (0  , 432, 70, 70)
+BLOCK_B1_TOP            = (140, 210, 70, 70)
 
 # Lima Blocks
 
 
-class Block(pygame.sprite.Sprite):
+class LimaBlock(pygame.sprite.Sprite):
     """ Platform the user can jump on """
 
     def __init__(self, sprite_sheet_data):
@@ -28,7 +16,7 @@ class Block(pygame.sprite.Sprite):
             code. """
         pygame.sprite.Sprite.__init__(self)
 
-        sprite_sheet = SpriteSheet("../../resources/sprites/blocks/tiles_blocks.png")
+        sprite_sheet = SpriteSheet("../../resources/sprites/blocks/edificio.png")
         # Grab the image for this platform
         self.image = sprite_sheet.get_image(sprite_sheet_data[0],
                                             sprite_sheet_data[1],

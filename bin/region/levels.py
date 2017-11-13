@@ -6,6 +6,8 @@ import pygame
 import sys
 sys.path.insert(0, '../bin/')
 from bin.blocks.blocks import *
+from bin.enemy.mob import *
+from bin.blocks.lima_block import *
 import bin.constants
 from bin.platforms.platforms import *
 
@@ -83,7 +85,7 @@ class Level_01(Level):
         # Call the parent constructor
         Level.__init__(self, player)
 
-        self.background = pygame.image.load("resources/pictures/test_background_01.png").convert()
+        self.background = pygame.image.load("resources/pictures/bck_lima.png").convert()
         self.background.set_colorkey(bin.constants.WHITE)
         self.level_limit = -2500
 
@@ -99,8 +101,10 @@ class Level_01(Level):
             level.append([GRASS_BASE_MIDDLE, 120+70*x, 550])
 
 
+
         level += [
                  [BLOCK_DEAD, 260, 340],
+                 [BLOCK_B1_TOP, 260, 410],
                  [BLOCK_POWERUP, 330, 340],
                  [BLOCK_POWERUP, 330, 340-70*2],
                  [BLOCK_DEAD, 400, 340],
@@ -134,6 +138,10 @@ class Level_01(Level):
             block.rect.y = platform[2]
             block.player = self.player
             self.platform_list.add(block)
+
+        #Añadir enemigo?
+        #enemigo = Enemy(BLOCK_DEAD)
+        #enemigo
 
         # Add a custom moving platform
         block = MovingPlatform(STONE_PLATFORM_MIDDLE)

@@ -33,9 +33,7 @@ class Player(pygame.sprite.Sprite):
     # -- Methods
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        #(self, x, y, width, height):
-        #pic = pygame.image.load("../../resources/sprites/chars/char_test5.png").convert_alpha()
-        #sprite_sheet = SpriteSheet("../../resources/sprites/chars/char_test3d.png")
+
         sprite_sheet = SpriteSheet(select_char())
         # Load all the right facing images into a list
         image = sprite_sheet.get_image(0, 20, 66, 90-20)
