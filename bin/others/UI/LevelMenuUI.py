@@ -4,15 +4,9 @@ import bin.constants as GC
 
 def gen_region(region_state):
     font = pygame.font.Font(GC.FONT_PATH, 35)
-    if region_state == 1:
-        text = "COSTA"
-    elif region_state == 2:
-        text = "SIERRA"
-    else:
-        text = "SELVA"
-    text_surf = font.render(text, True, (255, 255, 255))
+    text_surf = font.render(GC.REGIONS[region_state], True, (255, 255, 255))
     text_rect = text_surf.get_rect()
-    return Region(text_surf, text_rect, text)
+    return Region(text_surf, text_rect, GC.REGIONS[region_state])
 
 
 def gen_level(text="[LEVEL ???]", pos=1):
@@ -32,6 +26,7 @@ class Region:
         self.rect = rect
         self.levels = []
         self.obtener_avance(region)
+        self.wallpaper = self.obtener_fondo(region)
 
     def obtener_avance(self, region):
         for i in range(1, 4):
@@ -40,6 +35,9 @@ class Region:
     def get_top_center(self):
         x = (800/2) - (self.rect.width/2)
         return x, 50
+
+    def obtener_fondo(self, region):
+        return pygame.image.load(GC.RESOURCES_OTHERS+region+".jpg")
 
 
 class Level:
@@ -50,11 +48,11 @@ class Level:
 
     def get_top_center(self, pos):
         if pos == 1:
-            x = 150
+            x = 50
         elif pos == 2:
             x = (800/2) - (self.rect.width/2)
         else:
-            x = 650
+            x = 550
         return x, 550
 
 
@@ -78,7 +76,7 @@ class LevelUIMenu:
     def main_menu(self):
         level_menu_state = True
         region_state = 1
-        region = gen_region(region_state)
+        region = gen_region(region_state-1)
         while level_menu_state:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -90,17 +88,17 @@ class LevelUIMenu:
                             region_state = 3
                         else:
                             region_state -= 1
-                        region = gen_region(region_state)
+                        region = gen_region(region_state-1)
                         print("F. IZQUIERDA")
                     if FD_area.collidepoint(mouse):
                         if region_state == 3:
                             region_state = 1
                         else:
                             region_state += 1
-                        region = gen_region(region_state)
+                        region = gen_region(region_state-1)
                         print("F. DERECHA")
 
-            self.levelMenuDisplay.fill((119, 136, 153))
+            self.levelMenuDisplay.blit(region.wallpaper, (0, 0))
 
             flechaI = Flecha("flecha_izquierda.png")
             flechaD = Flecha("flecha_derecha.png")
