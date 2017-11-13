@@ -1,4 +1,5 @@
-import pygame, requests
+import pygame
+import requests
 import bin.constants as GC
 
 
@@ -9,7 +10,7 @@ def gen_bienvenida(text):
     return text_surf, text_rect
 
 
-def gen_partida(text):
+def gen_partida(text="*** [Crear partida] ***"):
     font = pygame.font.Font(GC.FONT_PATH, 24)
     text_surf = font.render(text, True, (255, 255, 255))
     text_rect = text_surf.get_rect()
@@ -59,9 +60,9 @@ class GameUIMenu:
             self.gameMenuDisplay.fill((0, 0, 0))
 
             text, text_rec = gen_bienvenida("Bienvenido " + self.user["username"])
-            partida1, partida1_rec = gen_partida("Partida 1: [Alias]")
-            partida2, partida2_rec = gen_partida("Partida 2: [Alias]")
-            partida3, partida3_rec = gen_partida("Partida 3: [Alias]")
+            partida1, partida1_rec = gen_partida()
+            partida2, partida2_rec = gen_partida()
+            partida3, partida3_rec = gen_partida()
 
             partida1_rec = 50 + text_rec.size[1] * 2
             partida2_rec = 50 + text_rec.size[1] * 4
