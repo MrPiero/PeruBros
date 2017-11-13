@@ -62,7 +62,7 @@ class Flecha:
 
 
 class LevelUIMenu:
-    def __init__(self, progress=1):
+    def __init__(self, progress=3):
         pygame.init()
 
         self.display_width = 800
@@ -109,6 +109,7 @@ class LevelUIMenu:
             for i in region.levels:
                 pygame.draw.rect(self.levelMenuDisplay, GC.RED, (i.top_center[0], i.top_center[1], i.rect.width, i.rect.height))
                 self.levelMenuDisplay.blit(i.text, i.top_center)
+                
 
             pygame.display.update()
             self.clock.tick(60)
