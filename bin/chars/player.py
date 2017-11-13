@@ -179,3 +179,10 @@ class Player(pygame.sprite.Sprite):
     def stop(self):
         """ Called when the user lets off the keyboard. """
         self.eje_x = 0
+
+    def is_collided_with(self, sprite):
+        return self.rect.colliderect(sprite.rect)
+
+    def kill_player(self):
+        print("Player is killed.")
+        self.kill()

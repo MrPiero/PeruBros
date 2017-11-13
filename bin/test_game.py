@@ -120,15 +120,15 @@ def main():
             current_level.shift_world(diff, 0)
 
         # If the player gets near the top side, shift the world right (+y)
-        if player.rect.y <= 120:
-            diff = 120 - player.rect.y
-            player.rect.y = 120
-            current_level.shift_world (0, diff)
+        #if player.rect.y <= 120:
+        #    diff = 120 - player.rect.y
+        #    player.rect.y = 120
+        #    current_level.shift_world(0, diff)
 
-        if player.rect.y >= 500:
-            diff = player.rect.y - 500
-            player.rect.y = 500
-            current_level.shift_world(0, -diff)
+        #if player.rect.y >= 480:
+        #    diff = player.rect.y - 480
+        #    player.rect.y = 480
+        #    current_level.shift_world(0, -diff)
 
         # If the player gets to the end of the level, go to the next level
         current_position = player.rect.x + current_level.world_shift
@@ -147,6 +147,13 @@ def main():
                     player.level = current_level
                 else:
                     pass
+
+        current_height = player.rect.y
+        print(current_height)
+        print("currPOS:" + str(current_position))
+        print("currLIM" + str(current_level.level_limit))
+        if current_height >= 500:
+            player.kill_player()
 
 
         # ALL CODE TO DRAW SHOULD GO BELOW THIS COMMENT

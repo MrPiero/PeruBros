@@ -12,6 +12,7 @@ STONE_PLATFORM_RIGHT  = (792, 648, 70, 40)
 GRASS_BASE_LEFT       = (504, 648, 70, 70)
 GRASS_BASE_RIGHT      = (504, 504, 70, 70)
 GRASS_BASE_MIDDLE     = (504, 576, 70, 70)
+BLOCK_DEAD             = (0  , 432, 70, 70)
 
 class Enemy(pygame.sprite.Sprite):
         """ Platform the user can jump on """
@@ -58,8 +59,7 @@ class MovingEnemy(Enemy):
             # See if we hit the player
             hit = pygame.sprite.collide_rect(self, self.player)
             if hit:
-                print("ehh debes de morir no?")
-                #matar jugador
+                self.player.kill_player()
 
             # Move up/down
             self.rect.y += self.change_y
@@ -67,7 +67,7 @@ class MovingEnemy(Enemy):
             # Check and see if we the player
             hit = pygame.sprite.collide_rect(self, self.player)
             if hit:
-                print("ehh debes de morir no?")
+                self.player.kill_player()
                 #matar jugador
 
             # Check the boundaries and see if we need to reverse

@@ -99,7 +99,7 @@ class Level_01(Level):
         #crear bases
         for x in range(0,16):
             level.append([GRASS_BASE_MIDDLE, 120+70*x, 550])
-
+            level.append([GRASS_BASE_MIDDLE, 2640 + 70 * x, 550])
 
 
         level += [
@@ -139,11 +139,22 @@ class Level_01(Level):
             block.player = self.player
             self.platform_list.add(block)
 
+        #Añadir plataforma maldita
+        killer_plat = KillerPlatform(BLOCK_DEAD)
+        killer_plat.rect.x = 470
+        killer_plat.rect.y = 500
+        killer_plat.boundary_top = 470
+        killer_plat.boundary_bottom = 520
+        killer_plat.change_y = 1
+        killer_plat.player = self.player
+        killer_plat.level = self
+        self.platform_list.add(killer_plat)
+
         #Añadir enemigo?
-        enemy_test = MovingEnemy(STONE_PLATFORM_MIDDLE)
-        enemy_test.rect.x = 400
+        enemy_test = MovingEnemy(BLOCK_DEAD)
+        enemy_test.rect.x = 500
         enemy_test.rect.y = 550-70
-        enemy_test.boundary_left = 360
+        enemy_test.boundary_left = 200
         enemy_test.boundary_right = 500
         enemy_test.change_x = 1
         enemy_test.player = self.player
