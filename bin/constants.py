@@ -25,3 +25,7 @@ FONT_PATH = 'resources/squarefont/Square.ttf'
 # Nombres de Niveles
 
 LEVELS = {"COSTA": ("NORTE", "CENTRO", "SUR"), "SIERRA": ("NORTE 2", "CENTRO 2", "SUR 2"), "SELVA": ("NORTE 3", "CENTRO 3", "SUR 3")}
+
+# PATH RESOURCES/OTHERS
+
+RESOURCES_OTHERS = "./resources/others/"

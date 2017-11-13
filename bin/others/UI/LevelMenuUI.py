@@ -2,8 +2,14 @@ import pygame
 import bin.constants as GC
 
 
-def gen_region(text="[REGION ???]"):
+def gen_region(region_state):
     font = pygame.font.Font(GC.FONT_PATH, 35)
+    if region_state == 1:
+        text = "COSTA"
+    elif region_state == 2:
+        text = "SIERRA"
+    else:
+        text = "SELVA"
     text_surf = font.render(text, True, (255, 255, 255))
     text_rect = text_surf.get_rect()
     return Region(text_surf, text_rect, text)
@@ -14,6 +20,10 @@ def gen_level(text="[LEVEL ???]", pos=1):
     text_surf = font.render((GC.LEVELS.get(text))[pos-1], True, (255, 255, 255))
     text_rect = text_surf.get_rect()
     return Level(text_surf, text_rect, pos)
+
+
+def get_img_others(file):
+    return pygame.image.load(GC.RESOURCES_OTHERS + file)
 
 
 class Region:
@@ -48,6 +58,11 @@ class Level:
         return x, 550
 
 
+class Flecha:
+    def __init__(self, file):
+        self.img = get_img_others(file)
+
+
 class LevelUIMenu:
     def __init__(self, progress=1):
         pygame.init()
@@ -62,16 +77,36 @@ class LevelUIMenu:
 
     def main_menu(self):
         level_menu_state = True
+        region_state = 1
+        region = gen_region(region_state)
         while level_menu_state:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                 elif event.type == pygame.MOUSEBUTTONUP:
-                    level_menu_state = False
+                    mouse = pygame.mouse.get_pos()
+                    if FI_area.collidepoint(mouse):
+                        if region_state == 1:
+                            region_state = 3
+                        else:
+                            region_state -= 1
+                        region = gen_region(region_state)
+                        print("F. IZQUIERDA")
+                    if FD_area.collidepoint(mouse):
+                        if region_state == 3:
+                            region_state = 1
+                        else:
+                            region_state += 1
+                        region = gen_region(region_state)
+                        print("F. DERECHA")
 
-            self.levelMenuDisplay.fill((0, 0, 0))
+            self.levelMenuDisplay.fill((119, 136, 153))
 
-            region = gen_region("COSTA")
+            flechaI = Flecha("flecha_izquierda.png")
+            flechaD = Flecha("flecha_derecha.png")
+            FI_area = self.levelMenuDisplay.blit(flechaI.img, (0, 0))
+            FD_area = self.levelMenuDisplay.blit(flechaD.img, (700, 0))
+
             self.levelMenuDisplay.blit(region.text, region.get_top_center())
             for i in region.levels:
                 self.levelMenuDisplay.blit(i.text, i.top_center)
