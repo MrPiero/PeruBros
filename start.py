@@ -15,6 +15,8 @@ if len(sys.argv) == 1:
         test_game()
     else:
         print("LOGIN CERRADO.")
-elif sys.argv[1] == 'test':
+elif sys.argv[1] == 'test1':
     LevelMenu = LevelUIMenu()
     LevelMenu.main_menu()
+elif sys.argv[1] == 'test2':
+    test_game()
