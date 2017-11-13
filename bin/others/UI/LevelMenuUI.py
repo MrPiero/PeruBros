@@ -107,6 +107,7 @@ class LevelUIMenu:
 
             self.levelMenuDisplay.blit(region.text, region.get_top_center())
             for i in region.levels:
+                pygame.draw.rect(self.levelMenuDisplay, GC.RED, (i.top_center[0], i.top_center[1], i.rect.width, i.rect.height))
                 self.levelMenuDisplay.blit(i.text, i.top_center)
 
             pygame.display.update()

@@ -6,7 +6,9 @@ Global constants
 
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
+RED = (215, 43, 43)
 BLUE = (0, 0, 255)
+SLATEGREY = (112, 128, 144, 128)
 
 # Screen dimensions
 SCREEN_WIDTH = 1024
