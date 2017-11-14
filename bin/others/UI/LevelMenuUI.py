@@ -2,11 +2,11 @@ import pygame
 import bin.constants as GC
 
 
-def gen_region(region_state):
+def gen_region(region_state, p):
     font = pygame.font.Font(GC.FONT_PATH, 35)
     text_surf = font.render(GC.REGIONS[region_state], True, (255, 255, 255))
     text_rect = text_surf.get_rect()
-    return Region(text_surf, text_rect, GC.REGIONS[region_state])
+    return Region(text_surf, text_rect, GC.REGIONS[region_state], p)
 
 
 def gen_level(text="[LEVEL ???]", pos=1):
@@ -20,13 +20,27 @@ def get_img_others(file):
     return pygame.image.load(GC.RESOURCES_OTHERS + file)
 
 
+def change_region_state(region_state, direction):
+    if direction == "L":
+        if region_state == 1:
+            region_state = 3
+        else:
+            region_state -= 1
+    else:
+        if region_state == 3:
+            region_state = 1
+        else:
+            region_state += 1
+    return region_state
+
+
 class Region:
-    def __init__(self, text, rect, region):
+    def __init__(self, text, rect, region, p):
         self.text = text
         self.rect = rect
         self.levels = []
         self.obtener_avance(region)
-        self.wallpaper = self.obtener_fondo(region)
+        self.wallpaper = self.obtener_fondo(region, p)
 
     def obtener_avance(self, region):
         for i in range(1, 4):
@@ -36,8 +50,20 @@ class Region:
         x = (800/2) - (self.rect.width/2)
         return x, 50
 
-    def obtener_fondo(self, region):
-        return pygame.image.load(GC.RESOURCES_OTHERS+region+".jpg")
+    def obtener_fondo(self, region, p):
+        # return pygame.image.load(GC.RESOURCES_OTHERS + region + ".jpg")
+        if region == "COSTA":
+            return pygame.image.load(GC.RESOURCES_OTHERS + region + ".jpg")
+        if region == "SIERRA":
+            if p >= 2:
+                return pygame.image.load(GC.RESOURCES_OTHERS + region + ".jpg")
+            else:
+                return pygame.image.load(GC.RESOURCES_OTHERS + region + "_BW.jpg")
+        if region == "SELVA":
+            if p == 3:
+                return pygame.image.load(GC.RESOURCES_OTHERS + region + ".jpg")
+            else:
+                return pygame.image.load(GC.RESOURCES_OTHERS + region + "_BW.jpg")
 
 
 class Level:
@@ -62,7 +88,7 @@ class Flecha:
 
 
 class LevelUIMenu:
-    def __init__(self, progress=(2, 2)):
+    def __init__(self, progress=(2, 3)):
         pygame.init()
 
         self.display_width = 800
@@ -76,27 +102,26 @@ class LevelUIMenu:
     def main_menu(self):
         level_menu_state = True
         region_state = 1
-        region = gen_region(region_state-1)
+        region = gen_region(region_state-1, self.progress[0])
         while level_menu_state:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
-                elif event.type == pygame.MOUSEBUTTONUP or event.type == pygame.KEYDOWN:
+                elif event.type == pygame.MOUSEBUTTONUP:
                     mouse = pygame.mouse.get_pos()
-                    if FI_area.collidepoint(mouse) or event.key == pygame.K_LEFT:
-                        if region_state == 1:
-                            region_state = 3
-                        else:
-                            region_state -= 1
-                        region = gen_region(region_state-1)
-                        print("F. IZQUIERDA")
-                    if FD_area.collidepoint(mouse) or event.key == pygame.K_RIGHT:
-                        if region_state == 3:
-                            region_state = 1
-                        else:
-                            region_state += 1
-                        region = gen_region(region_state-1)
-                        print("F. DERECHA")
+                    if FI_area.collidepoint(mouse):
+                        region_state = change_region_state(region_state, "L")
+                        region = gen_region(region_state-1, self.progress[0])
+                    if FD_area.collidepoint(mouse):
+                        region_state = change_region_state(region_state, "R")
+                        region = gen_region(region_state-1, self.progress[0])
+                elif event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_LEFT:
+                        region_state = change_region_state(region_state, "L")
+                        region = gen_region(region_state - 1, self.progress[0])
+                    if event.key == pygame.K_RIGHT:
+                        region_state = change_region_state(region_state, "R")
+                        region = gen_region(region_state - 1, self.progress[0])
 
             self.levelMenuDisplay.blit(region.wallpaper, (0, 0))
 
@@ -111,7 +136,6 @@ class LevelUIMenu:
                 self.levelMenuDisplay.blit(i.text, i.top_center)
                 if region_state > self.progress[0] or (region_state == self.progress[0] and region.levels.index(i)+1 > self.progress[1]):
                     pygame.draw.rect(self.levelMenuDisplay, GC.BLACK, (i.top_center[0], i.top_center[1], i.rect.width, i.rect.height))
-                
 
             pygame.display.update()
             self.clock.tick(60)
