@@ -62,7 +62,7 @@ class Flecha:
 
 
 class LevelUIMenu:
-    def __init__(self, progress=3):
+    def __init__(self, progress=(2, 2)):
         pygame.init()
 
         self.display_width = 800
@@ -81,16 +81,16 @@ class LevelUIMenu:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
-                elif event.type == pygame.MOUSEBUTTONUP:
+                elif event.type == pygame.MOUSEBUTTONUP or event.type == pygame.KEYDOWN:
                     mouse = pygame.mouse.get_pos()
-                    if FI_area.collidepoint(mouse):
+                    if FI_area.collidepoint(mouse) or event.key == pygame.K_LEFT:
                         if region_state == 1:
                             region_state = 3
                         else:
                             region_state -= 1
                         region = gen_region(region_state-1)
                         print("F. IZQUIERDA")
-                    if FD_area.collidepoint(mouse):
+                    if FD_area.collidepoint(mouse) or event.key == pygame.K_RIGHT:
                         if region_state == 3:
                             region_state = 1
                         else:
@@ -109,6 +109,8 @@ class LevelUIMenu:
             for i in region.levels:
                 pygame.draw.rect(self.levelMenuDisplay, GC.RED, (i.top_center[0], i.top_center[1], i.rect.width, i.rect.height))
                 self.levelMenuDisplay.blit(i.text, i.top_center)
+                if region_state > self.progress[0] or (region_state == self.progress[0] and region.levels.index(i)+1 > self.progress[1]):
+                    pygame.draw.rect(self.levelMenuDisplay, GC.BLACK, (i.top_center[0], i.top_center[1], i.rect.width, i.rect.height))
                 
 
             pygame.display.update()
