@@ -1,4 +1,5 @@
 import pygame
+import sys
 import bin.constants as GC
 
 
@@ -107,6 +108,7 @@ class LevelUIMenu:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
+                    sys.exit()
                 elif event.type == pygame.MOUSEBUTTONUP:
                     mouse = pygame.mouse.get_pos()
                     if FI_area.collidepoint(mouse):
