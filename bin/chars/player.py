@@ -7,7 +7,7 @@ import pygame
 import sys
 sys.path.insert(0, '../../bin/')
 import bin.constants
-
+import time
 from bin.platforms.platforms import MovingPlatform
 from bin.others.spritesheet_functions import SpriteSheet
 from bin.others.methods import *
@@ -29,6 +29,8 @@ class Player(pygame.sprite.Sprite):
 
     # List of sprites we can bump against
     level = None
+    lives = 3
+    status = 1
 
     # -- Methods
     def __init__(self):
@@ -185,4 +187,8 @@ class Player(pygame.sprite.Sprite):
 
     def kill_player(self):
         print("Player is killed.")
+        self.lives = self.lives - 1
+        self.status = 0
         self.kill()
+        print("ttttt")
+        time.sleep(1)

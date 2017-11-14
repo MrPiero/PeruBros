@@ -156,6 +156,10 @@ def main():
             player.kill_player()
 
 
+        if player.status == 0:
+            print("Jugador muerto, cambiar de pantalla")
+
+
         # ALL CODE TO DRAW SHOULD GO BELOW THIS COMMENT
         current_level.draw(screen)
         active_sprite_list.draw(screen)
