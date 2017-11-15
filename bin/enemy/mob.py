@@ -63,7 +63,7 @@ class MovingEnemy(Enemy):
 
         def update(self):
             print("***********************************")
-            pos = self.rect.x + self.level.world_shift
+            pos = self.rect.x #+ self.level.world_shift
             if self.direction == "R":
                 frame = (pos // 30) % len(self.walking_frames_r)
                 self.image = self.walking_frames_r[frame]

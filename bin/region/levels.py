@@ -79,6 +79,10 @@ class Level_01(Level):
     origin_X = 330
     origin_Y = 70
 
+    pygame.mixer.init()
+    pygame.mixer.music.load("resources/sounds/bck_01.ogg")
+    pygame.mixer.music.play()
+
     def __init__(self, player):
         """ Create level 1. """
 
