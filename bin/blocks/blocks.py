@@ -16,6 +16,8 @@ BLOCK_STONE            = (70, 0, 70, 70)
 BLOCK_POWERUP          = (70  , 0, 70, 70)
 BLOCK_DEAD             = (70  , 0, 70, 70)
 
+BLOCK_END              = (0 ,0 ,70 ,70 )
+
 # Lima Blocks
 
 

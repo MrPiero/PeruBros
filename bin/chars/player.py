@@ -191,4 +191,4 @@ class Player(pygame.sprite.Sprite):
         self.status = 0
         self.kill()
         print("ttttt")
-        time.sleep(1)
+        #time.sleep(1)

@@ -176,6 +176,7 @@ class Level_01(Level):
                  [GRASS_LEFT, 1120, 280],
                  [GRASS_MIDDLE, 1190, 280],
                  [GRASS_RIGHT, 1260, 280],
+                 [BLOCK_END, 5000, 350]
                  ]
 
 
@@ -188,15 +189,15 @@ class Level_01(Level):
             self.platform_list.add(block)
 
         #Añadir plataforma maldita
-        killer_plat = KillerPlatform(BLOCK_DEAD)
-        killer_plat.rect.x = 470
-        killer_plat.rect.y = 500
-        killer_plat.boundary_top = 470
-        killer_plat.boundary_bottom = 520
-        killer_plat.change_y = 1
-        killer_plat.player = self.player
-        killer_plat.level = self
-        self.platform_list.add(killer_plat)
+        #killer_plat = KillerPlatform(BLOCK_DEAD)
+        #killer_plat.rect.x = 470
+        #killer_plat.rect.y = 500
+        #killer_plat.boundary_top = 470
+        #killer_plat.boundary_bottom = 520
+        #killer_plat.change_y = 1
+        #killer_plat.player = self.player
+        #killer_plat.level = self
+        #self.platform_list.add(killer_plat)
 
         #Añadir enemigo?
         enemy_test = MovingEnemy(BLOCK_DEAD)

@@ -17,6 +17,11 @@ from bin.others.methods import *
 from bin.region.levels import *
 
 
+def changeLv(current_level_no,level_list,player):
+    current_level_no += 1
+    current_level = level_list[current_level_no]
+    player.level = current_level
+
 def main():
     pygame.init()
     #pygame.font.init()
@@ -44,7 +49,6 @@ def main():
 
     active_sprite_list = pygame.sprite.Group()
     player.level = current_level
-    print ("-1")
     #Posicion de origen del jugador
     player.rect.x = 200
     #player.rect.y = constants.SCREEN_HEIGHT - player.rect.height
@@ -134,15 +138,16 @@ def main():
         current_position = player.rect.x + current_level.world_shift
         if current_position < current_level.level_limit:
             player.rect.x = 120
-            #piero estupido
-            #time.sleep(5)
-            #print("Test_1")
+
             if current_level_no < len(level_list)-1:
-                time.sleep (5)
+                #time.sleep (5)
                 print("Test_2")
-                dec = nextLevel()
+                #dec = nextLevel()
+                dec = "1"
                 if dec == "1":
+                    #changeLv(current_level_no, level_list, player)
                     current_level_no += 1
+                    #print("CL" + current_level)
                     current_level = level_list[current_level_no]
                     player.level = current_level
                 else:
@@ -152,13 +157,24 @@ def main():
         print(current_height)
         print("currPOS:" + str(current_position))
         print("currLIM" + str(current_level.level_limit))
-        if current_height >= 500:
+        if current_height >= 530:
             player.kill_player()
 
-
         if player.status == 0:
-            print("Jugador muerto, cambiar de pantalla")
+            print("Jugador muerto...")
+            player = Player()
+            changeLv(current_level_no-1, level_list, player)
+            player.level = current_level
+            # Posicion de origen del jugador
+            player.rect.x = current_position - 150
+            # player.rect.y = constants.SCREEN_HEIGHT - player.rect.height
+            player.rect.y = 500
+            active_sprite_list.add(player)
+            player.status = 1
+            active_sprite_list.update()
 
+            # Update items in the level
+            current_level.update()
 
         # ALL CODE TO DRAW SHOULD GO BELOW THIS COMMENT
         current_level.draw(screen)
@@ -177,5 +193,8 @@ def main():
     pygame.quit()
 
 
+
 if __name__ == "__main__":
     main()
+
+
