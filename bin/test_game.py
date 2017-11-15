@@ -24,9 +24,6 @@ def changeLv(current_level_no,level_list,player):
 
 def main():
     pygame.init()
-    #pygame.font.init()
-    #myfont = pygame.font.SysFont ('Arial', 30)
-    #textsurface = myfont.render ('Some Text', False, (0, 0, 0))
 
     # Set the height and width of the screen
     size = [bin.constants.SCREEN_WIDTH, bin.constants.SCREEN_HEIGHT]
@@ -46,6 +43,9 @@ def main():
     # Set the current level
     current_level_no = 0
     current_level = level_list[current_level_no]
+    pygame.mixer.init()
+    pygame.mixer.music.load("resources/sounds/bck_01.ogg")
+    pygame.mixer.music.play()
 
     active_sprite_list = pygame.sprite.Group()
     player.level = current_level
