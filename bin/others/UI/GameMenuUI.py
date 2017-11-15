@@ -59,7 +59,7 @@ class GameUIMenu:
         self.display_height = 400
 
         self.gameMenuDisplay = pygame.display.set_mode((self.display_width, self.display_height))
-        pygame.display.set_caption("PERUBROS. -- PRE-ALPHA GAME MENU --")
+        pygame.display.set_caption("PERUBROS. -- GAME MENU --")
         self.clock = pygame.time.Clock()
         self.user = obtener_usuario(id_user)
         self.saves = obtener_partidas(id_user)
@@ -73,14 +73,14 @@ class GameUIMenu:
                     sys.exit()
                 elif event.type == pygame.MOUSEBUTTONUP:
                     if partida1_rec <= pygame.mouse.get_pos()[1] <= partida1_rec + partida1.get_height():
-                        print("ABRIENDO LA PARTIDA 1...")
-                        return obtener_progreso(self.saves[0]["id"])[0]
+                        if self.progress_by_save(0): return obtener_progreso(self.saves[0]["id"])[0]
+                        else: print("PARTIDA 1 INEXISTENTE")
                     elif partida2_rec <= pygame.mouse.get_pos()[1] <= partida2_rec + partida2.get_height():
-                        print("ABRIENDO LA PARTIDA 2...")
-                        return obtener_progreso(self.saves[1]["id"])[0]
+                        if self.progress_by_save(1): return obtener_progreso(self.saves[1]["id"])[0]
+                        else: print("PARTIDA 2 INEXISTENTE")
                     elif partida3_rec <= pygame.mouse.get_pos()[1] <= partida3_rec + partida3.get_height():
-                        print("ABRIENDO LA PARTIDA 3...")
-                        return obtener_progreso(self.saves[2]["id"])[0]
+                        if self.progress_by_save(2): return obtener_progreso(self.saves[2]["id"])[0]
+                        else: print("PARTIDA 3 INEXISTENTE")
 
             self.gameMenuDisplay.blit(obtener_fondo(), (0, 0))
 
@@ -113,3 +113,10 @@ class GameUIMenu:
             return self.saves[i]["sexo"]
         except:
             return "mujer"
+
+    def progress_by_save(self, i):
+        try:
+            obtener_progreso(self.saves[i]["id"])[0]
+            return True
+        except:
+            return False
