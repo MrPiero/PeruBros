@@ -1,4 +1,5 @@
 import pygame
+import sys
 import requests
 import bin.constants as GC
 
@@ -17,8 +18,15 @@ def gen_partida(text="*** [Crear partida] ***"):
     return text_surf, text_rect
 
 
-def obtener_info_usuario(id):
-    return requests.get(GC.URL_USER + str(id)).json()
+def obtener_usuario(id):
+    users = requests.get(GC.URL).json()
+    for u in users:
+        if u["id"] == id:
+            return u
+
+
+def obtener_partidas(id):
+    return requests.get(GC.URL_SAVES_USER + str(id)).json()
 
 
 def obtener_img_personaje(personaje):
@@ -28,17 +36,22 @@ def obtener_img_personaje(personaje):
         return pygame.image.load('./resources/nina.png') # La imagen cargada NO está diseñada en 8 bits
 
 
+def obtener_fondo():
+    return pygame.image.load(GC.GAME_MENU_WALLPAPER)
+
+
 class GameUIMenu:
     def __init__(self, id_user):
         pygame.init()
 
-        self.display_width = 800
-        self.display_height = 600
+        self.display_width = 600
+        self.display_height = 400
 
         self.gameMenuDisplay = pygame.display.set_mode((self.display_width, self.display_height))
         pygame.display.set_caption("PERUBROS. -- PRE-ALPHA GAME MENU --")
         self.clock = pygame.time.Clock()
-        self.user = obtener_info_usuario(id_user)
+        self.user = obtener_usuario(id_user)
+        self.saves = obtener_partidas(id_user)
 
     def main_menu(self):
         game_menu_state = True
@@ -46,6 +59,7 @@ class GameUIMenu:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
+                    sys.exit()
                 elif event.type == pygame.MOUSEBUTTONUP:
                     if partida1_rec <= pygame.mouse.get_pos()[1] <= partida1_rec + partida1.get_height():
                         print("ABRIENDO LA PARTIDA 1...")
@@ -57,11 +71,11 @@ class GameUIMenu:
                         print("ABRIENDO LA PARTIDA 3...")
                         game_menu_state = False
 
-            self.gameMenuDisplay.fill((0, 0, 0))
+            self.gameMenuDisplay.blit(obtener_fondo(), (0, 0))
 
-            text, text_rec = gen_bienvenida("Bienvenido " + self.user["username"])
-            partida1, partida1_rec = gen_partida()
-            partida2, partida2_rec = gen_partida()
+            text, text_rec = gen_bienvenida("Bienvenido " + self.user["name"])
+            partida1, partida1_rec = gen_partida(self.saves[0]["nombre"])
+            partida2, partida2_rec = gen_partida(self.saves[1]["nombre"])
             partida3, partida3_rec = gen_partida()
 
             partida1_rec = 50 + text_rec.size[1] * 2

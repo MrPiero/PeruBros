@@ -16,13 +16,14 @@ SCREEN_HEIGHT = 600
 
 # URL for requests
 
-URL = "https://jsonplaceholder.typicode.com/"
-URL_USER = "https://jsonplaceholder.typicode.com/users/"
+URL = "http://www.soft2.wecan.com.pe/laravel/public//usuario/listar"
+URL_SAVES_USER = "http://www.soft2.wecan.com.pe/laravel/public//personaje/api/"
 
 # Paths for resources
 
 LOGO_PATH = "resources/logos/perubrologo.png"
 FONT_PATH = 'resources/squarefont/Square.ttf'
+GAME_MENU_WALLPAPER = "resources/others/GAME_MENU_WALLPAPER.jpg"
 
 # Nombres de Niveles
 

@@ -1,6 +1,7 @@
 from tkinter import *
 import requests
 import bin.constants as GC
+import bcrypt
 
 
 class LoginUIMenu:
@@ -42,17 +43,15 @@ class LoginUIMenu:
     def login_https(self):
         # LOGIN DESDE UN STRING JSON DESDE HTTPS
         u = self.entryUser.get()
-        p = self.entryPasswd.get()
-        json_file = requests.get(GC.URL + "users").json()
+        p = self.entryPasswd.get().encode("utf-8")
+        # p = bcrypt.hashpw(p, bcrypt.gensalt())
+        json_file = requests.get(GC.URL).json()
         for user in json_file:
-            if user["name"] == u and user["username"] == p:
-                # DEL LINK DE MUESTRA SE OBTIENEN ESTOS EJEMPLOS
-                #
-                # name : Leanne Graham
-                # username : Bret
-                #
-                # name : Ervin Howell
-                # username : Antonette
+            print(user["name"], user["password"].encode("utf-8"))
+            print(u, p)
+            # print(bcrypt.checkpw(p, user["password"]))
+            if user["name"] == u:
+
                 self.root.quit()
                 self.status = True
                 self.idUser = user["id"]
