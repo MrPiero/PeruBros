@@ -12,9 +12,9 @@ from bin.others.spritesheet_functions import SpriteSheet
 #   Width of sprite
 #   Height of sprite
 
-BLOCK_STONE            = (504, 720, 70, 70)
-BLOCK_POWERUP          = (0  ,   0, 70, 70)
-BLOCK_DEAD             = (0  , 432, 70, 70)
+BLOCK_STONE            = (70, 0, 70, 70)
+BLOCK_POWERUP          = (70  , 0, 70, 70)
+BLOCK_DEAD             = (70  , 0, 70, 70)
 
 # Lima Blocks
 
@@ -28,7 +28,7 @@ class Block(pygame.sprite.Sprite):
             code. """
         pygame.sprite.Sprite.__init__(self)
 
-        sprite_sheet = SpriteSheet("../../resources/sprites/blocks/tiles_blocks.png")
+        sprite_sheet = SpriteSheet("../../resources/sprites/blocks/tiles_blocks_v2.png")
         # Grab the image for this platform
         self.image = sprite_sheet.get_image(sprite_sheet_data[0],
                                             sprite_sheet_data[1],

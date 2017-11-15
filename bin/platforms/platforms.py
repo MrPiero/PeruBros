@@ -12,16 +12,17 @@ from bin.others.spritesheet_functions import SpriteSheet
 #   Width of sprite
 #   Height of sprite
 
-GRASS_LEFT            = (576, 720, 70, 70)
-GRASS_RIGHT           = (576, 576, 70, 70)
-GRASS_MIDDLE          = (504, 576, 70, 70)
-STONE_PLATFORM_LEFT   = (432, 720, 70, 40)
-STONE_PLATFORM_MIDDLE = (648, 648, 70, 40)
-STONE_PLATFORM_RIGHT  = (792, 648, 70, 40)
+GRASS_LEFT            = (70, 80, 70, 60)
+GRASS_RIGHT           = (210, 80, 70, 60)
+GRASS_MIDDLE          = (140, 80, 70, 60)
+STONE_PLATFORM_LEFT   = (70, 140, 70, 20)
+STONE_PLATFORM_MIDDLE = (210, 140, 70, 20)
+STONE_PLATFORM_RIGHT  = (140, 140, 70, 20)
 
-GRASS_BASE_LEFT       = (504, 648, 70, 70)
-GRASS_BASE_RIGHT      = (504, 504, 70, 70)
-GRASS_BASE_MIDDLE     = (504, 576, 70, 70)
+
+GRASS_BASE_LEFT       = (70, 140, 70, 70)
+GRASS_BASE_RIGHT      = (210, 140, 70, 70)
+GRASS_BASE_MIDDLE     = (140, 140, 70, 70)
 
 class Platform(pygame.sprite.Sprite):
     """ Platform the user can jump on """
@@ -32,7 +33,7 @@ class Platform(pygame.sprite.Sprite):
             code. """
         pygame.sprite.Sprite.__init__(self)
 
-        sprite_sheet = SpriteSheet("resources/sprites/blocks/tiles_blocks.png")
+        sprite_sheet = SpriteSheet("resources/sprites/blocks/tiles_blocks_v2.png")
         # Grab the image for this platform
         self.image = sprite_sheet.get_image(sprite_sheet_data[0],
                                             sprite_sheet_data[1],

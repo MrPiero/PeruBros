@@ -87,7 +87,7 @@ class Level_01(Level):
 
         self.background = pygame.image.load("resources/pictures/bck_lima.png").convert()
         self.background.set_colorkey(bin.constants.WHITE)
-        self.level_limit = -2500
+        self.level_limit = -4000
 
 
         # Array with type of platform, and x, y location of the platform.
@@ -99,15 +99,63 @@ class Level_01(Level):
         #crear bases
         for x in range(0,16):
             level.append([GRASS_BASE_MIDDLE, 120+70*x, 550])
+
+        for x in range(0,60):
             level.append([GRASS_BASE_MIDDLE, 2640 + 70 * x, 550])
 
 
+        #Crear un edificio (Amarillo de ejemplo)
+        level.append([BLOCK_B1_BOTL, 1800, 480])
+        level.append([BLOCK_B1_BOTR, 2010+70, 480])
+        level.append([BLOCK_B1_MIDL, 1800, 410])
+        level.append([BLOCK_B1_MIDR, 2010 + 70, 410])
+        level.append([BLOCK_B1_MIDL, 1800, 340])
+        level.append([BLOCK_B1_MIDR, 2010 + 70, 340])
+        level.append([BLOCK_B1_TOPL, 1800, 270])
+        level.append([BLOCK_B1_TOPR, 2010 + 70, 270])
+        for x in range(0,3):
+            level += [
+                [BLOCK_B1_BOTM, 1870 + 70 * x, 480],
+                [BLOCK_B1_MIDM, 1870 + 70 * x, 410],
+                [BLOCK_B1_MIDM, 1870 + 70 * x, 340],
+                [BLOCK_B1_TOPM, 1870 + 70 * x, 270]
+            ]
+
+        #Crear Segundo edificio
+        level.append([BLOCK_B2_BOTL, 2500, 480])
+        level.append([BLOCK_B2_MIDL, 2500, 410])
+        level.append([BLOCK_B2_TOPL, 2500, 340])
+        level.append([BLOCK_B2_BOTR, 2920, 480])
+        level.append([BLOCK_B2_MIDR, 2920, 410])
+        level.append([BLOCK_B2_TOPR, 2920, 340])
+        for x in range (0,5):
+            level += [
+                [BLOCK_B2_BOTM, 2570 + x*70, 480],
+                [BLOCK_B2_MIDM, 2570 + x * 70, 410],
+                [BLOCK_B2_TOPM, 2570 + x * 70, 340]
+            ]
+        #Crear tercer edificio
+        level.append([BLOCK_B3_BOTL, 2990, 480])
+        level.append([BLOCK_B3_BOTR, 3270, 480])
+        level.append([BLOCK_B3_MIDL, 2990, 410])
+        level.append([BLOCK_B3_MIDR, 3270, 410])
+        level.append([BLOCK_B3_MIDL, 2990, 340])
+        level.append([BLOCK_B3_MIDR, 3270, 340])
+        level.append([BLOCK_B3_TOPL, 2990, 270])
+        level.append([BLOCK_B3_TOPR, 3270, 270])
+        for x in range(0, 3):
+            level += [
+                [BLOCK_B3_BOTM, 3060 + 70 * x, 480],
+                [BLOCK_B3_MIDM, 3060 + 70 * x, 410],
+                [BLOCK_B3_MIDM, 3060 + 70 * x, 340],
+                [BLOCK_B3_TOPM, 3060 + 70 * x, 270]
+            ]
+
         level += [
-                 [BLOCK_DEAD, 260, 340],
-                 [BLOCK_B1_TOP, 260, 410],
+                 [BLOCK_POWERUP, 260, 340],
                  [BLOCK_POWERUP, 330, 340],
                  [BLOCK_POWERUP, 330, 340-70*2],
-                 [BLOCK_DEAD, 400, 340],
+                 [BLOCK_POWERUP, 400, 340],
                  [GRASS_BASE_RIGHT, 1240, 550],
                  [GRASS_BASE_LEFT, 1800, 550],
                  [GRASS_BASE_MIDDLE, 1870, 550],
@@ -116,9 +164,9 @@ class Level_01(Level):
                  [GRASS_BASE_MIDDLE, 2080, 550],
                  [GRASS_BASE_MIDDLE, 2150, 550],
                  [GRASS_BASE_MIDDLE, 2220, 550],
-                 [GRASS_BASE_MIDDLE, 2290, 550],
-                 [GRASS_BASE_MIDDLE, 2360, 550],
-                 [GRASS_BASE_MIDDLE, 2430, 550],
+                 #[GRASS_BASE_MIDDLE, 2290, 550],
+                 #[GRASS_BASE_MIDDLE, 2360, 550],
+                 #[GRASS_BASE_MIDDLE, 2430, 550],
                  [GRASS_BASE_MIDDLE, 2500, 550],
                  [GRASS_BASE_MIDDLE, 2570, 550],
                  [GRASS_BASE_MIDDLE, 2640, 550],
