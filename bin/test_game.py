@@ -13,6 +13,7 @@ import bin.constants
 from bin.chars.player import Player
 from bin.others.methods import *
 #from others.pauseMenu import *
+from bin.region.musicManager import *
 
 from bin.region.levels import *
 
@@ -44,8 +45,9 @@ def main():
     current_level_no = 0
     current_level = level_list[current_level_no]
     pygame.mixer.init()
-    pygame.mixer.music.load("resources/sounds/bck_01.ogg")
-    pygame.mixer.music.play()
+    selectSong(current_level_no)
+    #pygame.mixer.music.load("resources/sounds/bck_01.ogg")
+    #pygame.mixer.music.play()
 
     active_sprite_list = pygame.sprite.Group()
     player.level = current_level
