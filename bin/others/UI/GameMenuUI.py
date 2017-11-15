@@ -28,6 +28,8 @@ def obtener_usuario(id):
 def obtener_partidas(id):
     return requests.get(GC.URL_SAVES_USER + str(id)).json()
 
+def obtener_progreso(id):
+    return requests.get(GC.URL_PROGRESS_SAVE + str(id))
 
 def obtener_img_personaje(personaje):
     if personaje == 0:
@@ -64,6 +66,7 @@ class GameUIMenu:
                     if partida1_rec <= pygame.mouse.get_pos()[1] <= partida1_rec + partida1.get_height():
                         print("ABRIENDO LA PARTIDA 1...")
                         game_menu_state = False
+                        # print(obtener_progreso())
                     elif partida2_rec <= pygame.mouse.get_pos()[1] <= partida2_rec + partida2.get_height():
                         print("ABRIENDO LA PARTIDA 2...")
                         game_menu_state = False

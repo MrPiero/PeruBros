@@ -18,6 +18,7 @@ SCREEN_HEIGHT = 600
 
 URL = "http://www.soft2.wecan.com.pe/laravel/public//usuario/listar"
 URL_SAVES_USER = "http://www.soft2.wecan.com.pe/laravel/public//personaje/api/"
+URL_PROGRESS_SAVE = "http://www.soft2.wecan.com.pe/laravel/public//personaje/api/progreso/"
 
 # Paths for resources
 
