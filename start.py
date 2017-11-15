@@ -11,8 +11,11 @@ if len(sys.argv) == 1:
         GameMenu = GameUIMenu(idUser)
         save = GameMenu.main_menu()
         LevelMenu = LevelUIMenu(save)
-        LevelMenu.main_menu()
-        test_game()
+        progress = LevelMenu.main_menu()
+        if progress == (1, 1):
+            test_game()
+        else:
+            print("Nivel ", progress, " seleccionado")
     else:
         print("LOGIN CERRADO.")
 elif sys.argv[1] == 'test1':

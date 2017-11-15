@@ -105,6 +105,7 @@ class LevelUIMenu:
         level_menu_state = True
         region_state = 1
         region = gen_region(region_state-1, self.progress[0])
+        level_frames = [0, 0, 0]
         while level_menu_state:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -118,6 +119,21 @@ class LevelUIMenu:
                     if FD_area.collidepoint(mouse):
                         region_state = change_region_state(region_state, "R")
                         region = gen_region(region_state-1, self.progress[0])
+                    if level_frames[0].collidepoint(mouse):
+                        if region_state > self.progress[0] or (region_state == self.progress[0] and 1 > self.progress[1]):
+                            print("NO PERMITIDO")
+                        else:
+                            return (region_state, 1)
+                    if level_frames[1].collidepoint(mouse):
+                        if region_state > self.progress[0] or (region_state == self.progress[0] and 2 > self.progress[1]):
+                            print("NO PERMITIDO")
+                        else:
+                            return (region_state, 1)
+                    if level_frames[2].collidepoint(mouse):
+                        if region_state > self.progress[0] or (region_state == self.progress[0] and 3 > self.progress[1]):
+                            print("NO PERMITIDO")
+                        else:
+                            return (region_state, 1)
                 elif event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_LEFT:
                         region_state = change_region_state(region_state, "L")
@@ -135,10 +151,10 @@ class LevelUIMenu:
 
             self.levelMenuDisplay.blit(region.text, region.get_top_center())
             for i in region.levels:
-                pygame.draw.rect(self.levelMenuDisplay, GC.RED, (i.top_center[0], i.top_center[1], i.rect.width, i.rect.height))
+                frame = pygame.draw.rect(self.levelMenuDisplay, GC.RED, (i.top_center[0], i.top_center[1], i.rect.width, i.rect.height))
                 self.levelMenuDisplay.blit(i.text, i.top_center)
                 if region_state > self.progress[0] or (region_state == self.progress[0] and region.levels.index(i)+1 > self.progress[1]):
                     pygame.draw.rect(self.levelMenuDisplay, GC.BLACK, (i.top_center[0], i.top_center[1], i.rect.width, i.rect.height))
-
+                level_frames[region.levels.index(i)] = frame
             pygame.display.update()
             self.clock.tick(60)
