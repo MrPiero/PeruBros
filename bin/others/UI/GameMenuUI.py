@@ -28,8 +28,10 @@ def obtener_usuario(id):
 def obtener_partidas(id_user):
     return requests.get(GC.URL_SAVES_USER + str(id_user)).json()
 
+
 def obtener_progreso(id_personaje):
     return requests.get(GC.URL_PROGRESS_SAVE + str(id_personaje)).json()
+
 
 def obtener_img_personaje(personaje):
     if personaje == 0:
@@ -40,6 +42,13 @@ def obtener_img_personaje(personaje):
 
 def obtener_fondo():
     return pygame.image.load(GC.GAME_MENU_WALLPAPER)
+
+
+def check_save(saves, i):
+    try:
+        return saves[i]["nombre"]
+    except:
+        return "*** [Crear partida] ***"
 
 
 class GameUIMenu:
@@ -65,21 +74,20 @@ class GameUIMenu:
                 elif event.type == pygame.MOUSEBUTTONUP:
                     if partida1_rec <= pygame.mouse.get_pos()[1] <= partida1_rec + partida1.get_height():
                         print("ABRIENDO LA PARTIDA 1...")
-                        game_menu_state = False
                         return obtener_progreso(self.saves[0]["id"])[0]
                     elif partida2_rec <= pygame.mouse.get_pos()[1] <= partida2_rec + partida2.get_height():
                         print("ABRIENDO LA PARTIDA 2...")
-                        game_menu_state = False
+                        return obtener_progreso(self.saves[1]["id"])[0]
                     elif partida3_rec <= pygame.mouse.get_pos()[1] <= partida3_rec + partida3.get_height():
                         print("ABRIENDO LA PARTIDA 3...")
-                        game_menu_state = False
+                        return obtener_progreso(self.saves[2]["id"])[0]
 
             self.gameMenuDisplay.blit(obtener_fondo(), (0, 0))
 
             text, text_rec = gen_bienvenida("Bienvenido " + self.user["name"])
-            partida1, partida1_rec = gen_partida(self.saves[0]["nombre"])
-            partida2, partida2_rec = gen_partida(self.saves[1]["nombre"])
-            partida3, partida3_rec = gen_partida()
+            partida1, partida1_rec = gen_partida(check_save(self.saves, 0))
+            partida2, partida2_rec = gen_partida(check_save(self.saves, 1))
+            partida3, partida3_rec = gen_partida(check_save(self.saves, 2))
 
             partida1_rec = 50 + text_rec.size[1] * 2
             partida2_rec = 50 + text_rec.size[1] * 4

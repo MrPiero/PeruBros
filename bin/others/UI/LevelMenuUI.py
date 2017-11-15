@@ -35,6 +35,11 @@ def change_region_state(region_state, direction):
     return region_state
 
 
+def check_level_availability(progress, region, level):
+    if region > progress[0] or (region == progress[0] and level > progress[1]): return False
+    else: return True
+
+
 class Region:
     def __init__(self, text, rect, region, p):
         self.text = text
@@ -120,20 +125,14 @@ class LevelUIMenu:
                         region_state = change_region_state(region_state, "R")
                         region = gen_region(region_state-1, self.progress[0])
                     if level_frames[0].collidepoint(mouse):
-                        if region_state > self.progress[0] or (region_state == self.progress[0] and 1 > self.progress[1]):
-                            print("NO PERMITIDO")
-                        else:
-                            return (region_state, 1)
+                        if check_level_availability(self.progress, region_state, 1): return (region_state, 1)
+                        else: print("NIVEL NO PERMITIDO")
                     if level_frames[1].collidepoint(mouse):
-                        if region_state > self.progress[0] or (region_state == self.progress[0] and 2 > self.progress[1]):
-                            print("NO PERMITIDO")
-                        else:
-                            return (region_state, 1)
+                        if check_level_availability(self.progress, region_state, 2): return (region_state, 2)
+                        else: print("NIVEL NO PERMITIDO")
                     if level_frames[2].collidepoint(mouse):
-                        if region_state > self.progress[0] or (region_state == self.progress[0] and 3 > self.progress[1]):
-                            print("NO PERMITIDO")
-                        else:
-                            return (region_state, 1)
+                        if check_level_availability(self.progress, region_state, 3): return (region_state, 3)
+                        else: print("NIVEL NO PERMITIDO")
                 elif event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_LEFT:
                         region_state = change_region_state(region_state, "L")
