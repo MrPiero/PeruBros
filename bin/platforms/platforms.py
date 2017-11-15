@@ -12,17 +12,31 @@ from bin.others.spritesheet_functions import SpriteSheet
 #   Width of sprite
 #   Height of sprite
 
-GRASS_LEFT            = (70, 80, 70, 60)
-GRASS_RIGHT           = (210, 80, 70, 60)
-GRASS_MIDDLE          = (140, 80, 70, 60)
-STONE_PLATFORM_LEFT   = (70, 140, 70, 20)
-STONE_PLATFORM_MIDDLE = (210, 140, 70, 20)
-STONE_PLATFORM_RIGHT  = (140, 140, 70, 20)
+PLAT1_L            = (70, 80, 70, 60)
+PLAT1_R           = (210, 80, 70, 60)
+PLAT1_M          = (140, 80, 70, 60)
+PLAT1_FLY_L   = (70, 140, 70, 20)
+PLAT1_FLY_M = (210, 140, 70, 20)
+PLAT1_FLY_R  = (140, 140, 70, 20)
 
 
-GRASS_BASE_LEFT       = (70, 140, 70, 70)
-GRASS_BASE_RIGHT      = (210, 140, 70, 70)
-GRASS_BASE_MIDDLE     = (140, 140, 70, 70)
+LIMA1_BASE_L       = (70, 140, 70, 70)
+LIMA1_BASE_R      = (210, 140, 70, 70)
+LIMA1_BASE_M     = (140, 140, 70, 70)
+
+####
+
+PLAT2_L            = (70, 220, 70, 60)
+PLAT2_R           = (210, 220, 70, 60)
+PLAT2_M          = (140, 220, 70, 60)
+PLAT2_FLY_L   = (70, 280, 70, 20)
+PLAT2_FLY_M = (210, 280, 70, 20)
+PLAT2_FLY_R  = (140, 280, 70, 20)
+
+
+LIMA2_BASE_L       = (70, 280, 70, 70)
+LIMA2_BASE_R      = (210, 280, 70, 70)
+LIMA2_BASE_M     = (140, 280, 70, 70)
 
 class Platform(pygame.sprite.Sprite):
     """ Platform the user can jump on """

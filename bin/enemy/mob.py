@@ -2,38 +2,50 @@ import pygame
 from bin.others.spritesheet_functions import SpriteSheet
 import sys
 
-GRASS_LEFT            = (576, 720, 70, 70)
-GRASS_RIGHT           = (576, 576, 70, 70)
-GRASS_MIDDLE          = (504, 576, 70, 70)
-STONE_PLATFORM_LEFT   = (432, 720, 70, 40)
-STONE_PLATFORM_MIDDLE = (648, 648, 70, 40)
-STONE_PLATFORM_RIGHT  = (792, 648, 70, 40)
-
-GRASS_BASE_LEFT       = (504, 648, 70, 70)
-GRASS_BASE_RIGHT      = (504, 504, 70, 70)
-GRASS_BASE_MIDDLE     = (504, 576, 70, 70)
-BLOCK_DEAD             = (0  , 432, 70, 70)
+bck = (255,0,255)
 
 class Enemy(pygame.sprite.Sprite):
-        """ Platform the user can jump on """
+        walking_frames_l = []
+        walking_frames_r = []
 
-        def __init__(self, sprite_sheet_data):
+        direction = "R"
+
+
+        def __init__(self, mob_type):
             """ Platform constructor. Assumes constructed with user passing in
                 an array of 5 numbers like what's defined at the top of this
                 code. """
             pygame.sprite.Sprite.__init__(self)
 
-            sprite_sheet = SpriteSheet("resources/sprites/blocks/tiles_blocks_v2.png")
+            #sprite_sheet = SpriteSheet("resources/sprites/blocks/tiles_blocks_v2.png")
             # Grab the image for this platform
-            self.image = sprite_sheet.get_image(sprite_sheet_data[0],
-                                                sprite_sheet_data[1],
-                                                sprite_sheet_data[2],
-                                                sprite_sheet_data[3])
+            #self.image = sprite_sheet.get_image(sprite_sheet_data[0],
+            #                                    sprite_sheet_data[1],
+            #                                    sprite_sheet_data[2],
+            #                                    sprite_sheet_data[3])
 
+            #self.rect = self.image.get_rect()
+            sprite_sheet = SpriteSheet("resources/sprites/enemy/mobs.png")
+            if mob_type == "PALOMA":
+                for x in range (1,6):
+                    image = sprite_sheet.get_image(0+70*x, 70, 70, 70)
+                    image.set_colorkey(bck)
+                    self.walking_frames_r.append(image)
+                    #rev
+                    image = sprite_sheet.get_image(0+70*x, 70, 70, 70)
+                    image = pygame.transform.flip(image, True, False)
+                    image.set_colorkey(bck)
+                    self.walking_frames_l.append(image)
+
+            # Set the image the player starts with
+            self.image = self.walking_frames_r[0]
+
+            # Set a referance to the image rect.
             self.rect = self.image.get_rect()
 
+
+
 class MovingEnemy(Enemy):
-        """ This is a fancier platform that can actually move. """
         change_x = 0
         change_y = 0
 
@@ -42,19 +54,42 @@ class MovingEnemy(Enemy):
         boundary_left = 0
         boundary_right = 0
 
+        direction = "R"
+
         level = None
         player = None
 
         def update(self):
-            """ Move the platform.
-                If the player is in the way, it will shove the player
-                out of the way. This does NOT handle what happens if a
-                platform shoves a player into another object. Make sure
-                moving platforms have clearance to push the player around
-                or add code to handle what happens if they don't. """
+            pos = self.rect.x + self.level.world_shift
+            if self.direction == "R":
+                frame = (pos // 30) % len(self.walking_frames_r)
+                self.image = self.walking_frames_r[frame]
+            else:
+                frame = (pos // 30) % len(self.walking_frames_l)
+                self.image = self.walking_frames_l[frame]
 
             # Move left/right
             self.rect.x += self.change_x
+            print("pollo rect x " + str(self.rect.x))
+            print("pollo change x " + str(self.change_x))
+
+            if self.boundary_left == self.rect.x:
+                print("ervjerferf")
+                self.direction == "R"
+                self.image = self.walking_frames_r[frame]
+                pass
+
+            if self.boundary_right == self.rect.x:
+                self.direction == "L"
+                self.image = self.walking_frames_l[frame]
+                pass
+
+            if self.direction == "R":
+                #frame = (pos // 30) % len(self.walking_frames_r)
+                self.image = self.walking_frames_r[frame]
+            else:
+                #frame = (pos // 30) % len(self.walking_frames_l)
+                self.image = self.walking_frames_l[frame]
 
             # See if we hit the player
             hit = pygame.sprite.collide_rect(self, self.player)

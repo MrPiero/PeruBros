@@ -98,10 +98,10 @@ class Level_01(Level):
             level.append ([BLOCK_STONE, 50-70, 550 - 70 * x])
         #crear bases
         for x in range(0,16):
-            level.append([GRASS_BASE_MIDDLE, 120+70*x, 550])
+            level.append([LIMA1_BASE_M, 120+70*x, 550])
 
         for x in range(0,60):
-            level.append([GRASS_BASE_MIDDLE, 2640 + 70 * x, 550])
+            level.append([LIMA1_BASE_M, 2640 + 70 * x, 550])
 
 
         #Crear un edificio (Amarillo de ejemplo)
@@ -156,26 +156,26 @@ class Level_01(Level):
                  [BLOCK_POWERUP, 330, 340],
                  [BLOCK_POWERUP, 330, 340-70*2],
                  [BLOCK_POWERUP, 400, 340],
-                 [GRASS_BASE_RIGHT, 1240, 550],
-                 [GRASS_BASE_LEFT, 1800, 550],
-                 [GRASS_BASE_MIDDLE, 1870, 550],
-                 [GRASS_BASE_MIDDLE, 1940, 550],
-                 [GRASS_BASE_MIDDLE, 2010, 550],
-                 [GRASS_BASE_MIDDLE, 2080, 550],
-                 [GRASS_BASE_MIDDLE, 2150, 550],
-                 [GRASS_BASE_MIDDLE, 2220, 550],
+                 [LIMA1_BASE_R, 1240, 550],
+                 [LIMA1_BASE_L, 1800, 550],
+                 [LIMA1_BASE_M, 1870, 550],
+                 [LIMA1_BASE_M, 1940, 550],
+                 [LIMA1_BASE_M, 2010, 550],
+                 [LIMA1_BASE_M, 2080, 550],
+                 [LIMA1_BASE_M, 2150, 550],
+                 [LIMA1_BASE_M, 2220, 550],
                  #[GRASS_BASE_MIDDLE, 2290, 550],
                  #[GRASS_BASE_MIDDLE, 2360, 550],
                  #[GRASS_BASE_MIDDLE, 2430, 550],
-                 [GRASS_BASE_MIDDLE, 2500, 550],
-                 [GRASS_BASE_MIDDLE, 2570, 550],
-                 [GRASS_BASE_MIDDLE, 2640, 550],
-                 [GRASS_LEFT, 800, 380],
-                 [GRASS_MIDDLE, 870, 380],
-                 [GRASS_RIGHT, 940, 380],
-                 [GRASS_LEFT, 1120, 280],
-                 [GRASS_MIDDLE, 1190, 280],
-                 [GRASS_RIGHT, 1260, 280],
+                 [LIMA1_BASE_M, 2500, 550],
+                 [LIMA1_BASE_M, 2570, 550],
+                 [LIMA1_BASE_M, 2640, 550],
+                 [PLAT1_L , 800, 380],
+                 [PLAT1_M, 870, 380],
+                 [PLAT1_R, 940, 380],
+                 [PLAT1_L, 1120, 280],
+                 [PLAT1_M, 1190, 280],
+                 [PLAT1_R, 1260, 280],
                  [BLOCK_END, 5000, 350]
                  ]
 
@@ -200,7 +200,7 @@ class Level_01(Level):
         #self.platform_list.add(killer_plat)
 
         #Añadir enemigo?
-        enemy_test = MovingEnemy(BLOCK_DEAD)
+        enemy_test = MovingEnemy("PALOMA")
         enemy_test.rect.x = 500
         enemy_test.rect.y = 550-70
         enemy_test.boundary_left = 200
@@ -211,7 +211,7 @@ class Level_01(Level):
         self.platform_list.add(enemy_test)
 
         # Add a custom moving platform
-        block = MovingPlatform(STONE_PLATFORM_MIDDLE)
+        block = MovingPlatform(PLAT1_FLY_M )
         block.rect.x = 1350
         block.rect.y = 280
         block.boundary_left = 1350
@@ -221,7 +221,7 @@ class Level_01(Level):
         block.level = self
         self.platform_list.add(block)
 
-        block2 = MovingPlatform(STONE_PLATFORM_MIDDLE)
+        block2 = MovingPlatform(PLAT1_FLY_M )
         block2.rect.x = 1350-200
         block2.rect.y = 280+200
         block2.boundary_left = 1350-200
@@ -247,18 +247,18 @@ class Level_02(Level):
         self.level_limit = -1000
 
         # Array with type of platform, and x, y location of the platform.
-        level = [ [STONE_PLATFORM_LEFT, 500, 550],
-                  [STONE_PLATFORM_MIDDLE, 570, 550],
-                  [STONE_PLATFORM_RIGHT, 640, 550],
-                  [GRASS_LEFT, 800, 400],
-                  [GRASS_MIDDLE, 870, 400],
-                  [GRASS_RIGHT, 940, 400],
-                  [GRASS_LEFT, 1000, 500],
-                  [GRASS_MIDDLE, 1070, 500],
-                  [GRASS_RIGHT, 1140, 500],
-                  [STONE_PLATFORM_LEFT, 1120, 280],
-                  [STONE_PLATFORM_MIDDLE, 1190, 280],
-                  [STONE_PLATFORM_RIGHT, 1260, 280],
+        level = [ [LIMA1_BASE_M, 500, 550],
+                  [LIMA1_BASE_M, 570, 550],
+                  [LIMA1_BASE_M, 640, 550],
+                  [LIMA1_BASE_M, 800, 400],
+                  [LIMA1_BASE_M, 870, 400],
+                  [LIMA1_BASE_M, 940, 400],
+                  [LIMA1_BASE_M, 1000, 500],
+                  [LIMA1_BASE_M, 1070, 500],
+                  [LIMA1_BASE_M, 1140, 500],
+                  [LIMA1_BASE_M, 1120, 280],
+                  [LIMA1_BASE_M, 1190, 280],
+                  [LIMA1_BASE_M, 1260, 280],
                   ]
 
 
@@ -271,7 +271,7 @@ class Level_02(Level):
             self.platform_list.add(block)
 
         # Add a custom moving platform
-        block = MovingEnemy(STONE_PLATFORM_MIDDLE)
+        block = MovingEnemy(PLAT1_FLY_M)
         block.rect.x = 1500
         block.rect.y = 300
         block.boundary_top = 100
