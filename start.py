@@ -9,8 +9,8 @@ if len(sys.argv) == 1:
     idUser = login.main()
     if login.status:
         GameMenu = GameUIMenu(idUser)
-        GameMenu.main_menu()
-        LevelMenu = LevelUIMenu()
+        save = GameMenu.main_menu()
+        LevelMenu = LevelUIMenu(save)
         LevelMenu.main_menu()
         test_game()
     else:

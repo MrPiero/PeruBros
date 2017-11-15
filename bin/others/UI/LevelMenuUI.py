@@ -89,7 +89,7 @@ class Flecha:
 
 
 class LevelUIMenu:
-    def __init__(self, progress=(2, 3)):
+    def __init__(self, save={'region': '2', 'id_personaje': '4', 'id': 1, 'updated_at': None, 'created_at': None, 'nivel': '2'}):
         pygame.init()
 
         self.display_width = 800
@@ -98,7 +98,8 @@ class LevelUIMenu:
         self.levelMenuDisplay = pygame.display.set_mode((self.display_width, self.display_height))
         pygame.display.set_caption("PERUBROS. -- PRE-ALPHA LEVEL MENU --")
         self.clock = pygame.time.Clock()
-        self.progress = progress
+        self.save = save
+        self.progress = (int(self.save["region"]), int(self.save["nivel"]))
 
     def main_menu(self):
         level_menu_state = True

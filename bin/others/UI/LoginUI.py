@@ -41,17 +41,12 @@ class LoginUIMenu:
         return self.idUser
 
     def login_https(self):
-        # LOGIN DESDE UN STRING JSON DESDE HTTPS
+        # LOGIN DESDE UN STRING JSON DESDE HTTP
         u = self.entryUser.get()
-        p = self.entryPasswd.get().encode("utf-8")
-        # p = bcrypt.hashpw(p, bcrypt.gensalt())
+        p = self.entryPasswd.get()
         json_file = requests.get(GC.URL).json()
         for user in json_file:
-            print(user["name"], user["password"].encode("utf-8"))
-            print(u, p)
-            # print(bcrypt.checkpw(p, user["password"]))
             if user["name"] == u:
-
                 self.root.quit()
                 self.status = True
                 self.idUser = user["id"]
