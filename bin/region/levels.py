@@ -176,7 +176,7 @@ class Level_01(Level):
                  [PLAT1_L, 1120, 280],
                  [PLAT1_M, 1190, 280],
                  [PLAT1_R, 1260, 280],
-                 [BLOCK_END, 5000, 350]
+                 [BLOCK_END, 5000, 490]
                  ]
 
 
@@ -209,6 +209,18 @@ class Level_01(Level):
         enemy_test.player = self.player
         enemy_test.level = self
         self.platform_list.add(enemy_test)
+
+        # Añadir enemigo?
+        enemy_test2 = MovingEnemy("PALOMA")
+        enemy_test2.rect.x = 2700
+        enemy_test2.rect.y = 270
+        enemy_test2.boundary_left = 2500
+        enemy_test2.boundary_right = 2920
+        enemy_test2.change_x = 2
+        enemy_test2.player = self.player
+        enemy_test2.level = self
+        self.platform_list.add(enemy_test2)
+
 
         # Add a custom moving platform
         block = MovingPlatform(PLAT1_FLY_M )
@@ -247,15 +259,15 @@ class Level_02(Level):
         self.level_limit = -1000
 
         # Array with type of platform, and x, y location of the platform.
-        level = [ [LIMA1_BASE_M, 500, 550],
-                  [LIMA1_BASE_M, 570, 550],
-                  [LIMA1_BASE_M, 640, 550],
-                  [LIMA1_BASE_M, 800, 400],
-                  [LIMA1_BASE_M, 870, 400],
-                  [LIMA1_BASE_M, 940, 400],
-                  [LIMA1_BASE_M, 1000, 500],
-                  [LIMA1_BASE_M, 1070, 500],
-                  [LIMA1_BASE_M, 1140, 500],
+        level = [ [LIMA1_BASE_M, 0, 550],
+                  [LIMA1_BASE_M, 70, 550],
+                  [LIMA1_BASE_M, 140, 550],
+                  [LIMA1_BASE_M, 210, 400],
+                  [LIMA1_BASE_M, -70, 400],
+                  [LIMA1_BASE_M, -140, 400],
+                  [LIMA1_BASE_M, 240, 500],
+                  [LIMA1_BASE_M, 300, 500],
+                  [LIMA1_BASE_M, 370, 500],
                   [LIMA1_BASE_M, 1120, 280],
                   [LIMA1_BASE_M, 1190, 280],
                   [LIMA1_BASE_M, 1260, 280],
