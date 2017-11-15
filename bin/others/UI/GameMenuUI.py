@@ -34,9 +34,9 @@ def obtener_progreso(id_personaje):
 
 
 def obtener_img_personaje(personaje):
-    if personaje == 0:
+    if personaje == "hombre":
         return pygame.image.load('./resources/nino.png') # La imagen cargada ya está diseñada en 8 bits
-    elif personaje == 1:
+    elif personaje == "mujer":
         return pygame.image.load('./resources/nina.png') # La imagen cargada NO está diseñada en 8 bits
 
 
@@ -99,11 +99,11 @@ class GameUIMenu:
             self.gameMenuDisplay.blit(partida3, (0, partida3_rec))
 
             if partida1_rec <= pygame.mouse.get_pos()[1] <= partida1_rec + partida1.get_height():
-                self.gameMenuDisplay.blit(obtener_img_personaje(0), (300, 100))
+                self.gameMenuDisplay.blit(obtener_img_personaje(self.saves[0]["sexo"]), (300, 100))
             elif partida2_rec <= pygame.mouse.get_pos()[1] <= partida2_rec + partida2.get_height():
-                self.gameMenuDisplay.blit(obtener_img_personaje(1), (300, 100))
+                self.gameMenuDisplay.blit(obtener_img_personaje(self.saves[1]["sexo"]), (300, 100))
             elif partida3_rec <= pygame.mouse.get_pos()[1] <= partida3_rec + partida3.get_height():
-                self.gameMenuDisplay.blit(obtener_img_personaje(0), (300, 100))
+                self.gameMenuDisplay.blit(obtener_img_personaje("hombre"), (300, 100))
 
             pygame.display.update()
             self.clock.tick(60)
