@@ -1,7 +1,7 @@
 """
 Global constants
 """
-
+from os import path
 # Colors
 
 BLACK = (0, 0, 0)
@@ -15,7 +15,7 @@ SCREEN_WIDTH = 1024
 SCREEN_HEIGHT = 600
 
 # URL for requests
-
+GAME_FOLDER = path.dirname(__file__)
 URL = "http://www.soft2.wecan.com.pe/laravel/public//usuario/listar"
 URL_SAVES_USER = "http://www.soft2.wecan.com.pe/laravel/public//personaje/api/"
 URL_PROGRESS_SAVE = "http://www.soft2.wecan.com.pe/laravel/public//personaje/api/progreso/"

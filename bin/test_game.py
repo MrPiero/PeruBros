@@ -53,7 +53,6 @@ def main():
     player.level = current_level
     #Posicion de origen del jugador
     player.rect.x = 200
-    #player.rect.y = constants.SCREEN_HEIGHT - player.rect.height
     player.rect.y = 500
     active_sprite_list.add(player)
 
