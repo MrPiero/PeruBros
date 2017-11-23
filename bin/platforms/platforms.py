@@ -49,6 +49,7 @@ class Platform(pygame.sprite.Sprite):
 
         sprite_sheet = SpriteSheet("resources/sprites/blocks/tiles_blocks_v2.png")
         # Grab the image for this platform
+        print("alpaca op" + str(sprite_sheet_data[0]))
         self.image = sprite_sheet.get_image(sprite_sheet_data[0],
                                             sprite_sheet_data[1],
                                             sprite_sheet_data[2],

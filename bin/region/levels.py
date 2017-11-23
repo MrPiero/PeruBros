@@ -9,7 +9,8 @@ from bin.blocks.blocks import *
 from bin.enemy.mob import *
 from bin.blocks.lima_block import *
 import bin.constants
-from bin.platforms.platforms import *
+#from bin.platforms.platforms import *
+from bin.others.levelReader import *
 
 class Level():
     """ This is a generic super-class used to define a level.
@@ -92,17 +93,8 @@ class Level_01(Level):
 
         # Array with type of platform, and x, y location of the platform.
         level = []
-        #crear barrera
-        for x in range (0,50):
-            level.append([BLOCK_STONE, 50, 550-70*x])
-            level.append ([BLOCK_STONE, 50-70, 550 - 70 * x])
-        #crear bases
-        for x in range(0,16):
-            level.append([LIMA1_BASE_M, 120+70*x, 550])
 
-        for x in range(0,60):
-            level.append([LIMA1_BASE_M, 2640 + 70 * x, 550])
-
+        level+= uncode()
 
         #Crear un edificio (Amarillo de ejemplo)
         level.append([BLOCK_B1_BOTL, 1800, 480])
@@ -180,7 +172,7 @@ class Level_01(Level):
                  ]
 
 
-        # Go through the array above and add platforms
+        # Poner la plataforma del arreglo level[]
         for platform in level:
             block = Platform(platform[0])
             block.rect.x = platform[1]
