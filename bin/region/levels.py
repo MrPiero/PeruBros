@@ -94,79 +94,7 @@ class Level_01(Level):
         # Array with type of platform, and x, y location of the platform.
         level = []
 
-        level+= uncode('lvl_1_1')
-
-        #Crear un edificio (Amarillo de ejemplo)
-        level.append([BLOCK_B1_BOTL, 1800, 480])
-        level.append([BLOCK_B1_BOTR, 2010+70, 480])
-        level.append([BLOCK_B1_MIDL, 1800, 410])
-        level.append([BLOCK_B1_MIDR, 2010 + 70, 410])
-        level.append([BLOCK_B1_MIDL, 1800, 340])
-        level.append([BLOCK_B1_MIDR, 2010 + 70, 340])
-        level.append([BLOCK_B1_TOPL, 1800, 270])
-        level.append([BLOCK_B1_TOPR, 2010 + 70, 270])
-        for x in range(0,3):
-            level += [
-                [BLOCK_B1_BOTM, 1870 + 70 * x, 480],
-                [BLOCK_B1_MIDM, 1870 + 70 * x, 410],
-                [BLOCK_B1_MIDM, 1870 + 70 * x, 340],
-                [BLOCK_B1_TOPM, 1870 + 70 * x, 270]
-            ]
-
-        #Crear Segundo edificio
-        level.append([BLOCK_B2_BOTL, 2500, 480])
-        level.append([BLOCK_B2_MIDL, 2500, 410])
-        level.append([BLOCK_B2_TOPL, 2500, 340])
-        level.append([BLOCK_B2_BOTR, 2920, 480])
-        level.append([BLOCK_B2_MIDR, 2920, 410])
-        level.append([BLOCK_B2_TOPR, 2920, 340])
-        for x in range (0,5):
-            level += [
-                [BLOCK_B2_BOTM, 2570 + x*70, 480],
-                [BLOCK_B2_MIDM, 2570 + x * 70, 410],
-                [BLOCK_B2_TOPM, 2570 + x * 70, 340]
-            ]
-        #Crear tercer edificio
-        level.append([BLOCK_B3_BOTL, 2990, 480])
-        level.append([BLOCK_B3_BOTR, 3270, 480])
-        level.append([BLOCK_B3_MIDL, 2990, 410])
-        level.append([BLOCK_B3_MIDR, 3270, 410])
-        level.append([BLOCK_B3_MIDL, 2990, 340])
-        level.append([BLOCK_B3_MIDR, 3270, 340])
-        level.append([BLOCK_B3_TOPL, 2990, 270])
-        level.append([BLOCK_B3_TOPR, 3270, 270])
-        for x in range(0, 3):
-            level += [
-                [BLOCK_B3_BOTM, 3060 + 70 * x, 480],
-                [BLOCK_B3_MIDM, 3060 + 70 * x, 410],
-                [BLOCK_B3_MIDM, 3060 + 70 * x, 340],
-                [BLOCK_B3_TOPM, 3060 + 70 * x, 270]
-            ]
-
-        level += [
-                 [LIMA1_BASE_R, 1240, 550],
-                 [LIMA1_BASE_L, 1800, 550],
-                 [LIMA1_BASE_M, 1870, 550],
-                 [LIMA1_BASE_M, 1940, 550],
-                 [LIMA1_BASE_M, 2010, 550],
-                 [LIMA1_BASE_M, 2080, 550],
-                 [LIMA1_BASE_M, 2150, 550],
-                 [LIMA1_BASE_M, 2220, 550],
-                 #[GRASS_BASE_MIDDLE, 2290, 550],
-                 #[GRASS_BASE_MIDDLE, 2360, 550],
-                 #[GRASS_BASE_MIDDLE, 2430, 550],
-                 [LIMA1_BASE_M, 2500, 550],
-                 [LIMA1_BASE_M, 2570, 550],
-                 [LIMA1_BASE_M, 2640, 550],
-                 [PLAT1_L , 800, 380],
-                 [PLAT1_M, 870, 380],
-                 [PLAT1_R, 940, 380],
-                 [PLAT1_L, 1120, 280],
-                 [PLAT1_M, 1190, 280],
-                 [PLAT1_R, 1260, 280],
-                 [BLOCK_END, 5000, 490]
-                 ]
-
+        level += uncode('lvl_1_1')
 
         # Poner la plataforma del arreglo level[]
         for platform in level:
@@ -175,17 +103,6 @@ class Level_01(Level):
             block.rect.y = platform[2]
             block.player = self.player
             self.platform_list.add(block)
-
-        #Añadir plataforma maldita
-        #killer_plat = KillerPlatform(BLOCK_DEAD)
-        #killer_plat.rect.x = 470
-        #killer_plat.rect.y = 500
-        #killer_plat.boundary_top = 470
-        #killer_plat.boundary_bottom = 520
-        #killer_plat.change_y = 1
-        #killer_plat.player = self.player
-        #killer_plat.level = self
-        #self.platform_list.add(killer_plat)
 
         #Añadir enemigo?
         enemy_test = MovingEnemy("PALOMA")
