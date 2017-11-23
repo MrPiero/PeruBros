@@ -1,10 +1,6 @@
 from bin.platforms.platforms import *
 from bin.blocks.blocks import *
 
-f = open('resources/levels/lvl_1_1.pbr')
-
-
-
 def barrier():
     barrier = []
     for x in range(0, 10):
@@ -12,8 +8,11 @@ def barrier():
         barrier.append([BLOCK_STONE, 50 - 70, 550 - 70 * x])
     return barrier
 
-def uncode():
+def uncode(level_name):
+    f = open('resources/levels/' + level_name + '.pbr')
+
     d = {'lim': [LIMA1_BASE_M, LIMA1_BASE_L, LIMA1_BASE_R]}
+    b = {'lim': [LIMA_BLOCK_1]}
 
     level = []
 
@@ -33,18 +32,23 @@ def uncode():
         elif x == 2:
             t = words.split(',')
             for w in t: #lectura de limites de bases
-                print(w)
                 lims = w.split('-')
-                print(lims)
-                print('test')
                 l0 = int(lims[0])
                 l1 = int(lims[1])
                 level.append([d[level_type][1], 120+70*int(lims[0]), 550])
                 level.append([d[level_type][1], 120 + 70 * int(lims[1]), 550])
                 for y in range(l0+1, l1):
-                    print(y)
-
                     level.append([d[level_type][0], 120+70*y, 550])
+        elif x == 3:
+            t = words.split(',')
+            for w in t: #lectura de bloques
+                print(w)
+                posxy = w.split('-')
+                print(posxy)
+                print('test')
+                pos_x = int(posxy[0])
+                pos_y = int(posxy[1])
+                level.append([b[level_type][0],50+70*pos_x, 550-70*pos_y])
 
         x=x+1
 

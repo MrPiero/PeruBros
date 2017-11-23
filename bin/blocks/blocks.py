@@ -18,6 +18,8 @@ BLOCK_DEAD             = (70  , 0, 70, 70)
 
 BLOCK_END              = (0 ,0 ,70 ,70 )
 
+LIMA_BLOCK_1 = (70  , 0, 70, 70)
+
 # Lima Blocks
 
 

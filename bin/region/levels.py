@@ -94,7 +94,7 @@ class Level_01(Level):
         # Array with type of platform, and x, y location of the platform.
         level = []
 
-        level+= uncode()
+        level+= uncode('lvl_1_1')
 
         #Crear un edificio (Amarillo de ejemplo)
         level.append([BLOCK_B1_BOTL, 1800, 480])
@@ -144,10 +144,6 @@ class Level_01(Level):
             ]
 
         level += [
-                 [BLOCK_POWERUP, 260, 340],
-                 [BLOCK_POWERUP, 330, 340],
-                 [BLOCK_POWERUP, 330, 340-70*2],
-                 [BLOCK_POWERUP, 400, 340],
                  [LIMA1_BASE_R, 1240, 550],
                  [LIMA1_BASE_L, 1800, 550],
                  [LIMA1_BASE_M, 1870, 550],
