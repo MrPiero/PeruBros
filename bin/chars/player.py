@@ -1,9 +1,5 @@
 import pygame
-
-import sys
-sys.path.insert(0, '../../bin/')
 import bin.constants
-import time
 from bin.platforms.platforms import MovingPlatform
 from bin.others.spritesheet_functions import SpriteSheet
 from bin.others.methods import *

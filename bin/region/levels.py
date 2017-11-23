@@ -1,9 +1,5 @@
-import pygame
-import sys
-sys.path.insert(0, '../bin/')
 from bin.enemy.mob import *
 import bin.constants
-#from bin.platforms.platforms import *
 from bin.others.levelReader import *
 
 class Level():

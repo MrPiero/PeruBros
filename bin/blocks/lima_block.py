@@ -42,16 +42,11 @@ BLOCK_B3_BOTR            = (420, 146+420, 70, 70)
 
 
 class LimaBlock(pygame.sprite.Sprite):
-    """ Platform the user can jump on """
 
     def __init__(self, sprite_sheet_data):
-        """ Platform constructor. Assumes constructed with user passing in
-            an array of 5 numbers like what's defined at the top of this
-            code. """
-        pygame.sprite.Sprite.__init__(self)
 
+        pygame.sprite.Sprite.__init__(self)
         sprite_sheet = SpriteSheet("../../resources/sprites/blocks/tiles_blocks_v2.png")
-        # Grab the image for this platform
         self.image = sprite_sheet.get_image(sprite_sheet_data[0],
                                             sprite_sheet_data[1],
                                             sprite_sheet_data[2],

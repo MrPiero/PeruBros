@@ -1,18 +1,7 @@
-import pygame
-
-
 import bin.region.levels
 import bin.others.methods
-
-
-
-import time
 import bin.constants
-#import sys
-#sys.path.insert(0, '../../bin/')
 from bin.chars.player import Player
-from bin.others.methods import *
-#from others.pauseMenu import *
 from bin.region.musicManager import *
 
 from bin.region.levels import *

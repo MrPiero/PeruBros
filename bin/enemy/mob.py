@@ -1,6 +1,5 @@
 import pygame
 from bin.others.spritesheet_functions import SpriteSheet
-import sys
 
 bck = (255,0,255)
 

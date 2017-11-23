@@ -3,8 +3,6 @@ This module is used to pull individual sprites from sprite sheets.
 """
 import pygame
 
-import sys
-sys.path.insert(0, '../../bin/')
 import bin.constants
 
 class SpriteSheet(object):
