@@ -29,6 +29,7 @@ def uncode(level_name):
 
     level = []
     mobs = []
+    movPlat = []
 
     level += barrier()
     l = f.readlines()
@@ -112,9 +113,14 @@ def uncode(level_name):
 
         elif x == 8:
             for w in t:
-                pass
+                pos_plat = w.split('-')
+                pos_x = 50 + 70 * int(pos_plat[0])
+                pos_y = 550 - 70 * int(pos_plat[1])
+                lim_1 = 50 + 70 * int(pos_plat[2])
+                lim_2 = 50 + 70 * int(pos_plat[3])
+                speed = int(pos_plat[4])
+                movPlat.append([PLAT1_FLY_M, pos_x, pos_y, lim_1, lim_2, speed])
 
         x = x + 1
 
-    return [level, mobs]
-
+    return [level, mobs, movPlat]

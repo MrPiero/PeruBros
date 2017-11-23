@@ -88,10 +88,12 @@ class Level_01(Level):
         # Array with type of platform, and x, y location of the platform.
         level = []
         mobs = []
+        moving_platforms = []
 
         data = uncode('lvl_1_1')
         level += data[0]
         mobs += data[1]
+        moving_platforms += data[2]
 
         # Lectura del arreglo level[]
         for platform in level:
@@ -112,26 +114,18 @@ class Level_01(Level):
             enemy.level = self
             self.platform_list.add(enemy)
 
-        # Add a custom moving platform
-        block = MovingPlatform(PLAT1_FLY_M )
-        block.rect.x = 1350
-        block.rect.y = 280
-        block.boundary_left = 1350
-        block.boundary_right = 1600
-        block.change_x = 1
-        block.player = self.player
-        block.level = self
-        self.platform_list.add(block)
+        for movplat in moving_platforms:
+            mp = MovingPlatform(movplat[0])
+            mp.rect.x = movplat[1]
+            mp.rect.y = movplat[2]
+            mp.boundary_left = movplat[3]
+            mp.boundary_right = movplat[4]
+            mp.change_x = movplat[5]
+            mp.player = self.player
+            mp.level = self
+            self.platform_list.add(mp)
 
-        block2 = MovingPlatform(PLAT1_FLY_M )
-        block2.rect.x = 1350-200
-        block2.rect.y = 280+200
-        block2.boundary_left = 1350-200
-        block2.boundary_right = 1600-200
-        block2.change_x = 1
-        block2.player = self.player
-        block2.level = self
-        self.platform_list.add(block2)
+        # Add a custom moving platform
 
 
 # Create platforms for the level
