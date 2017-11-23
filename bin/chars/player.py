@@ -1,7 +1,3 @@
-"""
-This module is used to hold the Player class. The Player represents the user-
-controlled sprite on the screen.
-"""
 import pygame
 
 import sys
@@ -18,16 +14,12 @@ class Player(pygame.sprite.Sprite):
     #velocidad
     eje_x = 0
     eje_y = 0
-
-    # This holds all the images for the animated walk left/right
-    # of our player
-    walking_frames_l = []
-    walking_frames_r = []
-
-    # What direction is the player facing?
     direction = "R"
 
-    # List of sprites we can bump against
+    #arreglos de imagenes del personaje
+    camina_L = []
+    camina_R = []
+
     level = None
     lives = 3
     status = 1
@@ -37,62 +29,60 @@ class Player(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
 
         sprite_sheet = SpriteSheet(select_char())
-        # Load all the right facing images into a list
+        # Cargar imagenes
         image = sprite_sheet.get_image(0, 20, 66, 90-20)
         image.set_colorkey(bck)
-        self.walking_frames_r.append(image)
+        self.camina_R.append(image)
         image = sprite_sheet.get_image(66, 20, 66, 90-20)
         image.set_colorkey(bck)
-        self.walking_frames_r.append(image)
+        self.camina_R.append(image)
         image = sprite_sheet.get_image(132, 20, 67, 90-20)
         image.set_colorkey(bck)
-        self.walking_frames_r.append(image)
+        self.camina_R.append(image)
         image = sprite_sheet.get_image(0, 93+20, 66, 90-20)
         image.set_colorkey(bck)
-        self.walking_frames_r.append(image)
+        self.camina_R.append(image)
         image = sprite_sheet.get_image(66, 93+20, 66, 90-20)
         image.set_colorkey(bck)
-        self.walking_frames_r.append(image)
+        self.camina_R.append(image)
         image = sprite_sheet.get_image(132, 93+20, 72, 90-20)
         image.set_colorkey(bck)
-        self.walking_frames_r.append(image)
+        self.camina_R.append(image)
         image = sprite_sheet.get_image(0, 186+20, 70, 90-20)
         image.set_colorkey(bck)
-        self.walking_frames_r.append(image)
+        self.camina_R.append(image)
         #rev
         image = sprite_sheet.get_image(0, 0+20, 66, 90-20)
         image = pygame.transform.flip(image, True, False)
         image.set_colorkey(bck)
-        self.walking_frames_l.append(image)
+        self.camina_L.append(image)
         image = sprite_sheet.get_image(66, 0+20, 66, 90-20)
         image = pygame.transform.flip(image, True, False)
         image.set_colorkey(bck)
-        self.walking_frames_l.append(image)
+        self.camina_L.append(image)
         image = sprite_sheet.get_image(132, 0+20, 67, 90-20)
         image = pygame.transform.flip(image, True, False)
         image.set_colorkey(bck)
-        self.walking_frames_l.append(image)
+        self.camina_L.append(image)
         image = sprite_sheet.get_image(0, 93+20, 66, 90-20)
         image = pygame.transform.flip(image, True, False)
         image.set_colorkey(bck)
-        self.walking_frames_l.append(image)
+        self.camina_L.append(image)
         image = sprite_sheet.get_image(66, 93+20, 66, 90-20)
         image = pygame.transform.flip(image, True, False)
         image.set_colorkey(bck)
-        self.walking_frames_l.append(image)
+        self.camina_L.append(image)
         image = sprite_sheet.get_image(132, 93+20, 72, 90-20)
         image = pygame.transform.flip(image, True, False)
         image.set_colorkey(bck)
-        self.walking_frames_l.append(image)
+        self.camina_L.append(image)
         image = sprite_sheet.get_image(0, 186+20, 70, 90-20)
         image = pygame.transform.flip(image, True, False)
         image.set_colorkey(bck)
-        self.walking_frames_l.append(image)
+        self.camina_L.append(image)
 
-        # Set the image the player starts with
-        self.image = self.walking_frames_r[0]
-
-        # Set a referance to the image rect.
+        # Imagen inicial
+        self.image = self.camina_R[0]
         self.rect = self.image.get_rect()
 
     def update(self):
@@ -104,11 +94,11 @@ class Player(pygame.sprite.Sprite):
         self.rect.x += self.eje_x
         pos = self.rect.x + self.level.world_shift
         if self.direction == "R":
-            frame = (pos // 30) % len(self.walking_frames_r)
-            self.image = self.walking_frames_r[frame]
+            frame = (pos // 30) % len(self.camina_R)
+            self.image = self.camina_R[frame]
         else:
-            frame = (pos // 30) % len(self.walking_frames_l)
-            self.image = self.walking_frames_l[frame]
+            frame = (pos // 30) % len(self.camina_L)
+            self.image = self.camina_L[frame]
 
         # See if we hit anything
         block_hit_list = pygame.sprite.spritecollide(self, self.level.platform_list, False)
@@ -190,5 +180,3 @@ class Player(pygame.sprite.Sprite):
         self.lives = self.lives - 1
         self.status = 0
         self.kill()
-        print("ttttt")
-        #time.sleep(1)
