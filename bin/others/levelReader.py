@@ -30,6 +30,7 @@ def uncode(level_name):
     level = []
     mobs = []
     movPlat = []
+    limit = 0
 
     level += barrier()
     l = f.readlines()
@@ -123,4 +124,4 @@ def uncode(level_name):
 
         x = x + 1
 
-    return [level, mobs, movPlat]
+    return [level, mobs, movPlat, limit]

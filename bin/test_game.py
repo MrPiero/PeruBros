@@ -2,15 +2,17 @@ import bin.region.levels
 import bin.others.methods
 import bin.constants
 from bin.chars.player import Player
-from bin.region.musicManager import *
+from bin.region.level_coast import *
 
 from bin.region.levels import *
 
 
 def changeLv(current_level_no,level_list,player):
+    stopSong()
     current_level_no += 1
     current_level = level_list[current_level_no]
     player.level = current_level
+
 
 def main():
     pygame.init()
@@ -27,16 +29,12 @@ def main():
 
     # Create all the levels
     level_list = []
-    level_list.append(Level_01(player))
-    level_list.append(Level_02(player))
+    level_list.append(Level_Coast(player, 'lvl_1_1'))
+    level_list.append(Level_Coast(player, 'lvl_1_2'))
 
     # Set the current level
     current_level_no = 0
     current_level = level_list[current_level_no]
-    pygame.mixer.init()
-    selectSong(current_level_no)
-    #pygame.mixer.music.load("resources/sounds/bck_01.ogg")
-    #pygame.mixer.music.play()
 
     active_sprite_list = pygame.sprite.Group()
     player.level = current_level
