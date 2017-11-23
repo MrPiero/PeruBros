@@ -4,3 +4,5 @@ limites del suelo (pos1-posf,pos2-posf2)
 bloques (x1-y1,x2-y2)
 plataformas grandes (x1-y1-l1, x2-y2-l2)
 edificios (a-x1-y1-l1-h1, v-x2-y2-l2-h2,...) (a: amarillo, v: verde...)
+plataformas que se mueven
+enemigos

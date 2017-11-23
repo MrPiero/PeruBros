@@ -1,13 +1,7 @@
 import pygame
-
-
-
-
 import sys
 sys.path.insert(0, '../bin/')
-from bin.blocks.blocks import *
 from bin.enemy.mob import *
-from bin.blocks.lima_block import *
 import bin.constants
 #from bin.platforms.platforms import *
 from bin.others.levelReader import *
@@ -93,39 +87,30 @@ class Level_01(Level):
 
         # Array with type of platform, and x, y location of the platform.
         level = []
+        mobs = []
 
-        level += uncode('lvl_1_1')
+        data = uncode('lvl_1_1')
+        level += data[0]
+        mobs += data[1]
 
-        # Poner la plataforma del arreglo level[]
+        # Lectura del arreglo level[]
         for platform in level:
             block = Platform(platform[0])
             block.rect.x = platform[1]
             block.rect.y = platform[2]
             block.player = self.player
             self.platform_list.add(block)
-
-        #Añadir enemigo?
-        enemy_test = MovingEnemy("PALOMA")
-        enemy_test.rect.x = 500
-        enemy_test.rect.y = 550-70
-        enemy_test.boundary_left = 200
-        enemy_test.boundary_right = 500
-        enemy_test.change_x = 1
-        enemy_test.player = self.player
-        enemy_test.level = self
-        self.platform_list.add(enemy_test)
-
-        # Añadir enemigo?
-        enemy_test2 = MovingEnemy("PALOMA")
-        enemy_test2.rect.x = 2700
-        enemy_test2.rect.y = 270
-        enemy_test2.boundary_left = 2500
-        enemy_test2.boundary_right = 2920
-        enemy_test2.change_x = 2
-        enemy_test2.player = self.player
-        enemy_test2.level = self
-        self.platform_list.add(enemy_test2)
-
+        #lectura del arreglo mobs[]
+        for mob in mobs:
+            enemy = MovingEnemy(mob[0])
+            enemy.rect.x = mob[1]
+            enemy.rect.y = mob[2]
+            enemy.boundary_left = mob[3]
+            enemy.boundary_right = mob[4]
+            enemy.change_x = mob[5]
+            enemy.player = self.player
+            enemy.level = self
+            self.platform_list.add(enemy)
 
         # Add a custom moving platform
         block = MovingPlatform(PLAT1_FLY_M )

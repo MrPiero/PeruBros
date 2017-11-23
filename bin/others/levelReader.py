@@ -28,6 +28,7 @@ def uncode(level_name):
                       'g': [BLOCK_B3_TOPL, BLOCK_B3_TOPM, BLOCK_B3_TOPR]}
 
     level = []
+    mobs = []
 
     level += barrier()
     l = f.readlines()
@@ -96,6 +97,24 @@ def uncode(level_name):
                         level.append(
                             [edificio_medio[type_b][1], 50 + 70 * (eje_x + pos_x + 1), 550 - 70 * (eje_y + pos_y + 1)])
 
+        elif x == 7:
+            for w in t:
+                pos_enemy = w.split('-')
+                type_e = pos_enemy[0]
+                pos_x = 50 + 70 * int(pos_enemy[1])
+                pos_y = 550 - 70 * int(pos_enemy[2])
+                lim_1 = 50 + 70 * int(pos_enemy[3])
+                print(lim_1)
+                lim_2 = 50 + 70 * int(pos_enemy[4])
+                print(lim_2)
+                speed = int(pos_enemy[5])
+                mobs.append([type_e, pos_x, pos_y, lim_1, lim_2, speed])
+
+        elif x == 8:
+            for w in t:
+                pass
+
         x = x + 1
 
-    return level
+    return [level, mobs]
+
