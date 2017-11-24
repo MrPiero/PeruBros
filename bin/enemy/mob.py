@@ -82,11 +82,11 @@ class MovingEnemy(Enemy):
 
             # See if we hit the player
             hit = pygame.sprite.collide_rect(self, self.player)
-            print(hit)
+            #print(hit)
             if hit:
-                print(hit)
+            #    print(hit)
                 self.player.kill_player()
-                print("T1")
+            #    print("T1")
 
             # Move up/down
             self.rect.y += self.change_y

@@ -8,14 +8,23 @@ from bin.region.levels import *
 
 def createPlayer():
     player = Player()
+    player.rect.x = 200
+    player.rect.y = 500
     return player
 
 def LevelInit(player):
     level_list = []
     # piero ahi invocas el metodo con la base de datos y reemplazas el valor de current level.
     level_list.append((Level_Coast(player, bin.constants.current_level)))
-
+    level_list.append((Level_Coast(player, 'lvl_1_2'))) #este de prueba, hardcoded
     return level_list
+
+def changeLv(current_level_no,level_list,player):
+    stopSong()
+    current_level_no += 1
+    current_level = level_list[current_level_no]
+    player.level = current_level
+
 
 
 def main():
@@ -31,18 +40,25 @@ def main():
 
     active_sprite_list = pygame.sprite.Group()
     player.level = current_level
-    # Posicion de origen del jugador
-    player.rect.x = 200
-    player.rect.y = 500
     active_sprite_list.add(player)
     #estados:
-    # 0 = Juego en ejecución
     # -1 = Juego finalizado
+    # 0 = Juego en ejecución
+    # 1 = Jugador muerto
     # 2 = ???
     done = 0
     clock = pygame.time.Clock()
 
     while done != -1:
+        print("Done" + str(done))
+        if done == 1 :
+            player = createPlayer()
+            player.level = current_level
+            active_sprite_list.add(player)
+            #player.status = 0
+            done = 0
+
+
         for event in pygame.event.get(): # User did something
             if event.type == pygame.QUIT: # If user clicked close
                 done = True # Flag that we are done so we exit this loop
@@ -79,37 +95,26 @@ def main():
                 current_height = player.rect.y
                 if current_height >= 530:
                     player.kill_player()
+                if current_position < current_level.level_limit:
+                    player.rect.x = 120
+                    if curr_level_num < len(level_list) - 1:
+                        # time.sleep (5)
+                        print("Test_2")
+                        # dec = nextLevel()
+                        dec = "1"
+                        if dec == "1":
+                            changeLv(curr_level_num, level_list, player)
+                            curr_level_num += 1
+                            # print("CL" + current_level)
+                            current_level = level_list[curr_level_num]
+                            player.level = current_level
+                        else:
+                            pass
+                    current_level.update()
             if player.status == 0:
-                print("Jugador muerto...")
                 player = None
-                    # player = Player()
-                    # changeLv(current_level_no-1, level_list, player)
-                    # player.level = current_level
-                    # Posicion de origen del jugador
-                    # player.rect.x = 300
-                    # player.rect.y = constants.SCREEN_HEIGHT - player.rect.height
-                    # player.rect.y = 500
-                    # active_sprite_list.add(player)
-                    # player.status = 1
-                    # active_sprite_list.update()
+                done = 1
 
-
-        if current_position < current_level.level_limit:
-            player.rect.x = 120
-            if curr_level_num < len(level_list)-1:
-                #time.sleep (5)
-                print("Test_2")
-                #dec = nextLevel()
-                dec = "1"
-                if dec == "1":
-                    #changeLv(current_level_no, level_list, player)
-                    curr_level_num += 1
-                    #print("CL" + current_level)
-                    current_level = level_list[curr_level_num]
-                    player.level = current_level
-                else:
-                    pass
-            current_level.update()
         current_level.draw(screen)
         active_sprite_list.draw(screen)
         clock.tick(60)
