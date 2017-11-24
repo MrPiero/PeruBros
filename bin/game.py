@@ -5,6 +5,7 @@ from bin.chars.player import Player
 from bin.region.level_coast import *
 import time
 from bin.region.levels import *
+# from datetime import datetime, time
 
 def createPlayer(done):
     player = Player()
@@ -12,25 +13,26 @@ def createPlayer(done):
         player.rect.x = 200
         player.rect.y = 500
     elif done == 1:
-        #aca debemos ponerlo en su lugar original...
+        # aca debemos ponerlo en su lugar original...
         player.rect.x = 200
         player.rect.y = 500
         pass
     return player
 
+
 def LevelInit(player):
     level_list = []
     # piero ahi invocas el metodo con la base de datos y reemplazas el valor de current level.
-    level_list.append((Level_Coast(player, bin.constants.current_level)))
-    level_list.append((Level_Coast(player, 'lvl_1_2'))) #este de prueba, hardcoded
+    level_list.append((Level_Coast(player, bin.constants.curr_level)))
+    level_list.append((Level_Coast(player, 'lvl_1_2')))  # este de prueba, hardcoded
     return level_list
 
-def changeLv(current_level_no,level_list,player):
-    stopSong()
-    current_level_no += 1
-    current_level = level_list[current_level_no]
-    player.level = current_level
 
+def changeLv(curr_level_num, level_list, player):
+    stopSong()
+    curr_level_num += 1
+    curr_level = level_list[curr_level_num]
+    player.level = curr_level
 
 
 def main():
@@ -42,42 +44,47 @@ def main():
 
     player = createPlayer(done)
     level_list = LevelInit(player)
-    curr_level_num = bin.constants.level_number[bin.constants.current_level]
+    curr_level_num = bin.constants.level_number[bin.constants.curr_level]
     current_level = level_list[curr_level_num]
 
     active_sprite_list = pygame.sprite.Group()
     player.level = current_level
     active_sprite_list.add(player)
-    #estados:
+    # estados:
     # -1 = Juego finalizado
     # 0 = Juego en ejecución
     # 1 = Jugador muerto
     # 2 = ???
 
     clock = pygame.time.Clock()
-
+    cont = 0
     while done != -1:
         print("Done" + str(done))
-        if done == 1 :
-            #player = createPlayer(done)
-            #player.level = current_level
-            #active_sprite_list.add(player)
-            #player.status = 0
-            #changeLv(curr_level_num - 1, level_list, player)
-            #done = 0
-            timer_a = time.time()
-            print(time.time() - timer_a)
-            if time.time() - timer_a > 1:
+
+        if done == 1:
+
+            # player = createPlayer(done)
+            # player.level = current_level
+            # active_sprite_list.add(player)
+            # player.status = 0
+            # changeLv(curr_level_num - 1, level_list, player)
+            # done = 0
+            if cont == 0:
+                timer = time.time()
+                cont = 1
+
+            sec = time.time()- timer
+            if sec >= 3:
+                # poner trigger para contar las muertes
+                # funcionAgregarMuerteAEstadisticas
                 done = -1
-            #done = -1
 
-
-        for event in pygame.event.get(): # User did something
-            if event.type == pygame.QUIT: # If user clicked close
-                done = True # Flag that we are done so we exit this loop
+        for event in pygame.event.get():  # User did something
+            if event.type == pygame.QUIT:  # If user clicked close
+                done = True  # Flag that we are done so we exit this loop
 
             if event.type == pygame.KEYDOWN:
-                if player != None:
+                if player is not None:
                     if event.key == pygame.K_LEFT:
                         player.go_left()
                     if event.key == pygame.K_RIGHT:
@@ -86,7 +93,7 @@ def main():
                         player.jump()
 
             if event.type == pygame.KEYUP:
-                if player != None:
+                if player is not None:
                     if event.key == pygame.K_LEFT and player.eje_x < 0:
                         player.stop()
                     if event.key == pygame.K_RIGHT and player.eje_x > 0:
@@ -94,7 +101,7 @@ def main():
 
         active_sprite_list.update()
         current_level.update()
-        if player != None:
+        if player is not None:
             if player.status == 1:
                 if player.rect.x >= 500:
                     diff = player.rect.x - 500
@@ -134,6 +141,7 @@ def main():
         pygame.display.flip()
     pygame.quit()
     return 1
+
 
 if __name__ == "__main__":
     main()
