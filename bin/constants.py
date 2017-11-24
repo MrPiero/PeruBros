@@ -35,4 +35,8 @@ LEVELS = {"COSTA": ("CUNA DEL SOL", "CAPITAL", "LINEAS MISTERIOSAS"),
 
 # PATH RESOURCES/OTHERS
 
+level_number = {'lvl_1_1' : 0, 'lvl_1_2' : 1}
+
+current_level = 'lvl_1_1'
+level_name = [['lvl_1_1','lvl_1_2'],[],[]]
 RESOURCES_OTHERS = "./resources/others/"
