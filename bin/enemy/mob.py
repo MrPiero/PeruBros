@@ -1,5 +1,5 @@
 import pygame
-from bin.others.spritesheet_functions import SpriteSheet
+from bin.others.sprite_manager import SpriteSheet
 
 bck = (255,0,255)
 
@@ -42,6 +42,8 @@ class Enemy(pygame.sprite.Sprite):
             # Set a referance to the image rect.
             self.rect = self.image.get_rect()
 
+        def is_collided_with(self, sprite):
+            return self.rect.colliderect(sprite.rect)
 
 
 class MovingEnemy(Enemy):
@@ -87,7 +89,8 @@ class MovingEnemy(Enemy):
                 self.player.kill_player()
                 #matar jugador
 
-
+            if self.is_collided_with(self.player):
+                self.player.kill_player()
 
             # Check the boundaries and see if we need to reverse
             # direction.

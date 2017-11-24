@@ -1,6 +1,6 @@
 import pygame
 
-from bin.others.spritesheet_functions import SpriteSheet
+from bin.others.sprite_manager import SpriteSheet
 
 BLOCK_B1_TOPL            = (280, 0, 70, 70)
 BLOCK_B1_TOPM            = (350, 0, 70, 70)

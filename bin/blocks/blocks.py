@@ -1,6 +1,6 @@
 import pygame
 
-from bin.others.spritesheet_functions import SpriteSheet
+from bin.others.sprite_manager import SpriteSheet
 
 # Ejemplo: Nombre = (X,Y,W,H)
 
