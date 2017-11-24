@@ -142,9 +142,9 @@ def main():
                     pass
 
         current_height = player.rect.y
-        print(current_height)
-        print("currPOS:" + str(current_position))
-        print("currLIM" + str(current_level.level_limit))
+        #print(current_height)
+        #print("currPOS:" + str(current_position))
+        #print("currLIM" + str(current_level.level_limit))
         if current_height >= 530:
             player.kill_player()
 

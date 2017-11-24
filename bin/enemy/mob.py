@@ -61,7 +61,7 @@ class MovingEnemy(Enemy):
         player = None
 
         def update(self):
-            print("***********************************")
+            #print("***********************************")
             pos = self.rect.x #+ self.level.world_shift
             if self.direction == "R":
                 frame = (pos // 30) % len(self.walking_frames_r)
@@ -72,20 +72,6 @@ class MovingEnemy(Enemy):
 
             # Move left/right
             self.rect.x += self.change_x
-            print("pollo rect x " + str(self.rect.x))
-            print("pollo change x " + str(self.change_x))
-            print("dir " + str(self.direction))
-
-            if self.boundary_left == self.rect.x:
-                print("1111111111111")
-                self.direction = "R"
-                #self.image = self.walking_frames_r[frame]
-
-            if self.boundary_right == self.rect.x:
-                print("22222222222222")
-                self.direction = "L"
-                #self.image = self.walking_frames_l[frame]
-
 
             # See if we hit the player
             hit = pygame.sprite.collide_rect(self, self.player)
@@ -101,11 +87,21 @@ class MovingEnemy(Enemy):
                 self.player.kill_player()
                 #matar jugador
 
+
+
             # Check the boundaries and see if we need to reverse
             # direction.
-            if self.rect.bottom > self.boundary_bottom or self.rect.top < self.boundary_top:
-                self.change_y *= -1
+            #if self.rect.bottom > self.boundary_bottom or self.rect.top < self.boundary_top:
+            #    self.change_y *= -1
 
             cur_pos = self.rect.x - self.level.world_shift
             if cur_pos < self.boundary_left or cur_pos > self.boundary_right:
+
                 self.change_x *= -1
+
+                print(self.change_x)
+
+                if self.change_x >= 1:
+                    self.direction = "R"
+                else:
+                    self.direction = "L"
