@@ -72,7 +72,7 @@ class Level:
             enemy.change_x = mob[5]
             enemy.player = self.player
             enemy.level = self
-            self.platform_list.add(enemy)
+            self.enemy_list.add(enemy)
 
         for movplat in moving_platforms:
             mp = MovingPlatform(movplat[0])

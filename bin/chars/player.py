@@ -179,3 +179,5 @@ class Player(pygame.sprite.Sprite):
         self.lives = self.lives - 1
         self.status = 0
         self.kill()
+        self.rect.x = -10000
+        self.rect.y = -10000

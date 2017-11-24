@@ -72,18 +72,20 @@ def main():
                 done = True # Flag that we are done so we exit this loop
 
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_LEFT:
-                    player.go_left()
-                if event.key == pygame.K_RIGHT:
-                    player.go_right()
-                if event.key == pygame.K_UP:
-                    player.jump()
+                if player != None:
+                    if event.key == pygame.K_LEFT:
+                        player.go_left()
+                    if event.key == pygame.K_RIGHT:
+                        player.go_right()
+                    if event.key == pygame.K_UP:
+                        player.jump()
 
             if event.type == pygame.KEYUP:
-                if event.key == pygame.K_LEFT and player.eje_x < 0:
-                    player.stop()
-                if event.key == pygame.K_RIGHT and player.eje_x > 0:
-                    player.stop()
+                if player != None:
+                    if event.key == pygame.K_LEFT and player.eje_x < 0:
+                        player.stop()
+                    if event.key == pygame.K_RIGHT and player.eje_x > 0:
+                        player.stop()
 
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
@@ -99,31 +101,36 @@ def main():
         # Update items in the level
         current_level.update()
 
-        # If the player gets near the right side, shift the world left (-x)
-        if player.rect.x >= 500:
-            diff = player.rect.x - 500
-            player.rect.x = 500
-            current_level.shift_world(-diff, 0)
-
-        # If the player gets near the left side, shift the world right (+x)
-        if player.rect.x <= 120:
-            diff = 120 - player.rect.x
-            player.rect.x = 120
-            current_level.shift_world(diff, 0)
-
-        # If the player gets near the top side, shift the world right (+y)
-        #if player.rect.y <= 120:
-        #    diff = 120 - player.rect.y
-        #    player.rect.y = 120
-        #    current_level.shift_world(0, diff)
-
-        #if player.rect.y >= 480:
-        #    diff = player.rect.y - 480
-        #    player.rect.y = 480
-        #    current_level.shift_world(0, -diff)
+        if player != None:
+            if player.status == 1:
+                if player.rect.x >= 500:
+                    diff = player.rect.x - 500
+                    player.rect.x = 500
+                    current_level.shift_world(-diff, 0)
+                if player.rect.x <= 120:
+                    diff = 120 - player.rect.x
+                    player.rect.x = 120
+                    current_level.shift_world(diff, 0)
+                current_position = player.rect.x + current_level.world_shift
+                current_height = player.rect.y
+                if current_height >= 530:
+                    player.kill_player()
+            if player.status == 0:
+                print("Jugador muerto...")
+                player = None
+                    # player = Player()
+                    # changeLv(current_level_no-1, level_list, player)
+                    # player.level = current_level
+                    # Posicion de origen del jugador
+                    # player.rect.x = 300
+                    # player.rect.y = constants.SCREEN_HEIGHT - player.rect.height
+                    # player.rect.y = 500
+                    # active_sprite_list.add(player)
+                    # player.status = 1
+                    # active_sprite_list.update()
 
         # If the player gets to the end of the level, go to the next level
-        current_position = player.rect.x + current_level.world_shift
+
         if current_position < current_level.level_limit:
             player.rect.x = 120
 
@@ -141,25 +148,12 @@ def main():
                 else:
                     pass
 
-        current_height = player.rect.y
-        #print(current_height)
+
+        #print("Altura" + str(current_height))
         #print("currPOS:" + str(current_position))
         #print("currLIM" + str(current_level.level_limit))
-        if current_height >= 530:
-            player.kill_player()
 
-        if player.status == 0:
-            print("Jugador muerto...")
-            player = Player()
-            changeLv(current_level_no-1, level_list, player)
-            player.level = current_level
-            # Posicion de origen del jugador
-            player.rect.x = current_position - 150
-            # player.rect.y = constants.SCREEN_HEIGHT - player.rect.height
-            player.rect.y = 500
-            active_sprite_list.add(player)
-            player.status = 1
-            active_sprite_list.update()
+
 
             # Update items in the level
             current_level.update()

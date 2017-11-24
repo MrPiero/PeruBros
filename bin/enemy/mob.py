@@ -45,6 +45,11 @@ class Enemy(pygame.sprite.Sprite):
         def is_collided_with(self, sprite):
             return self.rect.colliderect(sprite.rect)
 
+        def touching(self, sprite1, sprite2):
+            collided = pygame.sprite.collide_mask(self, sprite1)
+            print(">>>>>>>>>>>>>>>>>>>Toco.")
+            return collided
+
 
 class MovingEnemy(Enemy):
         change_x = 0
@@ -77,20 +82,30 @@ class MovingEnemy(Enemy):
 
             # See if we hit the player
             hit = pygame.sprite.collide_rect(self, self.player)
+            print(hit)
             if hit:
+                print(hit)
                 self.player.kill_player()
+                print("T1")
 
             # Move up/down
             self.rect.y += self.change_y
 
             # Check and see if we the player
-            hit = pygame.sprite.collide_rect(self, self.player)
-            if hit:
-                self.player.kill_player()
-                #matar jugador
+            #hit = pygame.sprite.collide_rect(self, self.player)
+            #if hit:
+            #    self.player.kill_player()
+            #    #matar jugador
 
-            if self.is_collided_with(self.player):
-                self.player.kill_player()
+            #if self.is_collided_with(self.player):
+            #    self.player.kill_player()
+            #    print("T2")
+
+            #if self.touching(self, self.player):
+            #    print(">lel")
+            #else:
+            #    print("><")
+
 
             # Check the boundaries and see if we need to reverse
             # direction.
