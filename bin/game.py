@@ -3,13 +3,19 @@ import bin.others.methods
 import bin.constants
 from bin.chars.player import Player
 from bin.region.level_coast import *
-
+import time
 from bin.region.levels import *
 
-def createPlayer():
+def createPlayer(done):
     player = Player()
-    player.rect.x = 200
-    player.rect.y = 500
+    if done == 0:
+        player.rect.x = 200
+        player.rect.y = 500
+    elif done == 1:
+        #aca debemos ponerlo en su lugar original...
+        player.rect.x = 200
+        player.rect.y = 500
+        pass
     return player
 
 def LevelInit(player):
@@ -28,12 +34,13 @@ def changeLv(current_level_no,level_list,player):
 
 
 def main():
+    done = 0
     pygame.init()
     size = [bin.constants.SCREEN_WIDTH, bin.constants.SCREEN_HEIGHT]
     screen = pygame.display.set_mode(size)
     pygame.display.set_caption("PeruBros")
 
-    player = createPlayer()
+    player = createPlayer(done)
     level_list = LevelInit(player)
     curr_level_num = bin.constants.level_number[bin.constants.current_level]
     current_level = level_list[curr_level_num]
@@ -46,17 +53,23 @@ def main():
     # 0 = Juego en ejecución
     # 1 = Jugador muerto
     # 2 = ???
-    done = 0
+
     clock = pygame.time.Clock()
 
     while done != -1:
         print("Done" + str(done))
         if done == 1 :
-            player = createPlayer()
-            player.level = current_level
-            active_sprite_list.add(player)
+            #player = createPlayer(done)
+            #player.level = current_level
+            #active_sprite_list.add(player)
             #player.status = 0
-            done = 0
+            #changeLv(curr_level_num - 1, level_list, player)
+            #done = 0
+            timer_a = time.time()
+            print(time.time() - timer_a)
+            if time.time() - timer_a > 1:
+                done = -1
+            #done = -1
 
 
         for event in pygame.event.get(): # User did something
@@ -120,6 +133,7 @@ def main():
         clock.tick(60)
         pygame.display.flip()
     pygame.quit()
+    return 1
 
 if __name__ == "__main__":
     main()
