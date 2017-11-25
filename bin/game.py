@@ -7,6 +7,7 @@ import time
 from bin.region.levels import *
 # from datetime import datetime, time
 
+
 def createPlayer(done):
     player = Player()
     if done == 0:
@@ -33,6 +34,58 @@ def changeLv(curr_level_num, level_list, player):
     curr_level_num += 1
     curr_level = level_list[curr_level_num]
     player.level = curr_level
+
+
+def event_move_player(event, player):
+    if event.type == pygame.QUIT:
+        done = -1
+
+    if event.type == pygame.KEYDOWN:
+        if player is not None:
+            if event.key == pygame.K_LEFT:
+                player.go_left()
+            if event.key == pygame.K_RIGHT:
+                player.go_right()
+            if event.key == pygame.K_UP:
+                player.jump()
+
+    if event.type == pygame.KEYUP:
+        if player is not None:
+            if event.key == pygame.K_LEFT and player.eje_x < 0:
+                player.stop()
+            if event.key == pygame.K_RIGHT and player.eje_x > 0:
+                player.stop()
+
+
+def move_world_axis_x(player, current_level, curr_level_num, level_list):
+    if player.status == 1:
+        if player.rect.x >= 500:
+            diff = player.rect.x - 500
+            player.rect.x = 500
+            current_level.shift_world(-diff, 0)
+        if player.rect.x <= 120:
+            diff = 120 - player.rect.x
+            player.rect.x = 120
+            current_level.shift_world(diff, 0)
+        current_position = player.rect.x + current_level.world_shift
+        current_height = player.rect.y
+        if current_height >= 530:
+            player.kill_player()
+        if current_position < current_level.level_limit:
+            player.rect.x = 120
+            if curr_level_num < len(level_list) - 1:
+                print("Test_2")
+                # dec = nextLevel()
+                dec = "1"
+                if dec == "1":
+                    changeLv(curr_level_num, level_list, player)
+                    curr_level_num += 1
+                    # print("CL" + current_level)
+                    current_level = level_list[curr_level_num]
+                    player.level = current_level
+                else:
+                    pass
+            current_level.update()
 
 
 def main():
@@ -62,13 +115,6 @@ def main():
         print("Done" + str(done))
 
         if done == 1:
-
-            # player = createPlayer(done)
-            # player.level = current_level
-            # active_sprite_list.add(player)
-            # player.status = 0
-            # changeLv(curr_level_num - 1, level_list, player)
-            # done = 0
             if cont == 0:
                 timer = time.time()
                 cont = 1
@@ -79,58 +125,13 @@ def main():
                 # funcionAgregarMuerteAEstadisticas
                 done = -1
 
-        for event in pygame.event.get():  # User did something
-            if event.type == pygame.QUIT:  # If user clicked close
-                done = True  # Flag that we are done so we exit this loop
-
-            if event.type == pygame.KEYDOWN:
-                if player is not None:
-                    if event.key == pygame.K_LEFT:
-                        player.go_left()
-                    if event.key == pygame.K_RIGHT:
-                        player.go_right()
-                    if event.key == pygame.K_UP:
-                        player.jump()
-
-            if event.type == pygame.KEYUP:
-                if player is not None:
-                    if event.key == pygame.K_LEFT and player.eje_x < 0:
-                        player.stop()
-                    if event.key == pygame.K_RIGHT and player.eje_x > 0:
-                        player.stop()
+        for event in pygame.event.get():
+            event_move_player(event, player)
 
         active_sprite_list.update()
         current_level.update()
         if player is not None:
-            if player.status == 1:
-                if player.rect.x >= 500:
-                    diff = player.rect.x - 500
-                    player.rect.x = 500
-                    current_level.shift_world(-diff, 0)
-                if player.rect.x <= 120:
-                    diff = 120 - player.rect.x
-                    player.rect.x = 120
-                    current_level.shift_world(diff, 0)
-                current_position = player.rect.x + current_level.world_shift
-                current_height = player.rect.y
-                if current_height >= 530:
-                    player.kill_player()
-                if current_position < current_level.level_limit:
-                    player.rect.x = 120
-                    if curr_level_num < len(level_list) - 1:
-                        # time.sleep (5)
-                        print("Test_2")
-                        # dec = nextLevel()
-                        dec = "1"
-                        if dec == "1":
-                            changeLv(curr_level_num, level_list, player)
-                            curr_level_num += 1
-                            # print("CL" + current_level)
-                            current_level = level_list[curr_level_num]
-                            player.level = current_level
-                        else:
-                            pass
-                    current_level.update()
+            move_world_axis_x(player, current_level, curr_level_num, level_list)
             if player.status == 0:
                 player = None
                 done = 1
