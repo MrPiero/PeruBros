@@ -115,7 +115,7 @@ def main():
 
         active_sprite_list.update()
         current_level.update()
-        print(str(player))
+        #print(str(player))
         if player is not None:
             move_world_axis_x(player, current_level, curr_level_num, level_list)
             curr_pos = player.rect.x + current_level.world_shift

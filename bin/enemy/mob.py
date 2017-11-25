@@ -56,7 +56,13 @@ class MovingEnemy(Enemy):
 
             hit = pygame.sprite.collide_rect(self, self.player)
             if hit:
-                self.player.kill_player()
+                if self.rect.y > self.player.rect.y:
+                    print("muere el mob")
+                    self.kill()
+                    self.rect.x = -1000
+                    self.rect.y = -1000
+                else:
+                    self.player.kill_player()
 
             self.rect.y += self.change_y
 
@@ -65,7 +71,7 @@ class MovingEnemy(Enemy):
 
                 self.change_x *= -1
 
-                print(self.change_x)
+                #print(self.change_x)
 
                 if self.change_x >= 1:
                     self.direction = "R"
