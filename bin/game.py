@@ -67,25 +67,10 @@ def move_world_axis_x(player, current_level, curr_level_num, level_list):
             diff = 120 - player.rect.x
             player.rect.x = 120
             current_level.shift_world(diff, 0)
-        current_position = player.rect.x + current_level.world_shift
+
         current_height = player.rect.y
         if current_height >= 530:
             player.kill_player()
-        if current_position < current_level.level_limit:
-            player.rect.x = 120
-            if curr_level_num < len(level_list) - 1:
-                print("Test_2")
-                # dec = nextLevel()
-                dec = "1"
-                if dec == "1":
-                    changeLv(curr_level_num, level_list, player)
-                    curr_level_num += 1
-                    # print("CL" + current_level)
-                    current_level = level_list[curr_level_num]
-                    player.level = current_level
-                else:
-                    pass
-            current_level.update()
 
 
 def main():
@@ -130,11 +115,30 @@ def main():
 
         active_sprite_list.update()
         current_level.update()
+        print(str(player))
         if player is not None:
             move_world_axis_x(player, current_level, curr_level_num, level_list)
+            curr_pos = player.rect.x + current_level.world_shift
             if player.status == 0:
                 player = None
                 done = 1
+
+        if player is not None:
+            if curr_pos < current_level.level_limit:
+                player.rect.x = 120
+                if curr_level_num < len(level_list) - 1:
+                    print("Test_2")
+                    # dec = nextLevel()
+                    dec = "1"
+                    if dec == "1":
+                        changeLv(curr_level_num, level_list, player)
+                        curr_level_num += 1
+                        # print("CL" + current_level)
+                        current_level = level_list[curr_level_num]
+                        player.level = current_level
+                    else:
+                        pass
+                current_level.update()
 
         current_level.draw(screen)
         active_sprite_list.draw(screen)
