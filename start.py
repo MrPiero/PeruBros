@@ -4,8 +4,7 @@ from bin.others.UI.GameMenuUI import GameUIMenu
 from bin.others.UI.LevelMenuUI import LevelUIMenu
 # from bin.test_game import main as test_game
 from bin.game import main as game
-# despues borro esto
-from bin.others.levelReader import uncode
+from bin.test_main import test as t
 
 if len(sys.argv) == 1:
     login = LoginUIMenu()
@@ -34,4 +33,4 @@ elif sys.argv[1] == 'test2':
     # test_game()
     game()
 elif sys.argv[1] == 'test3':
-    uncode()
+    t()
