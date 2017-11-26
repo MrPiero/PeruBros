@@ -19,7 +19,7 @@ GAME_FOLDER = path.dirname(__file__)
 URL = "http://www.soft2.wecan.com.pe/laravel/public//usuario/listar"
 URL_SAVES_USER = "http://www.soft2.wecan.com.pe/laravel/public//personaje/api/"
 URL_PROGRESS_SAVE = "http://www.soft2.wecan.com.pe/laravel/public//personaje/api/progreso/"
-URL_SAVE_PROGRESS_CHAR = "ulr aca"
+URL_SAVE_PROGRESS_CHAR = "http://www.soft2.wecan.com.pe/laravel/public//personaje/api/saveprogress"
 
 # Paths for resources
 
