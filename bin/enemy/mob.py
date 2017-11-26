@@ -114,3 +114,23 @@ class Alpaca(Enemy):
         self.image = self.walking_frames_r[0]
         self.rect = self.image.get_rect()
 
+
+class Otorongo(Enemy):
+    walking_frames_l = []
+    walking_frames_r = []
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+
+        sprite_sheet = SpriteSheet("resources/sprites/enemy/animalesM.png")
+
+        for x in range(1, 3):
+            image = sprite_sheet.get_image(0 + 140 * x, 154, 140, 55)
+            image.set_colorkey(bck)
+            self.walking_frames_r.append(image)
+            image = sprite_sheet.get_image(0 + 140 * x, 154, 140, 55)
+            image = pygame.transform.flip(image, True, False)
+            image.set_colorkey(bck)
+            self.walking_frames_l.append(image)
+
+        self.image = self.walking_frames_r[0]
+        self.rect = self.image.get_rect()

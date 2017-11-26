@@ -26,6 +26,7 @@ PLAT2_FLY_R  = (140, 280, 70, 20)
 LIMA2_BASE_L       = (70, 280, 70, 70)
 LIMA2_BASE_R      = (210, 280, 70, 70)
 LIMA2_BASE_M     = (140, 280, 70, 70)
+bck = (255, 0, 255)
 
 
 class Platform(pygame.sprite.Sprite):
@@ -33,13 +34,13 @@ class Platform(pygame.sprite.Sprite):
     def __init__(self, sprite_sheet_data):
         pygame.sprite.Sprite.__init__(self)
 
-        sprite_sheet = SpriteSheet("resources/sprites/blocks/tiles_blocks_v2.png")
+        sprite_sheet = SpriteSheet("resources/sprites/blocks/backtotalRosa.png")
         #print("Loading...")
         self.image = sprite_sheet.get_image(sprite_sheet_data[0],
                                             sprite_sheet_data[1],
                                             sprite_sheet_data[2],
                                             sprite_sheet_data[3])
-
+        self.image.set_colorkey(bck)
         self.rect = self.image.get_rect()
 
 

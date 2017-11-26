@@ -8,6 +8,7 @@ class Level:
     platform_list = None
     paloma_list = None
     alpaca_list = None
+    otorongo_list = None
     background = None
 
     # How far this world has been scrolled left/right
@@ -18,6 +19,7 @@ class Level:
         self.platform_list = pygame.sprite.Group()
         self.paloma_list = pygame.sprite.Group()
         self.alpaca_list = pygame.sprite.Group()
+        self.otorongo_list = pygame.sprite.Group()
         self.player = player
 
     # Update everythign on this level
@@ -25,6 +27,7 @@ class Level:
         self.platform_list.update()
         self.paloma_list.update()
         self.alpaca_list.update()
+        self.otorongo_list.update()
 
     def draw(self, screen):
         screen.fill(bin.constants.BLUE)
@@ -33,6 +36,7 @@ class Level:
         self.platform_list.draw(screen)
         self.alpaca_list.draw(screen)
         self.paloma_list.draw(screen)
+        self.otorongo_list.draw(screen)
 
     def shift_world(self, shift_x, shift_y):
         self.world_shift += shift_x
@@ -53,6 +57,12 @@ class Level:
             enemy.rect.x += shift_x
 
         for enemy in self.alpaca_list:
+            enemy.rect.y += shift_y
+
+        for enemy in self.otorongo_list:
+            enemy.rect.x += shift_x
+
+        for enemy in self.otorongo_list:
             enemy.rect.y += shift_y
 
     def add_data(self, levelName, screen):
@@ -85,6 +95,8 @@ class Level:
                 enemy = Paloma()
             elif(mob[0]=="ALPACA"):
                 enemy = Alpaca()
+            elif(mob[0]=="OTORONGO"):
+                enemy = Otorongo()
 
             enemy.rect.x = mob[1]
             enemy.rect.y = mob[2]
@@ -97,6 +109,8 @@ class Level:
                 self.paloma_list.add(enemy)
             elif(mob[0]=="ALPACA"):
                 self.alpaca_list.add(enemy)
+            elif(mob[0]=="OTORONGO"):
+                self.otorongo_list.add(enemy)
             #self.enemy_list.add(enemy)
             loading_bar(cont, total_elements, screen)
         for movplat in moving_platforms:
