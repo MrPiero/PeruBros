@@ -5,6 +5,7 @@ from bin.others.UI.LevelMenuUI import LevelUIMenu
 # from bin.test_game import main as test_game
 from bin.game import main as game
 from bin.test_main import test as t
+import bin.others.Data.DAO as DAO
 
 if len(sys.argv) == 1:
     login = LoginUIMenu()
@@ -36,3 +37,5 @@ elif sys.argv[1] == 'test2':
     game()
 elif sys.argv[1] == 'test3':
     t()
+elif sys.argv[1] == 'test4':
+    DAO.save_progress(2, (1, 2))
