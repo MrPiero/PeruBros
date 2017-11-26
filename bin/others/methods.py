@@ -32,4 +32,3 @@ def loading_bar(cont, total, screen):
     screen.blit(bar, (356,465))
     pygame.display.flip()
 
-    print(value)

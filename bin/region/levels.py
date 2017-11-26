@@ -57,7 +57,7 @@ class Level:
         moving_platforms += data[2]
 
         total_elements = len(level) + len(mobs) + len(moving_platforms)
-        print("Numero de objetos: " + str(total_elements))
+        #print("Numero de objetos: " + str(total_elements))
         cont = 0
         # Lectura del arreglo level[]
         for platform in level:
