@@ -25,7 +25,6 @@ class Player(pygame.sprite.Sprite):
     status = 1
 
     # Por matar monstruos da 100 puntos, por terminar un nivel da 5000.
-
     _current_stats = {'score': 0,
                      'mobs_killed': 0,
                      'deaths': 0,
@@ -40,7 +39,6 @@ class Player(pygame.sprite.Sprite):
     def current_stats(self, val):
         self._current_stats = val
 
-    # -- Methods
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
 
@@ -116,44 +114,34 @@ class Player(pygame.sprite.Sprite):
             frame = (pos // 30) % len(self.camina_L)
             self.image = self.camina_L[frame]
 
-        # See if we hit anything
+        # Colisiones
         block_hit_list = pygame.sprite.spritecollide(self, self.level.platform_list, False)
         for block in block_hit_list:
-            # If we are moving right,
-            # set our right side to the left side of the item we hit
             if self.eje_x > 0:
                 self.rect.right = block.rect.left
             elif self.eje_x < 0:
-                # Otherwise if we are moving left, do the opposite.
                 self.rect.left = block.rect.right
 
-        # Move up/down
         self.rect.y += self.eje_y
 
-        # Check and see if we hit anything
         block_hit_list = pygame.sprite.spritecollide(self, self.level.platform_list, False)
         for block in block_hit_list:
-
-            # Reset our position based on the top/bottom of the object.
             if self.eje_y > 0:
                 self.rect.bottom = block.rect.top
             elif self.eje_y < 0:
                 self.rect.top = block.rect.bottom
 
-            # Stop our vertical movement
             self.eje_y = 0
 
             if isinstance(block, MovingPlatform):
                 self.rect.x += block.change_x
 
     def calc_grav(self):
-        """ Calculate effect of gravity. """
         if self.eje_y == 0:
             self.eje_y = 1
         else:
             self.eje_y += .70
 
-        # See if we are on the ground.
         if self.rect.y >= bin.constants.SCREEN_HEIGHT - self.rect.height and self.eje_y >= 0:
             self.eje_y = 0
             self.rect.y = bin.constants.SCREEN_HEIGHT - self.rect.height
@@ -172,19 +160,15 @@ class Player(pygame.sprite.Sprite):
             #altura salto
             self.eje_y = -18
 
-    # Player-controlled movement:
     def go_left(self):
-        """ Called when the user hits the left arrow. """
         self.eje_x = -6
         self.direction = "L"
 
     def go_right(self):
-        """ Called when the user hits the right arrow. """
         self.eje_x = 6
         self.direction = "R"
 
     def stop(self):
-        """ Called when the user lets off the keyboard. """
         self.eje_x = 0
 
     def is_collided_with(self, sprite):
