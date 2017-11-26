@@ -1,5 +1,4 @@
 from tkinter import *
-import requests
 import bin.constants as GC
 import bin.others.Data.DAO as DAO
 import bcrypt
