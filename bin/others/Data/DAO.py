@@ -19,3 +19,8 @@ def get_saves(id_user):
 
 def get_progress(id_char):
     return requests.get(GC.URL_PROGRESS_SAVE + str(id_char)).json()
+
+
+def save_progress(id_char, progress):
+    save = {'region': str(progress[0]), 'nivel': str(progress[1])}
+    requests.put(GC.URL_SAVES_USER + str(id_char), data=save)
