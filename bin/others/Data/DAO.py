@@ -23,4 +23,5 @@ def get_progress(id_char):
 
 def save_progress(id_char, progress):
     save = {'id_personaje': str(id_char), 'region': str(progress[0]), 'nivel': str(progress[1])}
-    requests.post(GC.URL_SAVE_PROGRESS_CHAR, json=save)
+    r = requests.post(GC.URL_SAVE_PROGRESS_CHAR, json=save)
+    print(r)
