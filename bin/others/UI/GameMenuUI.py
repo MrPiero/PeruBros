@@ -61,13 +61,13 @@ class GameUIMenu:
                     sys.exit()
                 elif event.type == pygame.MOUSEBUTTONUP:
                     if partida1_rec <= pygame.mouse.get_pos()[1] <= partida1_rec + partida1.get_height():
-                        if self.progress_by_save(0): return DAO.get_progress(self.saves[0]["id"])[0]
+                        if self.progress_by_save(0): return self.saves[0]["id"]
                         else: print("PARTIDA 1 INEXISTENTE")
                     elif partida2_rec <= pygame.mouse.get_pos()[1] <= partida2_rec + partida2.get_height():
-                        if self.progress_by_save(1): return DAO.get_progress(self.saves[1]["id"])[0]
+                        if self.progress_by_save(1): return self.saves[1]["id"]
                         else: print("PARTIDA 2 INEXISTENTE")
                     elif partida3_rec <= pygame.mouse.get_pos()[1] <= partida3_rec + partida3.get_height():
-                        if self.progress_by_save(2): return DAO.get_progress(self.saves[2]["id"])[0]
+                        if self.progress_by_save(2): return self.saves[2]["id"]
                         else: print("PARTIDA 3 INEXISTENTE")
 
             self.gameMenuDisplay.blit(obtener_fondo(), (0, 0))
