@@ -41,6 +41,8 @@ class Platform(pygame.sprite.Sprite):
                                             sprite_sheet_data[3])
 
         self.rect = self.image.get_rect()
+        #bck = pygame.image.load("resources/pictures/loading_temp.png").convert()
+        #self.image.blit(bck, (0,0))
 
 
 class MovingPlatform(Platform):

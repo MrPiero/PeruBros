@@ -5,6 +5,7 @@ from bin.chars.player import Player
 from bin.region.level_coast import *
 import time
 from bin.region.levels import *
+from bin.others.sprite_manager import *
 # from datetime import datetime, time
 
 
@@ -79,7 +80,9 @@ def main():
     size = [bin.constants.SCREEN_WIDTH, bin.constants.SCREEN_HEIGHT]
     screen = pygame.display.set_mode(size)
     pygame.display.set_caption("PeruBros")
-    print("A")
+    bck = pygame.image.load("resources/pictures/loading_temp.png").convert()
+    screen.blit(bck, (0,0))
+    pygame.display.flip()
     player = createPlayer(done)
     print("B")
     level_list = LevelInit(player)
