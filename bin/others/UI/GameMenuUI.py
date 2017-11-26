@@ -2,6 +2,7 @@ import pygame
 import sys
 import requests
 import bin.constants as GC
+import bin.others.Data.DAO as DAO
 
 
 def gen_bienvenida(text):
@@ -16,21 +17,6 @@ def gen_partida(text="*** [Crear partida] ***"):
     text_surf = font.render(text, True, (255, 255, 255))
     text_rect = text_surf.get_rect()
     return text_surf, text_rect
-
-
-def obtener_usuario(id):
-    users = requests.get(GC.URL).json()
-    for u in users:
-        if u["id"] == id:
-            return u
-
-
-def obtener_partidas(id_user):
-    return requests.get(GC.URL_SAVES_USER + str(id_user)).json()
-
-
-def obtener_progreso(id_personaje):
-    return requests.get(GC.URL_PROGRESS_SAVE + str(id_personaje)).json()
 
 
 def obtener_img_personaje(personaje):
@@ -61,8 +47,8 @@ class GameUIMenu:
         self.gameMenuDisplay = pygame.display.set_mode((self.display_width, self.display_height))
         pygame.display.set_caption("PERUBROS. -- GAME MENU --")
         self.clock = pygame.time.Clock()
-        self.user = obtener_usuario(id_user)
-        self.saves = obtener_partidas(id_user)
+        self.user = DAO.get_user(id_user)
+        self.saves = DAO.get_saves(id_user)
 
     def main_menu(self):
         game_menu_state = True
@@ -73,13 +59,13 @@ class GameUIMenu:
                     sys.exit()
                 elif event.type == pygame.MOUSEBUTTONUP:
                     if partida1_rec <= pygame.mouse.get_pos()[1] <= partida1_rec + partida1.get_height():
-                        if self.progress_by_save(0): return obtener_progreso(self.saves[0]["id"])[0]
+                        if self.progress_by_save(0): return DAO.get_progress(self.saves[0]["id"])[0]
                         else: print("PARTIDA 1 INEXISTENTE")
                     elif partida2_rec <= pygame.mouse.get_pos()[1] <= partida2_rec + partida2.get_height():
-                        if self.progress_by_save(1): return obtener_progreso(self.saves[1]["id"])[0]
+                        if self.progress_by_save(1): return DAO.get_progress(self.saves[1]["id"])[0]
                         else: print("PARTIDA 2 INEXISTENTE")
                     elif partida3_rec <= pygame.mouse.get_pos()[1] <= partida3_rec + partida3.get_height():
-                        if self.progress_by_save(2): return obtener_progreso(self.saves[2]["id"])[0]
+                        if self.progress_by_save(2): return DAO.get_progress(self.saves[2]["id"])[0]
                         else: print("PARTIDA 3 INEXISTENTE")
 
             self.gameMenuDisplay.blit(obtener_fondo(), (0, 0))
@@ -116,7 +102,7 @@ class GameUIMenu:
 
     def progress_by_save(self, i):
         try:
-            obtener_progreso(self.saves[i]["id"])[0]
+            DAO.get_progress(self.saves[i]["id"])[0]
             return True
         except:
             return False
