@@ -9,6 +9,7 @@ class Level:
     paloma_list = None
     alpaca_list = None
     otorongo_list = None
+    caballo_list = None
     background = None
 
     # How far this world has been scrolled left/right
@@ -20,6 +21,7 @@ class Level:
         self.paloma_list = pygame.sprite.Group()
         self.alpaca_list = pygame.sprite.Group()
         self.otorongo_list = pygame.sprite.Group()
+        self.caballo_list = pygame.sprite.Group()
         self.player = player
 
     # Update everythign on this level
@@ -28,6 +30,7 @@ class Level:
         self.paloma_list.update()
         self.alpaca_list.update()
         self.otorongo_list.update()
+        self.caballo_list.update()
 
     def draw(self, screen):
         screen.fill(bin.constants.BLUE)
@@ -37,6 +40,7 @@ class Level:
         self.alpaca_list.draw(screen)
         self.paloma_list.draw(screen)
         self.otorongo_list.draw(screen)
+        self.caballo_list.draw(screen)
 
     def shift_world(self, shift_x, shift_y):
         self.world_shift += shift_x
