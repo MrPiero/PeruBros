@@ -6,7 +6,8 @@ from bin.others.methods import *
 
 class Level:
     platform_list = None
-    enemy_list = None
+    paloma_list = None
+    alpaca_list = None
     background = None
 
     # How far this world has been scrolled left/right
@@ -15,20 +16,23 @@ class Level:
 
     def __init__(self, player):
         self.platform_list = pygame.sprite.Group()
-        self.enemy_list = pygame.sprite.Group()
+        self.paloma_list = pygame.sprite.Group()
+        self.alpaca_list = pygame.sprite.Group()
         self.player = player
 
     # Update everythign on this level
     def update(self):
         self.platform_list.update()
-        self.enemy_list.update()
+        self.paloma_list.update()
+        self.alpaca_list.update()
 
     def draw(self, screen):
         screen.fill(bin.constants.BLUE)
         screen.blit(self.background,(self.world_shift // 3,0))
 
         self.platform_list.draw(screen)
-        self.enemy_list.draw(screen)
+        self.alpaca_list.draw(screen)
+        self.paloma_list.draw(screen)
 
     def shift_world(self, shift_x, shift_y):
         self.world_shift += shift_x
@@ -39,10 +43,16 @@ class Level:
         for platform in self.platform_list:
             platform.rect.y += shift_y
 
-        for enemy in self.enemy_list:
+        for enemy in self.paloma_list:
             enemy.rect.x += shift_x
 
-        for enemy in self.enemy_list:
+        for enemy in self.paloma_list:
+            enemy.rect.y += shift_y
+
+        for enemy in self.alpaca_list:
+            enemy.rect.x += shift_x
+
+        for enemy in self.alpaca_list:
             enemy.rect.y += shift_y
 
     def add_data(self, levelName, screen):
@@ -71,7 +81,11 @@ class Level:
         # lectura del arreglo mobs[]
         for mob in mobs:
             cont = cont + 1
-            enemy = MovingEnemy(mob[0])
+            if(mob[0]=="PALOMA"):
+                enemy = Paloma()
+            elif(mob[0]=="ALPACA"):
+                enemy = Alpaca()
+
             enemy.rect.x = mob[1]
             enemy.rect.y = mob[2]
             enemy.boundary_left = mob[3]
@@ -79,7 +93,11 @@ class Level:
             enemy.change_x = mob[5]
             enemy.player = self.player
             enemy.level = self
-            self.enemy_list.add(enemy)
+            if(mob[0]=="PALOMA"):
+                self.paloma_list.add(enemy)
+            elif(mob[0]=="ALPACA"):
+                self.alpaca_list.add(enemy)
+            #self.enemy_list.add(enemy)
             loading_bar(cont, total_elements, screen)
         for movplat in moving_platforms:
             cont = cont + 1
