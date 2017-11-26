@@ -1,5 +1,6 @@
 import pygame
 from bin.others.sprite_manager import SpriteSheet
+from bin.others.musicManager import soundMobDeath as Sound
 
 bck = (255, 0, 255)
 
@@ -13,7 +14,7 @@ class Enemy(pygame.sprite.Sprite):
         def __init__(self, mob_type):
             pygame.sprite.Sprite.__init__(self)
 
-            sprite_sheet = SpriteSheet("resources/sprites/enemy/mobs.png")
+            sprite_sheet = SpriteSheet("resources/sprites/enemy/animalesM.png")
             if mob_type == "PALOMA":
                 for x in range (1,6):
                     image = sprite_sheet.get_image(0+70*x, 70, 70, 70)
@@ -58,6 +59,8 @@ class MovingEnemy(Enemy):
             if hit:
                 if self.rect.y > self.player.rect.y:
                     print("muere el mob")
+                    # Que suene su muerte
+                    Sound()
                     self.kill()
                     self.rect.x = -1000
                     self.rect.y = -1000

@@ -1,5 +1,6 @@
+from bin.others.musicManager import *
 from bin.region.levels import *
-from bin.region.musicManager import *
+
 
 class Level_Coast(Level):
 

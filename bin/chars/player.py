@@ -6,6 +6,7 @@ import bin.constants
 from bin.platforms.platforms import MovingPlatform
 from bin.others.sprite_manager import SpriteSheet
 from bin.others.methods import *
+from bin.others.musicManager import soundJump as SoundJump
 
 bck = (255,0,255)
 
@@ -142,16 +143,13 @@ class Player(pygame.sprite.Sprite):
             self.rect.y = bin.constants.SCREEN_HEIGHT - self.rect.height
 
     def jump(self):
-        """ Called when user hits 'jump' button. """
+        # Sonido de salto
+        SoundJump()
 
-        # move down a bit and see if there is a platform below us.
-        # Move down 2 pixels because it doesn't work well if we only move down 1
-        # when working with a platform moving down.
         self.rect.y += 2
         platform_hit_list = pygame.sprite.spritecollide(self, self.level.platform_list, False)
         self.rect.y -= 2
 
-        # If it is ok to jump, set our speed upwards
         if len(platform_hit_list) > 0 or self.rect.bottom >= bin.constants.SCREEN_HEIGHT:
             #altura salto
             self.eje_y = -18
