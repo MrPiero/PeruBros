@@ -24,6 +24,22 @@ class Player(pygame.sprite.Sprite):
     lives = 3
     status = 1
 
+    # Por matar monstruos da 100 puntos, por terminar un nivel da 5000.
+
+    _current_stats = {'score': 0,
+                     'mobs_killed': 0,
+                     'deaths': 0,
+                     'jumps': 0,
+                     'time' : 0}
+
+    @property
+    def current_stats(self):
+        return self._current_stats
+
+    @current_stats.setter
+    def current_stats(self, val):
+        self._current_stats = val
+
     # -- Methods
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
@@ -150,6 +166,8 @@ class Player(pygame.sprite.Sprite):
         platform_hit_list = pygame.sprite.spritecollide(self, self.level.platform_list, False)
         self.rect.y -= 2
 
+        self.current_stats['jumps'] += 1
+
         if len(platform_hit_list) > 0 or self.rect.bottom >= bin.constants.SCREEN_HEIGHT:
             #altura salto
             self.eje_y = -18
@@ -174,7 +192,8 @@ class Player(pygame.sprite.Sprite):
 
     def kill_player(self):
         print("Player is killed.")
-        self.lives = self.lives - 1
+        #self.lives = self.lives - 1
+        self.current_stats['deaths'] += 1
         self.status = 0
         self.kill()
         self.rect.x = -10000

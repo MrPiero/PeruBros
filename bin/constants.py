@@ -40,3 +40,6 @@ level_number = {'lvl_1_1' : 0, 'lvl_1_2' : 1}
 curr_level = 'lvl_1_1'
 level_name = [['lvl_1_1','lvl_1_2'],[],[]]
 RESOURCES_OTHERS = "./resources/others/"
+
+SCORES = {'MOB' : 100,
+          'LV_CLEAR' : 5000}

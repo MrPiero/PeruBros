@@ -13,14 +13,16 @@ if len(sys.argv) == 1:
     if login.status:
         GameMenu = GameUIMenu(idUser)
         save = GameMenu.main_menu()
-        val = 1
-        while val == 1:
+        val = [1,0]
+        while val[0] == 1:
             LevelMenu = LevelUIMenu(save)
             progress = LevelMenu.main_menu()
             print(progress)
             if progress == (1, 1):
                 # test_game()
                 val = game()
+                stats = val[1]
+                print(val[1])
             else:
                 print("Nivel ", progress, " seleccionado")
 

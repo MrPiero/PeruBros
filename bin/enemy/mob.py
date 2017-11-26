@@ -1,6 +1,7 @@
 import pygame
 from bin.others.sprite_manager import SpriteSheet
 from bin.others.musicManager import soundMobDeath as Sound
+from bin.constants import SCORES
 
 bck = (255, 0, 255)
 
@@ -58,14 +59,22 @@ class MovingEnemy(Enemy):
             hit = pygame.sprite.collide_rect(self, self.player)
             if hit:
                 if self.rect.y > self.player.rect.y:
-                    print("muere el mob")
+                    #print("muere el mob")
                     # Que suene su muerte
                     Sound()
                     self.kill()
                     self.rect.x = -1000
                     self.rect.y = -1000
+                    self.player.current_stats['mobs_killed'] += 1
+                    self.player.current_stats['score'] += SCORES['MOB']
+
                 else:
                     self.player.kill_player()
+                    #print(self.player.current_stats['deaths'])
+                    #print(self.player.current_stats['jumps'])
+                    #print(self.player.current_stats['score'])
+                    #print(self.player.current_stats['time'])
+
 
             self.rect.y += self.change_y
 

@@ -96,8 +96,16 @@ def main():
 
     clock = pygame.time.Clock()
     cont = 0
+    #total_time = 0
+    #gen_cont = 0
+    timer_t = time.time()
+    stats = {}
+
     while done != -1:
-        print("Done" + str(done))
+        #print("Done" + str(done))
+        #timer = time.time()
+        total_time = time.time() - timer_t
+        #print(total_time)
 
         if done == 1:
             if cont == 0:
@@ -106,8 +114,6 @@ def main():
 
             sec = time.time()- timer
             if sec >= 3:
-                # poner trigger para contar las muertes
-                # funcionAgregarMuerteAEstadisticas
                 done = -1
 
         for event in pygame.event.get():
@@ -120,8 +126,13 @@ def main():
             move_world_axis_x(player, current_level, curr_level_num, level_list)
             curr_pos = player.rect.x + current_level.world_shift
             if player.status == 0:
+                stats = player.current_stats
+                #print(player.current_stats['deaths'])
+                stats['time'] = total_time
                 player = None
                 done = 1
+
+
 
         if player is not None:
             if curr_pos < current_level.level_limit:
@@ -144,8 +155,10 @@ def main():
         active_sprite_list.draw(screen)
         clock.tick(60)
         pygame.display.flip()
+    #print(stats['deaths'])
+    #print(stats['time'])
     pygame.quit()
-    return 1
+    return [1,stats]
 
 
 if __name__ == "__main__":
