@@ -1,6 +1,6 @@
 from tkinter import *
-import requests
 import bin.constants as GC
+import bin.others.Data.DAO as DAO
 import bcrypt
 
 
@@ -41,10 +41,9 @@ class LoginUIMenu:
         return self.idUser
 
     def login_https(self):
-        # LOGIN DESDE UN STRING JSON DESDE HTTP
         u = self.entryUser.get()
         p = self.entryPasswd.get()
-        json_file = requests.get(GC.URL).json()
+        json_file = DAO.list_users()
         for user in json_file:
             if user["name"] == u:
                 self.root.quit()

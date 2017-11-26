@@ -1,6 +1,7 @@
 import pygame
 import sys
 import bin.constants as GC
+import bin.others.Data.DAO as DAO
 
 
 def gen_region(region_state, p):
@@ -94,7 +95,7 @@ class Flecha:
 
 
 class LevelUIMenu:
-    def __init__(self, save={'region': '2', 'id_personaje': '4', 'id': 1, 'updated_at': None, 'created_at': None, 'nivel': '2'}):
+    def __init__(self, id_char):
         pygame.init()
 
         self.display_width = 800
@@ -103,7 +104,7 @@ class LevelUIMenu:
         self.levelMenuDisplay = pygame.display.set_mode((self.display_width, self.display_height))
         pygame.display.set_caption("PERUBROS. -- PRE-ALPHA LEVEL MENU --")
         self.clock = pygame.time.Clock()
-        self.save = save
+        self.save = DAO.get_progress(id_char)[0]
         self.progress = (int(self.save["region"]), int(self.save["nivel"]))
 
     def main_menu(self):
@@ -153,7 +154,7 @@ class LevelUIMenu:
                 frame = pygame.draw.rect(self.levelMenuDisplay, GC.RED, (i.top_center[0], i.top_center[1], i.rect.width, i.rect.height))
                 self.levelMenuDisplay.blit(i.text, i.top_center)
                 if region_state > self.progress[0] or (region_state == self.progress[0] and region.levels.index(i)+1 > self.progress[1]):
-                    pygame.draw.rect(self.levelMenuDisplay, GC.BLACK, (i.top_center[0], i.top_center[1], i.rect.width, i.rect.height))
+                    pygame.draw.rect(self.levelMenuDisplay, GC.SLATEGREY, (i.top_center[0], i.top_center[1], i.rect.width, i.rect.height))
                 level_frames[region.levels.index(i)] = frame
             pygame.display.update()
             self.clock.tick(60)
