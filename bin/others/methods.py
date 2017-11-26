@@ -1,5 +1,6 @@
 #import spritesheet_functions
 import pygame
+import bin.constants
 
 def nextLevel():
     dec = input("<<1>> = Next level\n<<2>> Cancel")
@@ -11,6 +12,14 @@ def select_char():
     #sprite_sheet = SpriteSheet()
     return loc
 
-def loading_screen():
+def loading_screen(screen):
+    #bck = pygame.image.load("resources/pictures/loading_temp.png").convert()
     bck = pygame.image.load("resources/pictures/loading_temp.png").convert()
+    screen.fill(bin.constants.WHITE)
+    screen.blit(bck, (0, 0))
+    pygame.display.flip()
     #screen.blit(bck, (0,0))
+
+def loading_bar(cont, total):
+    value = (cont/total)*100
+    print(value)

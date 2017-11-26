@@ -12,6 +12,5 @@ def main():
     bck = pygame.image.load("resources/pictures/loading_temp.png").convert()
     screen.fill(bin.constants.WHITE)
     screen.blit(bck, (0, 0))
-    while (1 == 1):
-        pygame.display.flip()
-        print("t")
+    pygame.display.flip()
+    print("t")

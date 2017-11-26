@@ -6,6 +6,7 @@ from bin.region.level_coast import *
 import time
 from bin.region.levels import *
 from bin.others.sprite_manager import *
+from bin.others.methods import loading_screen as Load
 # from datetime import datetime, time
 
 
@@ -26,15 +27,16 @@ def LevelInit(player):
     level_list = []
     # piero ahi invocas el metodo con la base de datos y reemplazas el valor de current level.
     level_list.append((Level_Coast(player, bin.constants.curr_level)))
-    level_list.append((Level_Coast(player, 'lvl_1_2')))  # este de prueba, hardcoded
+    #level_list.append((Level_Coast(player, 'lvl_1_2')))  # este de prueba, hardcoded
     return level_list
 
 
 def changeLv(curr_level_num, level_list, player):
     stopSong()
-    curr_level_num += 1
-    curr_level = level_list[curr_level_num]
-    player.level = curr_level
+    #curr_level_num += 1
+    #curr_level = level_list[curr_level_num]
+    #player.level = curr_level
+
 
 
 def event_move_player(event, player):
@@ -80,9 +82,10 @@ def main():
     size = [bin.constants.SCREEN_WIDTH, bin.constants.SCREEN_HEIGHT]
     screen = pygame.display.set_mode(size)
     pygame.display.set_caption("PeruBros")
-    bck = pygame.image.load("resources/pictures/loading_temp.png").convert()
-    screen.blit(bck, (0,0))
-    pygame.display.flip()
+    #bck = pygame.image.load("resources/pictures/loading_temp.png").convert()
+    #screen.blit(bck, (0,0))
+    #pygame.display.flip()
+    Load(screen)
     player = createPlayer(done)
     print("B")
     level_list = LevelInit(player)
@@ -145,17 +148,27 @@ def main():
 
         if player is not None:
             if curr_pos < current_level.level_limit:
-                player.rect.x = 120
+                #player.rect.x = 120
+                done = -1
+                #changeLv()
+                stopSong()
+                player.current_stats['score'] += bin.constants.SCORES['LV_CLEAR']
+                stats = player.current_stats
+                # print(player.current_stats['deaths'])
+                stats['time'] = total_time
+                player = None
+                #done = 1
                 if curr_level_num < len(level_list) - 1:
                     print("Test_2")
                     # dec = nextLevel()
                     dec = "1"
                     if dec == "1":
                         changeLv(curr_level_num, level_list, player)
-                        curr_level_num += 1
+                        #curr_level_num += 1
+                        done = -1
                         # print("CL" + current_level)
-                        current_level = level_list[curr_level_num]
-                        player.level = current_level
+                        #current_level = level_list[curr_level_num]
+                        #player.level = current_level
                     else:
                         pass
                 current_level.update()
@@ -165,7 +178,7 @@ def main():
         clock.tick(60)
         pygame.display.flip()
     #print(stats['deaths'])
-    #print(stats['time'])
+    print(stats['score'])
     pygame.quit()
     return [1,stats]
 

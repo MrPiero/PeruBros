@@ -1,6 +1,7 @@
 from bin.enemy.mob import *
 import bin.constants
 from bin.others.levelReader import *
+from bin.others.methods import *
 
 
 class Level:
@@ -55,15 +56,21 @@ class Level:
         mobs += data[1]
         moving_platforms += data[2]
 
+        total_elements = len(level) + len(mobs) + len(moving_platforms)
+        print("Numero de objetos: " + str(total_elements))
+        cont = 0
         # Lectura del arreglo level[]
         for platform in level:
+            cont = cont + 1
             block = Platform(platform[0])
             block.rect.x = platform[1]
             block.rect.y = platform[2]
             block.player = self.player
             self.platform_list.add(block)
+            loading_bar(cont, total_elements)
         # lectura del arreglo mobs[]
         for mob in mobs:
+            cont = cont + 1
             enemy = MovingEnemy(mob[0])
             enemy.rect.x = mob[1]
             enemy.rect.y = mob[2]
@@ -73,8 +80,8 @@ class Level:
             enemy.player = self.player
             enemy.level = self
             self.enemy_list.add(enemy)
-
         for movplat in moving_platforms:
+            cont = cont + 1
             mp = MovingPlatform(movplat[0])
             mp.rect.x = movplat[1]
             mp.rect.y = movplat[2]
