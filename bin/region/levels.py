@@ -10,6 +10,8 @@ class Level:
     alpaca_list = None
     otorongo_list = None
     caballo_list = None
+    capibara_list = None
+    cuy_list = None
     background = None
 
     # How far this world has been scrolled left/right
@@ -22,6 +24,8 @@ class Level:
         self.alpaca_list = pygame.sprite.Group()
         self.otorongo_list = pygame.sprite.Group()
         self.caballo_list = pygame.sprite.Group()
+        self.capibara_list = pygame.sprite.Group()
+        self.cuy_list = pygame.sprite.Group()
         self.player = player
 
     # Update everythign on this level
@@ -31,6 +35,8 @@ class Level:
         self.alpaca_list.update()
         self.otorongo_list.update()
         self.caballo_list.update()
+        self.cuy_list.update()
+        self.capibara_list.update()
 
     def draw(self, screen):
         screen.fill(bin.constants.BLUE)
@@ -41,6 +47,8 @@ class Level:
         self.paloma_list.draw(screen)
         self.otorongo_list.draw(screen)
         self.caballo_list.draw(screen)
+        self.capibara_list.draw(screen)
+        self.cuy_list.draw(screen)
 
     def shift_world(self, shift_x, shift_y):
         self.world_shift += shift_x
@@ -67,6 +75,24 @@ class Level:
             enemy.rect.x += shift_x
 
         for enemy in self.otorongo_list:
+            enemy.rect.y += shift_y
+
+        for enemy in self.caballo_list:
+            enemy.rect.x += shift_x
+
+        for enemy in self.caballo_list:
+            enemy.rect.y += shift_y
+
+        for enemy in self.capibara_list:
+            enemy.rect.x += shift_x
+
+        for enemy in self.capibara_list:
+            enemy.rect.y += shift_y
+
+        for enemy in self.cuy_list:
+            enemy.rect.x += shift_x
+
+        for enemy in self.cuy_list:
             enemy.rect.y += shift_y
 
     def add_data(self, levelName, screen):
@@ -101,6 +127,12 @@ class Level:
                 enemy = Alpaca()
             elif(mob[0]=="OTORONGO"):
                 enemy = Otorongo()
+            elif (mob[0] == "CABALLO"):
+                enemy = Caballo()
+            elif(mob[0]=="CAPIBARA"):
+                enemy = Capibara()
+            elif (mob[0] == "CUY"):
+                enemy = Cuy()
 
             enemy.rect.x = mob[1]
             enemy.rect.y = mob[2]
@@ -115,6 +147,12 @@ class Level:
                 self.alpaca_list.add(enemy)
             elif(mob[0]=="OTORONGO"):
                 self.otorongo_list.add(enemy)
+            elif (mob[0] == "CABALLO"):
+                self.caballo_list.add(enemy)
+            elif (mob[0] == "CAPIBARA"):
+                self.capibara_list.add(enemy)
+            elif (mob[0] == "CUY"):
+                self.cuy_list.add(enemy)
             #self.enemy_list.add(enemy)
             loading_bar(cont, total_elements, screen)
         for movplat in moving_platforms:

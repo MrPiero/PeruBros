@@ -1,8 +1,8 @@
 from bin.others.musicManager import *
 from bin.region.levels import *
+import bin.constants
 
-
-class Level_Coast(Level):
+class Level_C(Level):
 
     origin_X = 330
     origin_Y = 70
@@ -16,4 +16,4 @@ class Level_Coast(Level):
         #self.add_data(level_name)
 
         pygame.mixer.init()
-        selectSong('coast')
+        selectSong(bin.constants.level_type[name])
