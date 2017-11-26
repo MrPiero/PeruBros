@@ -81,7 +81,7 @@ class Paloma(Enemy):
 
         sprite_sheet = SpriteSheet("resources/sprites/enemy/animalesM.png")
 
-        for x in range(1, 6):
+        for x in range(0, 6):
             image = sprite_sheet.get_image(0 + 70 * x, 70, 70, 70)
             image.set_colorkey(bck)
             self.walking_frames_r.append(image)
@@ -102,7 +102,7 @@ class Alpaca(Enemy):
 
         sprite_sheet = SpriteSheet("resources/sprites/enemy/animalesM.png")
 
-        for x in range(1, 3):
+        for x in range(0, 3):
             image = sprite_sheet.get_image(0 + 70 * x, 0, 70, 70)
             image.set_colorkey(bck)
             self.walking_frames_r.append(image)
@@ -123,7 +123,7 @@ class Otorongo(Enemy):
 
         sprite_sheet = SpriteSheet("resources/sprites/enemy/animalesM.png")
 
-        for x in range(1, 8):
+        for x in range(0, 8):
             image = sprite_sheet.get_image(0 + 140 * x, 140, 140, 70)
             image.set_colorkey(bck)
             self.walking_frames_r.append(image)
@@ -143,11 +143,51 @@ class Caballo(Enemy):
 
         sprite_sheet = SpriteSheet("resources/sprites/enemy/animalesM.png")
 
-        for x in range(1, 8):
+        for x in range(0, 4):
             image = sprite_sheet.get_image(0 + 140 * x, 210, 140, 70)
             image.set_colorkey(bck)
             self.walking_frames_r.append(image)
             image = sprite_sheet.get_image(0 + 140 * x, 210, 140, 70)
+            image = pygame.transform.flip(image, True, False)
+            image.set_colorkey(bck)
+            self.walking_frames_l.append(image)
+
+        self.image = self.walking_frames_r[0]
+        self.rect = self.image.get_rect()
+
+class Capibara(Enemy):
+    walking_frames_l = []
+    walking_frames_r = []
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+
+        sprite_sheet = SpriteSheet("resources/sprites/enemy/animalesM.png")
+
+        for x in range(0, 6):
+            image = sprite_sheet.get_image(0 + 70 * x, 280, 70, 70)
+            image.set_colorkey(bck)
+            self.walking_frames_r.append(image)
+            image = sprite_sheet.get_image(0 + 70 * x, 280, 70, 70)
+            image = pygame.transform.flip(image, True, False)
+            image.set_colorkey(bck)
+            self.walking_frames_l.append(image)
+
+        self.image = self.walking_frames_r[0]
+        self.rect = self.image.get_rect()
+
+class Cuy(Enemy):
+    walking_frames_l = []
+    walking_frames_r = []
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+
+        sprite_sheet = SpriteSheet("resources/sprites/enemy/animalesM.png")
+
+        for x in range(0, 3):
+            image = sprite_sheet.get_image(0 + 70 * x, 350, 70, 70)
+            image.set_colorkey(bck)
+            self.walking_frames_r.append(image)
+            image = sprite_sheet.get_image(0 + 70 * x, 350, 70, 70)
             image = pygame.transform.flip(image, True, False)
             image.set_colorkey(bck)
             self.walking_frames_l.append(image)

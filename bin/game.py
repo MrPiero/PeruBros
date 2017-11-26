@@ -2,7 +2,7 @@ import bin.region.levels
 import bin.others.methods
 import bin.constants
 from bin.chars.player import Player
-from bin.region.level_coast import *
+from bin.region.level_c import *
 import time
 from bin.region.levels import *
 from bin.others.sprite_manager import *
@@ -33,7 +33,7 @@ def createPlayer(done):
 def LevelInit(player, screen):
     level_list = []
     # piero ahi invocas el metodo con la base de datos y reemplazas el valor de current level.
-    lv = Level_Coast(player, bin.constants.curr_level)
+    lv = Level_C(player, bin.constants.curr_level)
     lv.add_data(bin.constants.curr_level, screen)
     level_list.append((lv))
     #level_list.append((Level_Coast(player, 'lvl_1_2')))  # este de prueba, hardcoded
