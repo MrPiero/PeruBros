@@ -21,9 +21,11 @@ def gen_partida(text="*** [Crear partida] ***"):
 
 def obtener_img_personaje(personaje):
     if personaje == "hombre":
-        return pygame.image.load('./resources/nino.png') # La imagen cargada ya está diseñada en 8 bits
+        return pygame.image.load('./resources/nino.png')
     elif personaje == "mujer":
-        return pygame.image.load('./resources/nina.png') # La imagen cargada NO está diseñada en 8 bits
+        return pygame.image.load('./resources/nina.png')
+    else:
+        return pygame.image.load('./resources/generic-avatar.png')
 
 
 def obtener_fondo():
@@ -98,7 +100,7 @@ class GameUIMenu:
         try:
             return self.saves[i]["sexo"]
         except:
-            return "mujer"
+            return "generic-avatar"
 
     def progress_by_save(self, i):
         try:
