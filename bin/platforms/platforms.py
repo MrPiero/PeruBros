@@ -41,8 +41,6 @@ class Platform(pygame.sprite.Sprite):
                                             sprite_sheet_data[3])
 
         self.rect = self.image.get_rect()
-        #bck = pygame.image.load("resources/pictures/loading_temp.png").convert()
-        #self.image.blit(bck, (0,0))
 
 
 class MovingPlatform(Platform):
@@ -144,6 +142,8 @@ class KillerPlatform(Platform):
 
         if self.player.is_collided_with(self):
             self.player.kill_player()
+
+
 
         if self.rect.bottom > self.boundary_bottom or self.rect.top < self.boundary_top:
             self.change_y *= -1

@@ -45,7 +45,7 @@ class Level:
         for enemy in self.enemy_list:
             enemy.rect.y += shift_y
 
-    def add_data(self, levelName):
+    def add_data(self, levelName, screen):
         data = uncode(levelName)
 
         level = []
@@ -67,7 +67,7 @@ class Level:
             block.rect.y = platform[2]
             block.player = self.player
             self.platform_list.add(block)
-            loading_bar(cont, total_elements)
+            loading_bar(cont, total_elements, screen)
         # lectura del arreglo mobs[]
         for mob in mobs:
             cont = cont + 1
@@ -80,6 +80,7 @@ class Level:
             enemy.player = self.player
             enemy.level = self
             self.enemy_list.add(enemy)
+            loading_bar(cont, total_elements, screen)
         for movplat in moving_platforms:
             cont = cont + 1
             mp = MovingPlatform(movplat[0])
@@ -91,5 +92,5 @@ class Level:
             mp.player = self.player
             mp.level = self
             self.platform_list.add(mp)
-
+            loading_bar(cont, total_elements, screen)
         self.level_limit = 1000 - data[3]

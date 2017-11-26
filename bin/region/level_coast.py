@@ -13,7 +13,7 @@ class Level_Coast(Level):
 
         self.background = pygame.image.load("resources/pictures/" + level_name + ".png").convert()
         self.background.set_colorkey(bin.constants.WHITE)
-        self.add_data(level_name)
+        #self.add_data(level_name)
 
         pygame.mixer.init()
         selectSong('coast')
