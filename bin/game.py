@@ -9,6 +9,13 @@ from bin.others.sprite_manager import *
 from bin.others.methods import loading_screen as Load
 # from datetime import datetime, time
 
+global screen
+
+def get_screen():
+    return screen
+
+def set_screen(sc):
+    screen  = sc
 
 def createPlayer(done):
     player = Player()
@@ -23,10 +30,12 @@ def createPlayer(done):
     return player
 
 
-def LevelInit(player):
+def LevelInit(player, screen):
     level_list = []
     # piero ahi invocas el metodo con la base de datos y reemplazas el valor de current level.
-    level_list.append((Level_Coast(player, bin.constants.curr_level)))
+    lv = Level_Coast(player, bin.constants.curr_level)
+    lv.add_data(bin.constants.curr_level, screen)
+    level_list.append((lv))
     #level_list.append((Level_Coast(player, 'lvl_1_2')))  # este de prueba, hardcoded
     return level_list
 
@@ -87,19 +96,12 @@ def main():
     #pygame.display.flip()
     Load(screen)
     player = createPlayer(done)
-    print("B")
-    level_list = LevelInit(player)
-    print("C")
+    level_list = LevelInit(player, screen)
     curr_level_num = bin.constants.level_number[bin.constants.curr_level]
-    print("D")
     current_level = level_list[curr_level_num]
-    print("E")
     active_sprite_list = pygame.sprite.Group()
-    print("F")
     player.level = current_level
-    print("G")
     active_sprite_list.add(player)
-    print("H")
     # estados:
     # -1 = Juego finalizado
     # 0 = Juego en ejecución

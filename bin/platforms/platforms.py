@@ -34,15 +34,13 @@ class Platform(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
 
         sprite_sheet = SpriteSheet("resources/sprites/blocks/tiles_blocks_v2.png")
-        print("Loading...")
+        #print("Loading...")
         self.image = sprite_sheet.get_image(sprite_sheet_data[0],
                                             sprite_sheet_data[1],
                                             sprite_sheet_data[2],
                                             sprite_sheet_data[3])
 
         self.rect = self.image.get_rect()
-        #bck = pygame.image.load("resources/pictures/loading_temp.png").convert()
-        #self.image.blit(bck, (0,0))
 
 
 class MovingPlatform(Platform):
@@ -144,6 +142,8 @@ class KillerPlatform(Platform):
 
         if self.player.is_collided_with(self):
             self.player.kill_player()
+
+
 
         if self.rect.bottom > self.boundary_bottom or self.rect.top < self.boundary_top:
             self.change_y *= -1

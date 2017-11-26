@@ -56,6 +56,7 @@ class MovingEnemy(Enemy):
 
             self.rect.x += self.change_x
 
+
             hit = pygame.sprite.collide_rect(self, self.player)
             if hit:
                 if self.rect.y > self.player.rect.y:
