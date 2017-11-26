@@ -153,7 +153,7 @@ class LevelUIMenu:
                 frame = pygame.draw.rect(self.levelMenuDisplay, GC.RED, (i.top_center[0], i.top_center[1], i.rect.width, i.rect.height))
                 self.levelMenuDisplay.blit(i.text, i.top_center)
                 if region_state > self.progress[0] or (region_state == self.progress[0] and region.levels.index(i)+1 > self.progress[1]):
-                    pygame.draw.rect(self.levelMenuDisplay, GC.BLACK, (i.top_center[0], i.top_center[1], i.rect.width, i.rect.height))
+                    pygame.draw.rect(self.levelMenuDisplay, GC.SLATEGREY, (i.top_center[0], i.top_center[1], i.rect.width, i.rect.height))
                 level_frames[region.levels.index(i)] = frame
             pygame.display.update()
             self.clock.tick(60)
