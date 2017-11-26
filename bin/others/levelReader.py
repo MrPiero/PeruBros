@@ -95,7 +95,7 @@ def uncode(level_name):
 
                 for eje_x in range(0, length - 2):
                     for eje_y in range(0, heigth - 2):
-                        print(eje_x + pos_x + length)
+                        #print(eje_x + pos_x + length)
                         level.append(
                             [edificio_medio[type_b][1], 50 + 70 * (eje_x + pos_x + 1), 550 - 70 * (eje_y + pos_y + 1)])
 
@@ -106,9 +106,9 @@ def uncode(level_name):
                 pos_x = 50 + 70 * int(pos_enemy[1])
                 pos_y = 550 - 70 * int(pos_enemy[2])
                 lim_1 = 50 + 70 * int(pos_enemy[3])
-                print(lim_1)
+                #print(lim_1)
                 lim_2 = 50 + 70 * int(pos_enemy[4])
-                print(lim_2)
+                #print(lim_2)
                 speed = int(pos_enemy[5])
                 mobs.append([type_e, pos_x, pos_y, lim_1, lim_2, speed])
 
