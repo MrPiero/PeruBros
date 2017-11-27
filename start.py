@@ -5,6 +5,7 @@ from bin.others.UI.LevelMenuUI import LevelUIMenu
 from bin.game import main as game
 from bin.test_main import test as t
 import bin.others.Data.DAO as DAO
+import bin.constants
 
 if len(sys.argv) == 1:
     login = LoginUIMenu()
@@ -23,6 +24,9 @@ if len(sys.argv) == 1:
             val = game(progress)
             stats = val[1]
             print(val[1])
+            print(LevelMenu.save['id_personaje'])
+            if (val[1]['death_type'] == 0):
+                DAO.save_progress(LevelMenu.save['id_personaje'], bin.constants.nxt_lv[progress])
 
     else:
         print("LOGIN CERRADO.")
