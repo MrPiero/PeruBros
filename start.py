@@ -16,6 +16,8 @@ if len(sys.argv) == 1:
         save = GameMenu.main_menu()
         val = [1,0]
         while val[0] == 1:
+            # Val = 1 : El usuario gano el nivel
+            # Val = 0 : El usuario fallo el nivel
             LevelMenu = LevelUIMenu(save)
             progress = LevelMenu.main_menu()
             print(progress)

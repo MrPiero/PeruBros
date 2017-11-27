@@ -37,7 +37,7 @@ LEVELS = {"COSTA": ("CUNA DEL SOL", "CAPITAL", "LINEAS MISTERIOSAS"),
 # PATH RESOURCES/OTHERS
 
 level_number = {'lvl_1_1' : 0, 'lvl_1_2' : 1}
-level_type = {'lvl_1_1' : 'selva',
+level_type = {'lvl_1_1' : 'coast',
               'lvl_1_2' : 'coast',
               'lvl_1_3' : 'coast',
               'lvl_2_1': 'sierra',

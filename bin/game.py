@@ -40,8 +40,9 @@ def LevelInit(player, screen):
     return level_list
 
 
-def changeLv(curr_level_num, level_list, player):
+def changeLv():
     stopSong()
+
     #curr_level_num += 1
     #curr_level = level_list[curr_level_num]
     #player.level = curr_level
@@ -86,6 +87,7 @@ def move_world_axis_x(player, current_level, curr_level_num, level_list):
 
 
 def main():
+    end_status = 0
     done = 0
     pygame.init()
     size = [bin.constants.SCREEN_WIDTH, bin.constants.SCREEN_HEIGHT]
@@ -159,13 +161,14 @@ def main():
                 # print(player.current_stats['deaths'])
                 stats['time'] = total_time
                 player = None
+                end_status = 1
                 #done = 1
                 if curr_level_num < len(level_list) - 1:
                     print("Test_2")
                     # dec = nextLevel()
                     dec = "1"
                     if dec == "1":
-                        changeLv(curr_level_num, level_list, player)
+                        changeLv()
                         #curr_level_num += 1
                         done = -1
                         # print("CL" + current_level)
@@ -182,7 +185,8 @@ def main():
     #print(stats['deaths'])
     print(stats['score'])
     pygame.quit()
-    return [1,stats]
+    print(end_status)
+    return [end_status,stats]
 
 
 if __name__ == "__main__":
