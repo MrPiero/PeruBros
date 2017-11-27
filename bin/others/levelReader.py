@@ -15,20 +15,29 @@ def uncode(level_name):
     f = open('resources/levels/' + level_name + '.pbr')
 
     d = {'lim': [LIMA1_BASE_M, LIMA1_BASE_L, LIMA1_BASE_R],
-         'selv': [SELVA_BASE_M, SELVA_BASE_L, SELVA_BASE_R]}
+         'selv': [SELVA_BASE_M, SELVA_BASE_L, SELVA_BASE_R],
+         'sier' : [SIERRA_BASE_M, SIERRA_BASE_L, SIERRA_BASE_R]}
     b = {'lim': [LIMA_BLOCK_1],
-         'selv': [SELVA_BLOCK_1]}
+         'selv': [SELVA_BLOCK_1],
+         'sier' : [SIERRA_BLOCK_1]}
     pb = {'lim': [PLAT1_L, PLAT1_M, PLAT1_R],
-          'selv': [PLAT1_L, PLAT1_M, PLAT1_R]}
+          'selv': [PLAT3_L, PLAT3_M, PLAT3_R],
+          'sier': [PLAT2_L, PLAT2_M, PLAT2_R]}
     edificio_base = {'a': [BLOCK_B1_BOTL, BLOCK_B1_BOTM, BLOCK_B1_BOTR],
                      'b': [BLOCK_B2_BOTL, BLOCK_B2_BOTM, BLOCK_B2_BOTR],
-                     'g': [BLOCK_B3_BOTL, BLOCK_B3_BOTM, BLOCK_B3_BOTR]}
+                     'g': [BLOCK_B3_BOTL, BLOCK_B3_BOTM, BLOCK_B3_BOTR],
+                     's': [BLOCK_CH_BOTL, BLOCK_CH_BOTM, BLOCK_CH_BOTR]
+                     }
     edificio_medio = {'a': [BLOCK_B1_MIDL, BLOCK_B1_MIDM, BLOCK_B1_MIDR],
                       'b': [BLOCK_B2_MIDL, BLOCK_B2_MIDM, BLOCK_B2_MIDR],
-                      'g': [BLOCK_B3_MIDL, BLOCK_B3_MIDM, BLOCK_B3_MIDR]}
+                      'g': [BLOCK_B3_MIDL, BLOCK_B3_MIDM, BLOCK_B3_MIDR],
+                      's': [BLOCK_CH_MIDL, BLOCK_CH_MIDM, BLOCK_CH_MIDR]
+                      }
     edificio_techo = {'a': [BLOCK_B1_TOPL, BLOCK_B1_TOPM, BLOCK_B1_TOPR],
                       'b': [BLOCK_B2_TOPL, BLOCK_B2_TOPM, BLOCK_B2_TOPR],
-                      'g': [BLOCK_B3_TOPL, BLOCK_B3_TOPM, BLOCK_B3_TOPR]}
+                      'g': [BLOCK_B3_TOPL, BLOCK_B3_TOPM, BLOCK_B3_TOPR],
+                      's': [BLOCK_CH_TOPL, BLOCK_CH_TOPM, BLOCK_CH_TOPR]
+                      }
 
     level = []
     mobs = []
