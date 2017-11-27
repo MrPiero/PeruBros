@@ -17,6 +17,7 @@ def createPlayer(done):
     elif done == 1:
         player.rect.x = 200
         player.rect.y = 500
+        pass
     return player
 
 
@@ -33,19 +34,21 @@ def event_move_player(event, player):
     if event.type == pygame.QUIT:
         done = -1
 
-    if event.type == pygame.KEYDOWN and player is not None:
-        if event.key == pygame.K_LEFT:
-            player.go_left()
-        if event.key == pygame.K_RIGHT:
-            player.go_right()
-        if event.key == pygame.K_UP:
-            player.jump()
+    if event.type == pygame.KEYDOWN:
+        if player is not None:
+            if event.key == pygame.K_LEFT:
+                player.go_left()
+            if event.key == pygame.K_RIGHT:
+                player.go_right()
+            if event.key == pygame.K_UP:
+                player.jump()
 
-    if event.type == pygame.KEYUP and player is not None:
-        if event.key == pygame.K_LEFT and player.eje_x < 0:
-            player.stop()
-        if event.key == pygame.K_RIGHT and player.eje_x > 0:
-            player.stop()
+    if event.type == pygame.KEYUP:
+        if player is not None:
+            if event.key == pygame.K_LEFT and player.eje_x < 0:
+                player.stop()
+            if event.key == pygame.K_RIGHT and player.eje_x > 0:
+                player.stop()
 
 
 def move_world_axis_x(player, current_level, curr_level_num, level_list):
@@ -62,7 +65,6 @@ def move_world_axis_x(player, current_level, curr_level_num, level_list):
         current_height = player.rect.y
         if current_height >= 530:
             player.kill_player()
-            player.current_stats['death_type'] = 2
 
 
 def main(progress):
