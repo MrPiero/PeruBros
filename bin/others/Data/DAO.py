@@ -1,5 +1,6 @@
 import requests
 import bin.constants as GC
+import pymysql
 
 
 def list_users():
@@ -26,8 +27,11 @@ def get_progress(id_char):
 # ejemplo al terminar 1-3 save_progress(id_char, (2,1))
 def save_progress(id_char, progress):
     save = {'id_personaje': str(id_char), 'region': str(progress[0]), 'nivel': str(progress[1])}
-    r = requests.post(GC.URL_SAVE_PROGRESS_CHAR, json=save)
-    print(r, r.url)
+    conn = pymysql.connect(host='tx6.fcomet.com', user='wecancom_soft', password='software2', db='wecancom_perubross')
+    a = conn.cursor()
+    sql = 'UPDATE progresos SET region=' + str(progress[0]) + ', nivel=' + str(progress[1]) + ' WHERE id_personaje=' + str(id_char)
+    a.execute(sql)
+    conn.commit()
 
 def save_score(id_char, score):
     save = {'id_personaje': str(id_char), 'score': str(score)}
