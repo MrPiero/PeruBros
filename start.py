@@ -36,3 +36,4 @@ elif sys.argv[1] == 'test3':
     t()
 elif sys.argv[1] == 'test4':
     DAO.save_progress(2, (1, 2))
+    # DAO.save_score(2, 5000)
