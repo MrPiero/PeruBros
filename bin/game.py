@@ -62,6 +62,7 @@ def move_world_axis_x(player, current_level, curr_level_num, level_list):
         current_height = player.rect.y
         if current_height >= 530:
             player.kill_player()
+            player.current_stats['death_type'] = 2
 
 
 def main(progress):

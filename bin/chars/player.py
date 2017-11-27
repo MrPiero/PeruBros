@@ -26,7 +26,11 @@ class Player(pygame.sprite.Sprite):
                      'mobs_killed': 0,
                      'deaths': 0,
                      'jumps': 0,
-                     'time' : 0}
+                     'time' : 0,
+                      'death_type' : 0}
+    # type 0: no murio
+    # type 1: por enemigo
+    # type 2: por caida...
 
     @property
     def current_stats(self):

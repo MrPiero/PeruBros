@@ -144,5 +144,5 @@ def uncode(level_name):
 
 
         x = x + 1
-
+        #print([level, mobs, movPlat, limit])
     return [level, mobs, movPlat, limit]

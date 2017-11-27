@@ -48,6 +48,7 @@ class Enemy(pygame.sprite.Sprite):
                     self.player.current_stats['score'] += SCORES['MOB']
 
                 else:
+                    self.player.current_stats['death_type'] = 1
                     self.player.kill_player()
 
             self.rect.y += self.change_y
