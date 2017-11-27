@@ -12,7 +12,7 @@ class Level_C(Level):
         level_name = name
 
         self.background = pygame.image.load("resources/pictures/" + level_name + ".png").convert()
-        self.background.set_colorkey(bin.constants.WHITE)
+        self.background.set_colorkey(bin.constants.RED)
         #self.add_data(level_name)
 
         pygame.mixer.init()
