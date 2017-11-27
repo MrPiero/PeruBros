@@ -19,7 +19,7 @@ class Block(pygame.sprite.Sprite):
 
         pygame.sprite.Sprite.__init__(self)
 
-        sprite_sheet = SpriteSheet("../../resources/sprites/blocks/backtotalRosa.png")
+        sprite_sheet = SpriteSheet("../../resources/sprites/blocks/tiles_blocks_v2.png")
         self.image = sprite_sheet.get_image(sprite_sheet_data[0],
                                             sprite_sheet_data[1],
                                             sprite_sheet_data[2],

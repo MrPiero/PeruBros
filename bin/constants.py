@@ -36,7 +36,9 @@ LEVELS = {"COSTA": ("CUNA DEL SOL", "CAPITAL", "LINEAS MISTERIOSAS"),
 
 # PATH RESOURCES/OTHERS
 
-level_number = {'lvl_1_1' : 0, 'lvl_1_2' : 1}
+level_number = {'lvl_1_1' : 0, 'lvl_1_2' : 1, "lvl_1_3" : 2,
+                'lvl_2_1' : 3, 'lvl_2_2' : 4, "lvl_2_3" : 5,
+                'lvl_3_1': 6, 'lvl_3_2': 7, "lvl_3_3": 8}
 level_type = {'lvl_1_1' : 'coast',
               'lvl_1_2' : 'coast',
               'lvl_1_3' : 'coast',
@@ -47,6 +49,10 @@ level_type = {'lvl_1_1' : 'coast',
               'lvl_3_2' : 'selva',
               'lvl_3_3' : 'selva'
               }
+
+level_n = {(1,1): 'lvl_1_1',(1,2): 'lvl_1_2',(1,3): 'lvl_1_3',
+              (2, 1): 'lvl_2_1', (2, 2): 'lvl_2_2', (2, 3): 'lvl_2_3',
+              (3, 1): 'lvl_3_1', (3, 2): 'lvl_3_2', (3, 3): 'lvl_3_3'}
 
 curr_level = 'lvl_1_1'
 level_name = [['lvl_1_1','lvl_1_2'],[],[]]

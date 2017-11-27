@@ -30,11 +30,12 @@ def createPlayer(done):
     return player
 
 
-def LevelInit(player, screen):
+def LevelInit(player, screen, progress):
+    print(progress)
     level_list = []
     # piero ahi invocas el metodo con la base de datos y reemplazas el valor de current level.
-    lv = Level_C(player, bin.constants.curr_level)
-    lv.add_data(bin.constants.curr_level, screen)
+    lv = Level_C(player, bin.constants.level_n[progress])
+    lv.add_data(bin.constants.level_n[progress], screen)
     level_list.append((lv))
     #level_list.append((Level_Coast(player, 'lvl_1_2')))  # este de prueba, hardcoded
     return level_list
@@ -86,7 +87,7 @@ def move_world_axis_x(player, current_level, curr_level_num, level_list):
             player.kill_player()
 
 
-def main():
+def main(progress):
     end_status = 0
     done = 0
     pygame.init()
@@ -98,9 +99,9 @@ def main():
     #pygame.display.flip()
     Load(screen)
     player = createPlayer(done)
-    level_list = LevelInit(player, screen)
+    level_list = LevelInit(player, screen, progress)
     curr_level_num = bin.constants.level_number[bin.constants.curr_level]
-    current_level = level_list[curr_level_num]
+    current_level = level_list[0]
     active_sprite_list = pygame.sprite.Group()
     player.level = current_level
     active_sprite_list.add(player)

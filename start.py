@@ -21,13 +21,13 @@ if len(sys.argv) == 1:
             LevelMenu = LevelUIMenu(save)
             progress = LevelMenu.main_menu()
             print(progress)
-            if progress == (1, 1):
+            #if progress == (1, 1):
                 # test_game()
-                val = game()
-                stats = val[1]
-                print(val[1])
-            else:
-                print("Nivel ", progress, " seleccionado")
+            val = game(progress)
+            stats = val[1]
+            print(val[1])
+            #else:
+            #    print("Nivel ", progress, " seleccionado")
 
     else:
         print("LOGIN CERRADO.")
@@ -36,7 +36,7 @@ elif sys.argv[1] == 'test1':
     LevelMenu.main_menu()
 elif sys.argv[1] == 'test2':
     # test_game()
-    game()
+    game((1,2))
 elif sys.argv[1] == 'test3':
     t()
 elif sys.argv[1] == 'test4':
