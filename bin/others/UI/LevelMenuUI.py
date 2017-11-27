@@ -58,7 +58,6 @@ class Region:
         return x, 50
 
     def obtener_fondo(self, region, p):
-        # return pygame.image.load(GC.RESOURCES_OTHERS + region + ".jpg")
         if region == "COSTA":
             return pygame.image.load(GC.RESOURCES_OTHERS + region + ".jpg")
         if region == "SIERRA":

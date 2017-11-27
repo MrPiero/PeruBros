@@ -12,8 +12,6 @@ red = (255, 0, 0)
 gameDisplay = pygame.display.set_mode((display_width, display_height))
 pygame.display.set_caption('PeruBros')
 clock = pygame.time.Clock()
-
-#palomaImg = pygame.image.load('resources/sprites/enemy/paloma8/paloma1.png')
 logoImg = pygame.image.load('resources/logos/perubrologo.png')
 
 def mover_paloma(x, y):

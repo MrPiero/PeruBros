@@ -64,7 +64,6 @@ def uncode(level_name):
                 pos_y = int(posxy[1])
                 level.append([b[level_type][0], 50 + 70 * pos_x, 550 - 70 * pos_y])
         elif x == 5:
-            print(t)
             if t[0] != "\n":
                 for w in t:  # lectura de plataformas
                     posxyl = w.split('-')
