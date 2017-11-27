@@ -30,9 +30,10 @@ elif sys.argv[1] == 'test1':
     LevelMenu = LevelUIMenu()
     LevelMenu.main_menu()
 elif sys.argv[1] == 'test2':
-    g = game((3,2))
+    g = game((2,1))
     print(g[1])
 elif sys.argv[1] == 'test3':
     t()
 elif sys.argv[1] == 'test4':
     DAO.save_progress(2, (1, 2))
+    # DAO.save_score(2, 5000)

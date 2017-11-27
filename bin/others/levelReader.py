@@ -21,8 +21,8 @@ def uncode(level_name):
          'selv': [SELVA_BLOCK_1],
          'sier' : [SIERRA_BLOCK_1]}
     pb = {'lim': [PLAT1_L, PLAT1_M, PLAT1_R],
-          'selv': [PLAT1_L, PLAT1_M, PLAT1_R],
-          'sier': [PLAT1_L, PLAT1_M, PLAT1_R]}
+          'selv': [PLAT3_L, PLAT3_M, PLAT3_R],
+          'sier': [PLAT2_L, PLAT2_M, PLAT2_R]}
     edificio_base = {'a': [BLOCK_B1_BOTL, BLOCK_B1_BOTM, BLOCK_B1_BOTR],
                      'b': [BLOCK_B2_BOTL, BLOCK_B2_BOTM, BLOCK_B2_BOTR],
                      'g': [BLOCK_B3_BOTL, BLOCK_B3_BOTM, BLOCK_B3_BOTR],
