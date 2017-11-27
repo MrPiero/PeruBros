@@ -21,9 +21,12 @@ def get_progress(id_char):
     return requests.get(GC.URL_PROGRESS_SAVE + str(id_char)).json()
 
 
+# ejemplo al terminar 1-1 save_progress(id_char, (1,2))
+# ejemplo al terminar 1-2 save_progress(id_char, (1,3))
+# ejemplo al terminar 1-3 save_progress(id_char, (2,1))
 def save_progress(id_char, progress):
     save = {'id_personaje': str(id_char), 'region': str(progress[0]), 'nivel': str(progress[1])}
-    r = requests.post(GC.URL_SAVE_PROGRESS_CHAR, data=save)
+    r = requests.post(GC.URL_SAVE_PROGRESS_CHAR, json=save)
     print(r, r.url)
 
 def save_score(id_char, score):
