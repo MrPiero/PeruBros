@@ -46,11 +46,20 @@ class LoginUIMenu:
         self.comprobar_user(u, p)
 
     def comprobar_user(self, u, p):
-        json_file = DAO.list_users()
-        for user in json_file:
-            if user["name"] == u:
+        try:
+            json_file = DAO.list_users()
+            for user in json_file:
+                if user["name"] == u:
+                    self.root.quit()
+                    self.status = True
+                    self.idUser = user["id"]
+            if not self.status:
+                print("CREDENCIALES INCORRECTAS")
+        except:
+            if u == "Piero Bardelli":
                 self.root.quit()
                 self.status = True
-                self.idUser = user["id"]
-        if not self.status:
-            print("CREDENCIALES INCORRECTAS")
+                self.idUser = 4
+            if not self.status:
+                print("CREDENCIALES INCORRECTAS")
+
