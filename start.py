@@ -24,6 +24,7 @@ if len(sys.argv) == 1:
             val = game(progress)
             stats = val[1]
             print(val[1])
+            print("valor: " + str(val[0]))
             print(LevelMenu.save['id_personaje'])
             DAO.save_score(LevelMenu.save['id_personaje'],val[1]['score'])
             if (val[1]['death_type'] == 0):

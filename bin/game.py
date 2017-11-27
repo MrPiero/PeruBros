@@ -135,7 +135,7 @@ def main(progress):
     print(stats['score'])
     pygame.quit()
     print(end_status)
-    return [end_status,stats]
+    return [1,stats]
 
 
 if __name__ == "__main__":
