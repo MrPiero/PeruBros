@@ -36,7 +36,7 @@ elif sys.argv[1] == 'test1':
     LevelMenu.main_menu()
 elif sys.argv[1] == 'test2':
     # test_game()
-    game((1,2))
+    game((3,2))
 elif sys.argv[1] == 'test3':
     t()
 elif sys.argv[1] == 'test4':

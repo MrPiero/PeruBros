@@ -14,7 +14,6 @@ class Level:
     cuy_list = None
     background = None
 
-    # How far this world has been scrolled left/right
     world_shift = 0
     level_limit = -1000
 
@@ -107,7 +106,6 @@ class Level:
         moving_platforms += data[2]
 
         total_elements = len(level) + len(mobs) + len(moving_platforms)
-        #print("Numero de objetos: " + str(total_elements))
         cont = 0
         # Lectura del arreglo level[]
         for platform in level:
@@ -153,7 +151,6 @@ class Level:
                 self.capibara_list.add(enemy)
             elif (mob[0] == "CUY"):
                 self.cuy_list.add(enemy)
-            #self.enemy_list.add(enemy)
             loading_bar(cont, total_elements, screen)
         for movplat in moving_platforms:
             cont = cont + 1

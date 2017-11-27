@@ -13,6 +13,10 @@ LIMA1_BASE_L       = (70, 140, 70, 70)
 LIMA1_BASE_R      = (210, 140, 70, 70)
 LIMA1_BASE_M     = (140, 140, 70, 70)
 
+SELVA_BASE_L       = (489, 66, 70, 70)
+SELVA_BASE_M      = (559, 66, 70, 70)
+SELVA_BASE_R     = (629, 66, 70, 70)
+
 ####
 
 PLAT2_L            = (70, 220, 70, 60)
@@ -26,7 +30,7 @@ PLAT2_FLY_R  = (140, 280, 70, 20)
 LIMA2_BASE_L       = (70, 280, 70, 70)
 LIMA2_BASE_R      = (210, 280, 70, 70)
 LIMA2_BASE_M     = (140, 280, 70, 70)
-bck = (255, 0, 255)
+bck = (27, 25, 27)
 
 
 class Platform(pygame.sprite.Sprite):
@@ -34,7 +38,7 @@ class Platform(pygame.sprite.Sprite):
     def __init__(self, sprite_sheet_data):
         pygame.sprite.Sprite.__init__(self)
 
-        sprite_sheet = SpriteSheet("resources/sprites/blocks/tiles_blocks_v2.png")
+        sprite_sheet = SpriteSheet("resources/sprites/blocks/Tiles.png")
         #print("Loading...")
         self.image = sprite_sheet.get_image(sprite_sheet_data[0],
                                             sprite_sheet_data[1],

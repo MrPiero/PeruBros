@@ -6,16 +6,8 @@ from bin.region.level_c import *
 import time
 from bin.region.levels import *
 from bin.others.sprite_manager import *
-from bin.others.methods import loading_screen as Load
-# from datetime import datetime, time
+from bin.others.methods import loading_screen as load
 
-global screen
-
-def get_screen():
-    return screen
-
-def set_screen(sc):
-    screen  = sc
 
 def createPlayer(done):
     player = Player()
@@ -23,7 +15,6 @@ def createPlayer(done):
         player.rect.x = 200
         player.rect.y = 500
     elif done == 1:
-        # aca debemos ponerlo en su lugar original...
         player.rect.x = 200
         player.rect.y = 500
         pass
@@ -33,21 +24,10 @@ def createPlayer(done):
 def LevelInit(player, screen, progress):
     print(progress)
     level_list = []
-    # piero ahi invocas el metodo con la base de datos y reemplazas el valor de current level.
     lv = Level_C(player, bin.constants.level_n[progress])
     lv.add_data(bin.constants.level_n[progress], screen)
     level_list.append((lv))
-    #level_list.append((Level_Coast(player, 'lvl_1_2')))  # este de prueba, hardcoded
     return level_list
-
-
-def changeLv():
-    stopSong()
-
-    #curr_level_num += 1
-    #curr_level = level_list[curr_level_num]
-    #player.level = curr_level
-
 
 
 def event_move_player(event, player):
@@ -94,10 +74,7 @@ def main(progress):
     size = [bin.constants.SCREEN_WIDTH, bin.constants.SCREEN_HEIGHT]
     screen = pygame.display.set_mode(size)
     pygame.display.set_caption("PeruBros")
-    #bck = pygame.image.load("resources/pictures/loading_temp.png").convert()
-    #screen.blit(bck, (0,0))
-    #pygame.display.flip()
-    Load(screen)
+    load(screen)
     player = createPlayer(done)
     level_list = LevelInit(player, screen, progress)
     curr_level_num = bin.constants.level_number[bin.constants.curr_level]
@@ -113,17 +90,11 @@ def main(progress):
 
     clock = pygame.time.Clock()
     cont = 0
-    #total_time = 0
-    #gen_cont = 0
     timer_t = time.time()
     stats = {}
 
     while done != -1:
-        #print("Done" + str(done))
-        #timer = time.time()
         total_time = time.time() - timer_t
-        #print(total_time)
-
         if done == 1:
             if cont == 0:
                 timer = time.time()
@@ -135,49 +106,26 @@ def main(progress):
 
         for event in pygame.event.get():
             event_move_player(event, player)
-
         active_sprite_list.update()
         current_level.update()
-        #print(str(player))
         if player is not None:
             move_world_axis_x(player, current_level, curr_level_num, level_list)
             curr_pos = player.rect.x + current_level.world_shift
             if player.status == 0:
                 stats = player.current_stats
-                #print(player.current_stats['deaths'])
                 stats['time'] = total_time
                 player = None
                 done = 1
 
-
-
-        if player is not None:
-            if curr_pos < current_level.level_limit:
-                #player.rect.x = 120
-                done = -1
-                #changeLv()
-                stopSong()
-                player.current_stats['score'] += bin.constants.SCORES['LV_CLEAR']
-                stats = player.current_stats
-                # print(player.current_stats['deaths'])
-                stats['time'] = total_time
-                player = None
-                end_status = 1
-                #done = 1
-                if curr_level_num < len(level_list) - 1:
-                    print("Test_2")
-                    # dec = nextLevel()
-                    dec = "1"
-                    if dec == "1":
-                        changeLv()
-                        #curr_level_num += 1
-                        done = -1
-                        # print("CL" + current_level)
-                        #current_level = level_list[curr_level_num]
-                        #player.level = current_level
-                    else:
-                        pass
-                current_level.update()
+        if player is not None and curr_pos < current_level.level_limit:
+            done = -1
+            stopSong()
+            player.current_stats['score'] += bin.constants.SCORES['LV_CLEAR']
+            stats = player.current_stats
+            stats['time'] = total_time
+            player = None
+            end_status = 1
+            current_level.update()
 
         current_level.draw(screen)
         active_sprite_list.draw(screen)

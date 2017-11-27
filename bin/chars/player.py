@@ -173,7 +173,6 @@ class Player(pygame.sprite.Sprite):
 
     def kill_player(self):
         print("Player is killed.")
-        #self.lives = self.lives - 1
         self.current_stats['deaths'] += 1
         self.status = 0
         self.kill()

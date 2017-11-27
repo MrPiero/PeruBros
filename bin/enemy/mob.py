@@ -3,19 +3,15 @@ from bin.others.sprite_manager import SpriteSheet
 from bin.others.musicManager import soundMobDeath as Sound
 from bin.constants import SCORES
 
-bck = (255, 0, 255)
+bck = (27, 25, 27)
 
 
 class Enemy(pygame.sprite.Sprite):
         walking_frames_l = []
         walking_frames_r = []
-
         direction = "R"
-
-
         change_x = 0
         change_y = 0
-
         boundary_top = 0
         boundary_bottom = 0
         boundary_left = 0
@@ -29,7 +25,7 @@ class Enemy(pygame.sprite.Sprite):
         player = None
 
         def update(self):
-            pos = self.rect.x  # self.level.world_shift
+            pos = self.rect.x
             if self.direction == "R":
                 frame = (pos // 30) % len(self.walking_frames_r)
                 self.image = self.walking_frames_r[frame]
@@ -53,10 +49,6 @@ class Enemy(pygame.sprite.Sprite):
 
                 else:
                     self.player.kill_player()
-                    # print(self.player.current_stats['deaths'])
-                    # print(self.player.current_stats['jumps'])
-                    # print(self.player.current_stats['score'])
-                    # print(self.player.current_stats['time'])
 
             self.rect.y += self.change_y
 
@@ -64,8 +56,6 @@ class Enemy(pygame.sprite.Sprite):
             if cur_pos < self.boundary_left or cur_pos > self.boundary_right:
 
                 self.change_x *= -1
-
-                # print(self.change_x)
 
                 if self.change_x >= 1:
                     self.direction = "R"

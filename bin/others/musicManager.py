@@ -15,7 +15,6 @@ def soundJump():
 
 def soundMobDeath():
     pygame.mixer.Channel(1).play(pygame.mixer.Sound("resources/sounds/woosh.ogg"))
-    #pass
 
 def stopSong():
     pygame.mixer.music.stop()
