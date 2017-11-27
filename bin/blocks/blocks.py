@@ -12,11 +12,26 @@ BLOCK_END              = (0 ,0 ,70 ,70 )
 
 LIMA_BLOCK_1 = (70  , 0, 70, 70)
 SELVA_BLOCK_1 = (69  , 420, 70, 70)
+SIERRA_BLOCK_1 = (70,210,70,70)
 
 SELVA_ARBOL_T =  (560,210,70,70)
 SELVA_ARBOL_HL = (491,141,70,70)
 SELVA_ARBOL_HM = (561,141,70,70)
 SELVA_ARBOL_HR = (631-1,141,70,70)
+
+BLOCK_CH_TOPL            = (490, 420, 70, 70)
+BLOCK_CH_TOPM            = (560, 420, 70, 70)
+BLOCK_CH_TOPR            = (630, 420, 70, 70)
+
+BLOCK_CH_MIDL            = (490, 490, 70, 70)
+BLOCK_CH_MIDM            = (560, 490, 70, 70)
+BLOCK_CH_MIDR            = (630, 490, 70, 70)
+
+BLOCK_CH_BOTL            = (490, 560, 70, 70)
+BLOCK_CH_BOTM            = (560, 560, 70, 70)
+BLOCK_CH_BOTR            = (630, 560, 70, 70)
+
+
 
 bck = (27, 25, 27)
 # Lima Blocks
