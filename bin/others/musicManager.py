@@ -8,7 +8,7 @@ def selectSong(level):
         pygame.mixer.music.load("resources/sounds/Sierra.ogg")
     elif(level == 'selva'):
         pygame.mixer.music.load("resources/sounds/Selva.ogg")
-    pygame.mixer.music.play()
+    #pygame.mixer.music.play()
 
 def soundJump():
     pygame.mixer.Channel(0).play(pygame.mixer.Sound("resources/sounds/jump.ogg"))
