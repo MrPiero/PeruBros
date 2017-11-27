@@ -30,7 +30,7 @@ elif sys.argv[1] == 'test1':
     LevelMenu = LevelUIMenu()
     LevelMenu.main_menu()
 elif sys.argv[1] == 'test2':
-    g = game((3,2))
+    g = game((1,2))
     print(g[1])
 elif sys.argv[1] == 'test3':
     t()
