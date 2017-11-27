@@ -20,7 +20,7 @@ URL = "http://www.soft2.wecan.com.pe/laravel/public//usuario/listar"
 URL_SAVES_USER = "http://www.soft2.wecan.com.pe/laravel/public//personaje/api/"
 URL_PROGRESS_SAVE = "http://www.soft2.wecan.com.pe/laravel/public//personaje/api/progreso/"
 URL_SAVE_PROGRESS_CHAR = "http://www.soft2.wecan.com.pe/laravel/public//personaje/api/saveprogress"
-URL_SAVE_SCORE_CHAR = "URL"
+URL_SAVE_SCORE_CHAR = "http://www.soft2.wecan.com.pe/laravel/public//personaje/api/savepuntaje"
 
 # Paths for resources
 

@@ -40,9 +40,12 @@ class LoginUIMenu:
         self.root.mainloop()
         return self.idUser
 
-    def login_https(self):
+    def login_https(self, ):
         u = self.entryUser.get()
         p = self.entryPasswd.get()
+        self.comprobar_user(u, p)
+
+    def comprobar_user(self, u, p):
         json_file = DAO.list_users()
         for user in json_file:
             if user["name"] == u:
