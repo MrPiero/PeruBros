@@ -1,8 +1,8 @@
 import unittest
 from bin.others.UI.LoginUI import LoginUIMenu
+from bin.game import main as game
 
-
-class TestLogin(unittest.TestCase):
+class TestBasico(unittest.TestCase):
 
     def test_login_incorrecto(self):
         login = LoginUIMenu()
@@ -13,3 +13,8 @@ class TestLogin(unittest.TestCase):
         login = LoginUIMenu()
         login.comprobar_user("Piero Bardelli", "unittest123")
         self.assertEqual(True, login.status)
+
+    def test_muerte_PorEnemigo(self):
+        g = game((1, 1))
+        self.assertEqual(0,g[0])
+
