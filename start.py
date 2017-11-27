@@ -25,6 +25,7 @@ if len(sys.argv) == 1:
             stats = val[1]
             print(val[1])
             print(LevelMenu.save['id_personaje'])
+            DAO.save_score(LevelMenu.save['id_personaje'],val[1]['score'])
             if (val[1]['death_type'] == 0):
                 DAO.save_progress(LevelMenu.save['id_personaje'], bin.constants.nxt_lv[progress])
 
