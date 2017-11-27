@@ -64,6 +64,7 @@ def move_world_axis_x(player, current_level, curr_level_num, level_list):
 
         current_height = player.rect.y
         if current_height >= 530:
+            player.current_stats['death_type'] = 2
             player.kill_player()
 
 
@@ -135,7 +136,7 @@ def main(progress):
     print(stats['score'])
     pygame.quit()
     print(end_status)
-    return [end_status,stats]
+    return [1,stats]
 
 
 if __name__ == "__main__":
