@@ -26,14 +26,25 @@ def get_progress(id_char):
 # ejemplo al terminar 1-2 save_progress(id_char, (1,3))
 # ejemplo al terminar 1-3 save_progress(id_char, (2,1))
 def save_progress(id_char, progress):
-    save = {'id_personaje': str(id_char), 'region': str(progress[0]), 'nivel': str(progress[1])}
-    conn = pymysql.connect(host='tx6.fcomet.com', user='wecancom_soft', password='software2', db='wecancom_perubross')
-    a = conn.cursor()
-    sql = 'UPDATE progresos SET region=' + str(progress[0]) + ', nivel=' + str(progress[1]) + ' WHERE id_personaje=' + str(id_char)
-    a.execute(sql)
-    conn.commit()
+    try:
+        save = {'id_personaje': str(id_char), 'region': str(progress[0]), 'nivel': str(progress[1])}
+        conn = pymysql.connect(host='tx6.fcomet.com', user='wecancom_soft', password='software2', db='wecancom_perubross')
+        a = conn.cursor()
+        sql = 'UPDATE progresos SET region=' + str(progress[0]) + ', nivel=' + str(progress[1]) + ' WHERE id_personaje=' + str(id_char)
+        a.execute(sql)
+        conn.commit()
+        print(progress)
+    except:
+        pass
 
 def save_score(id_char, score):
-    save = {'id_personaje': str(id_char), 'score': str(score)}
-    r = requests.post(GC.URL_SAVE_SCORE_CHAR, json=save)
-    print(r)
+    try:
+        save = {'id_personaje': str(id_char), 'score': str(score)}
+        conn = pymysql.connect(host='tx6.fcomet.com', user='wecancom_soft', password='software2', db='wecancom_perubross')
+        a = conn.cursor()
+        sql = 'UPDATE personajes SET puntaje=' + str(score) + ' WHERE id=' + str(id_char)
+        a.execute(sql)
+        conn.commit()
+        print(score)
+    except:
+        pass
